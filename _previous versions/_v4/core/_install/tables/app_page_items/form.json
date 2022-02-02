@@ -1,0 +1,72 @@
+{
+    "table":"app_page_items",    
+    "form":
+    {
+        "id":
+        {
+            "input_label": "ID",
+            "input_type": "TEXTBOX",
+            "sanitation": null,
+            "show_in_form": 0,
+            "hidden":1
+        },
+        "internal_name": 
+        {
+            "input_label": "Internal name",
+            "input_type": "TEXTBOX",
+            "sanitation": null,                
+            "show_in_form": 1,
+            "hidden":0
+        },
+        "type": 
+        {
+            "input_label": "Type",
+            "input_type": "SELECT",
+            "source":{"Page item":"nav_item","Navigation separator":"nav_separator"},
+            "sanitation": null,                
+            "show_in_form": 1,
+            "hidden":0
+        },
+        "parent_id": 
+        {
+            "input_label": "Parent",
+            "input_type": "SELECT",
+            "source": "parent_select.php",
+            "sanitation": null,                
+            "show_in_form": 1,
+            "hidden":0
+        },
+        "limited_access": 
+        {
+            "input_label": "Limited access",
+            "input_type": "CHECKBOX",
+            "show_in_form": 1,
+            "hidden":0
+        },
+        "date": 
+        {
+            "input_label": "Date",
+            "input_type": "TEXTBOX",
+            "sanitation": null,                
+            "show_in_form": 0,
+            "hidden":0
+        },
+        "author": 
+        {
+            "input_label": "",
+            "input_type": "TEXTBOX",
+            "sanitation": null,                
+            "show_in_form": 0,
+            "hidden":1,
+            "default":{"USER":"USERNAME"}
+        },
+        "active": 
+        {
+            "input_label": "Active",
+            "input_type": "CHECKBOX",
+            "show_in_form": 1,
+            "hidden":0,
+            "default":1
+        }
+    }
+}

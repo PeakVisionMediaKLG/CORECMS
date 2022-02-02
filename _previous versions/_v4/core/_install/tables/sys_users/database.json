@@ -1,0 +1,117 @@
+{
+    "table":"sys_users",
+    "charset":"utf8mb4",
+    "collation":"utf8mb4_general_ci",
+    "structure":
+    {
+       "id": 
+       {
+           "type": "int",
+           "length": 11,
+           "null":"NOT NULL",
+           "primary":true
+       },
+       "identifier": 
+       {
+           "type": "varchar",
+           "length": 255,           
+           "null":"NOT NULL",
+           "unique":true
+       },
+       "username": 
+       {
+           "type": "varchar",
+           "length": 255,
+           "null":"NOT NULL",
+           "unique":true
+       },     
+       "password": 
+       {
+           "type": "varchar",
+           "length": 255,
+           "null":"NOT NULL"      
+       },
+       "user_role": 
+       {
+            "type": "varchar",
+            "length": 255,
+            "null":"NOT NULL"      
+       },  
+       "is_active": 
+       {
+            "type": "tinyint",
+            "length": 4,
+            "null":"NOT NULL",
+            "default":0
+       },
+       "is_admin": 
+       {
+            "type": "tinyint",
+            "length": 4,
+            "null":"NOT NULL",
+            "default":0
+       },                
+       "preferred_language": 
+       {
+           "type": "varchar",
+           "length": 255,
+           "null":"NOT NULL"
+       },
+       "first_name": 
+       {
+           "type": "varchar",
+           "length": 255,
+           "null":"NOT NULL"
+       },   
+       "last_name": 
+       {
+           "type": "varchar",
+           "length": 255,
+           "null":"NOT NULL"
+       },
+       "email": 
+       {
+           "type": "varchar",
+           "length": 255,
+           "null":"NOT NULL"
+       },   
+       "date_created": 
+       {
+           "type": "varchar",
+           "length": 255,
+           "null":"NOT NULL"
+       }
+
+    },
+    "data":
+    [
+        {
+            "id":1,
+            "identifier": "",
+            "username": "System admin",
+            "password": "$2y$10$0GRAubD3tGeMWXOy4U7lIOQDb0LeQsdqmLJqkOHcpjdOU3us6QS9S",
+            "user_role": "admin",
+            "is_active": 1,            
+            "is_admin":1,
+            "preferred_language": "en",
+            "first_name": "John",
+            "last_name": "Doe",
+            "email": "",
+            "date_created": ""
+        },
+        {
+            "id":2,
+            "identifier": "",
+            "username": "Editor",
+            "password": "$2y$10$0GRAubD3tGeMWXOy4U7lIOQDb0LeQsdqmLJqkOHcpjdOU3us6QS9S",
+            "user_role": "editor",
+            "is_active": 1,            
+            "is_admin":0,
+            "preferred_language": "en",
+            "first_name": "John",
+            "last_name": "Doe",
+            "email": "",
+            "date_created": ""
+        }
+    ]
+}

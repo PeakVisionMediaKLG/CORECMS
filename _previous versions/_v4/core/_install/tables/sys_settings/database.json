@@ -1,0 +1,96 @@
+{
+    "table":"sys_settings",
+    "charset":"utf8mb4",
+    "collation":"utf8mb4_general_ci",
+    "structure":
+    {
+       "id": 
+       {
+           "type": "int",
+           "length": 11,
+           "null":"NOT NULL",
+           "primary":true
+       },
+       "name": 
+       {
+           "type": "varchar",
+           "length": 255,           
+           "null":"NOT NULL",
+           "unique":true
+       },
+       "caption": 
+       {
+           "type": "varchar",
+           "length": 255,
+           "null":"NOT NULL"
+       },     
+       "valueset": 
+       {
+           "type": "varchar",
+           "length": 255,
+           "null":"NOT NULL"      
+       },
+       "value": 
+       {
+           "type": "text",
+           "null":"NOT NULL"
+       },  
+       "type": 
+       {
+            "type": "varchar",
+            "length": 255,
+            "null":"NOT NULL"
+       },  
+       "essential": 
+       {
+            "type": "tinyint",
+            "length": 4,
+            "null":"NOT NULL",
+            "default":0
+       }
+    },
+    "data":
+    [
+        {
+            "name": "dbPrintMessages",
+            "caption": "Print database errors / warnings to the html document.",
+            "valueset": "",
+            "value": "0",
+            "type": "boolean",
+            "essential": "1"
+        },
+        {
+            "name": "dbAutoDumpOnLogin",
+            "caption": "Backup database on each back-end user login.",
+            "valueset": "",
+            "value": "0",
+            "type": "boolean",
+            "essential": "1"
+        },
+        {
+            "name": "dbLogMessages",
+            "caption": "Write database actions to the log.",
+            "valueset": "",
+            "value": "0",
+            "type": "boolean",
+            "essential": "1"
+        },
+        {
+            "name": "jQueryDebugConsole",
+            "caption": "Enable jQuery logging to the console.",
+            "valueset": "",
+            "value": "0",
+            "type": "boolean",
+            "essential": "1"
+        },
+        {
+            "name": "jQueryDebugPrint",
+            "caption": "Print jQuery Ajax output to the document.",
+            "valueset": "",
+            "value": "0",
+            "type": "boolean",
+            "essential": "1"
+        }
+
+    ]
+}

@@ -1,0 +1,4 @@
+{
+    "name":"core-workspaces",
+    "accessible-by":["admin","editor"]
+}

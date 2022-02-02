@@ -1,0 +1,5 @@
+{
+    "name":"core-files",
+    "accessible-by":["admin","editor"],
+    "session-show-state":"CORE.FILES_COLLAPSIBLE_OPEN"
+}

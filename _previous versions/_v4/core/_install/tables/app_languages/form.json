@@ -1,0 +1,53 @@
+{
+    "table":"app_languages",
+    "form":
+    {
+            "id":
+            {
+                "input_label": "ID",
+                "input_type": "TEXTBOX",
+                "sanitation": null,
+                "show_in_form": 0,
+                "hidden":1
+            },
+            "name": 
+            {
+                "input_label": "Language",
+                "input_type": "TEXTBOX",
+                "sanitation": null,                
+                "show_in_form": 1,
+                "hidden":0
+            },
+            "code": 
+            {
+                "input_label": "Code",
+                "input_type": "TEXTBOX",
+                "sanitation": null,                
+                "show_in_form": 1,
+                "hidden":0
+            },
+            "caption": 
+            {
+                "input_label": "Caption",
+                "input_type": "TEXTBOX",
+                "sanitation": null,                
+                "show_in_form": 1,
+                "hidden":0
+            },
+            "short_caption": 
+            {
+                "input_label": "Short caption",
+                "input_type": "TEXTBOX",
+                "sanitation": null,                
+                "show_in_form": 1,
+                "hidden":0
+            },
+            "active": 
+            {
+                "input_label": "Active",
+                "input_type": "CHECKBOX",
+                "show_in_form": 1,
+                "hidden":0
+            }
+    }
+}

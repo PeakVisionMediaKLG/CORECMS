@@ -1,0 +1,58 @@
+{
+    "table":"app_languages",
+    "charset":"utf8mb4",
+    "collation":"utf8mb4_general_ci",
+    "structure":
+    {
+       "id": 
+       {
+           "type": "int",
+           "length": 11,
+           "null":"NOT NULL",
+           "primary":true
+       },
+       "name": 
+       {
+           "type": "varchar",
+           "length": 255,           
+           "null":"NOT NULL",
+           "unique":true
+       },
+       "code": 
+       {
+           "type": "varchar",
+           "length": 255,
+           "null":"NOT NULL"
+       },     
+       "caption": 
+       {
+           "type": "varchar",
+           "length": 255,
+           "null":"NOT NULL"      
+       },
+       "short_caption": 
+       {
+            "type": "varchar",
+            "length": 255,
+            "null":"NOT NULL"
+       },  
+       "active": 
+       {
+            "type": "tinyint",
+            "length": 4,
+            "null":"NOT NULL",
+            "default":1
+       }
+    },
+    "data":
+    [
+        {
+            "id":1,
+            "name": "English",
+            "code": "en",
+            "caption": "English",
+            "short_caption": "EN",
+            "active":1
+        }
+    ]
+}

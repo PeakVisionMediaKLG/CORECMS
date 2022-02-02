@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css?family=Merriweather');
+
+/* Small devices (tablets, 576px and up)*/
+@media (min-width: 576px) { 
+    .autobreak{width:100%;margin:0;}
+}
+
+/* Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+    .autobreak{width:90%;margin-left:auto;margin-right:auto;}
+}
+
+/* Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) { 
+    .autobreak{width:90%;margin-left:auto;margin-right:auto;}
+}
+
+/* Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) { 
+    .autobreak{width:80%;margin-left:auto;margin-right:auto;}
+}
+
+h1, h2, h3 {font-family: Merriweather;}
+
+.wrapall{}
+
+
+.startingsection{min-height:100vh;}
+.startingsection:hover{min-height:100vh;}
+
+.pe-news{margin-top:20px;margin-bottom:20px;}
+.pe-newsheadline{color:#06ccca;}
+
+.pe-h{color:#06ccca;}
+
+.pe-newsimage{}
+
+.pe-scrollanimation{z-index:101; position:relative; top:-120px;}
+
+.menucontainer {min-height:150px; background-image: linear-gradient(0deg, rgb(0,0,0,0), rgb(0,0,0,0.4)); position:absolute; z-index:10; }
+.menucontainer:hover {min-height:150px; background-image: linear-gradient(0deg, rgb(0,0,0,0), rgb(0,0,0,0.4)); position:absolute; z-index:10; }
+.menucontainer.core-admin-view{z-index:auto !important; position: static !important;}
+
+
+.buttonbook{ transform: skewX(-25deg); background-color: #06ccca; border:0; border-radius: 0; font-family: Merriweather; color:white; }
+.buttonbook:hover {transition: 0.3s; transition-timing-function: ease-in-out; background-color: white; color:#06ccca; }
+.buttonbook span {display:inline-block; transform: skewX(25deg);font-size: 0.8em;}
+
+.buttonbook-mobile{ background-color: #06ccca; border:0; border-radius: 0; font-family: Merriweather; color:white; }
+.buttonbook-mobile:hover {transition: 0.3s; transition-timing-function: ease-in-out; background-color: white; color:#06ccca; }
+.buttonbook-mobile span {font-size: 0.8em;}
+
+.buttonvoucher{ transform: skewX(-25deg); background-color: #ff3238; border:0; border-radius: 0; font-family: Merriweather; color:white; position:relative; left:-30px;}
+.buttonvoucher span {display:inline-block; transform: skewX(25deg);font-size: 0.8em;}
+.buttonvoucher:hover {transition: 0.3s; transition-timing-function: ease-in-out; background-color: white; color:#ff3238; }
+
+.buttonvoucher-mobile{ background-color: #ff3238; border:0; border-radius: 0; font-family: Merriweather; color:white; }
+.buttonvoucher-mobile span {display:inline-block; font-size: 0.8em;}
+.buttonvoucher-mobile:hover {transition: 0.3s; transition-timing-function: ease-in-out; background-color: white; color:#ff3238; }
+
+.menucontactarea {background-color:rgb(0,0,0,0.5); height:40px;}
+
+
+.pe-mobile-sticktobottom{background-color:rgb(0,0,0,0.5); box-shadow: 0px -0px 25px 10px rgba(0,0,0,0.3);  
+  position: fixed;
+  bottom: 0;
+    z-index:150;}
+
+
+.pe-mobile-sticktobottom.core-admin-view {position:static !important; bottom:auto !important; z-index: 0 !important;}
+
+.pe-footer{background-color:rgb(0,0,0,0.5);}
+.pe-footer-map{}
+
+.pe-contact-link {color:white;}
+.pe-contact-link:hover {color:#06ccca;text-decoration: none;}

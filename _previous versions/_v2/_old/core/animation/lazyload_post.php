@@ -1,0 +1,1 @@
+<?php /*if($this->DB->SESSIONDATA->GET_VAL('interface','show_toolbar')==0){*/ ?> --></div> <?php /*} */ ?>

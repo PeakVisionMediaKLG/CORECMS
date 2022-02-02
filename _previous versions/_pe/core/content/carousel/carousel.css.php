@@ -1,0 +1,1 @@
+div.core-container{min-height:100px;}

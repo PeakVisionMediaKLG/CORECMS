@@ -1,0 +1,76 @@
+{
+    "table":"app_page_items",
+    "charset":"utf8mb4",
+    "collation":"utf8mb4_general_ci",
+    "structure":
+    {
+       "id": 
+       {
+           "type": "int",
+           "length": 11,
+           "null":"NOT NULL",
+           "primary":true
+       },
+       "internal_name": 
+       {
+           "type": "varchar",
+           "length": 255,
+           "null":"NOT NULL",
+           "unique":true
+       },  
+       "type": 
+       {
+            "type": "varchar",
+            "length": 255,
+            "null":"NOT NULL",
+            "default":null    
+       },
+       "parent_id": 
+       {
+            "type": "varchar",
+            "length": 255,
+            "null":"NOT NULL",
+            "default":null    
+       },          
+       "limited_access": 
+       {
+            "type": "tinyint",
+            "length": 4,
+            "null":"NOT NULL",
+            "default":0     
+       },
+       "nav_active": 
+       {
+            "type": "tinyint",
+            "length": 4,
+            "null":"NOT NULL",
+            "default":0     
+       },
+       "nav_position": 
+       {
+            "type": "int",
+            "length": 11,
+            "null":"NOT NULL"
+       },         
+       "date": 
+       {
+           "type": "datetime",
+           "null":"NOT NULL",
+           "default":"current_timestamp()"
+       },
+       "author": 
+       {
+           "type": "varchar",
+           "length": 255,
+           "null":"NOT NULL"
+       },
+       "active": 
+       {
+            "type": "tinyint",
+            "length": 4,
+            "null":"NOT NULL",
+            "default":1
+       }
+    },
+    "data":null
+}

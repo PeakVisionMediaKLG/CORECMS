@@ -1,0 +1,4 @@
+{
+    "src_local" : ["link","/core/resources/core_css/core.main.css"],
+    "src_cdn" : null
+}

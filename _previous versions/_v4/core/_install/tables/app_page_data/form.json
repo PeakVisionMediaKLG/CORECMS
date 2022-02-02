@@ -1,0 +1,120 @@
+{
+    "table":"app_page_data",
+    "charset":"utf8mb4",
+    "collation":"utf8mb4_general_ci",
+    "structure":
+    {
+       "id": 
+       {
+           "type": "int",
+           "length": 11,
+           "null":"NOT NULL",
+           "primary":true
+       },
+       "shared_id": 
+       {
+           "type": "varchar",
+           "length": 255,           
+           "null":"NOT NULL"
+       },
+       "app_language": 
+       {
+            "type": "varchar",
+            "length": 255,
+            "null":"NOT NULL"      
+       }, 
+       "page_assets_head": 
+       {
+            "type": "text",
+            "null":"NOT NULL"
+       },
+       "page_assets_body": 
+       {
+            "type": "text",
+            "null":"NOT NULL"
+       },                 
+       "url": 
+       {
+           "type": "varchar",
+           "length": 255,
+           "null":"NOT NULL"      
+       },
+       "limited_access": 
+       {
+            "type": "tinyint",
+            "length": 4,
+            "null":"NOT NULL",
+            "default":0     
+       },  
+       "title": 
+       {
+           "type": "varchar",
+           "length": 255,
+           "null":"NOT NULL"
+       },   
+       "keywords": 
+       {
+           "type": "varchar",
+           "length": 255,
+           "null":"NOT NULL"
+       },   
+       "description": 
+       {
+           "type": "varchar",
+           "length": 255,
+           "null":"NOT NULL"
+       },   
+       "link_text": 
+       {
+           "type": "varchar",
+           "length": 255,
+           "null":"NOT NULL"
+       },
+       "active": 
+       {
+            "type": "tinyint",
+            "length": 4,
+            "null":"NOT NULL",
+            "default":1
+       },
+       "date_create": 
+       {
+           "type": "varchar",
+           "length": 255,
+           "null":"NOT NULL"
+       },
+       "author_create": 
+       {
+           "type": "varchar",
+           "length": 255,
+           "null":"NOT NULL"
+       },
+       "date_edit": 
+       {
+           "type": "varchar",
+           "length": 255,
+           "null":"NOT NULL"
+       },
+       "author_edit": 
+       {
+           "type": "varchar",
+           "length": 255,
+           "null":"NOT NULL"
+       },
+       "deleted": 
+       {
+            "type": "tinyint",
+            "length": 4,
+            "null":"NOT NULL",
+            "default":0
+       },
+       "access_counter": 
+       {
+            "type": "int",
+            "length": 11,
+            "null":"NOT NULL",
+            "default":0
+       }
+    },
+    "data":null
+}

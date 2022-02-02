@@ -1,0 +1,4 @@
+{
+    "src_local" : ["script","/core/resources/core_js/core.main.js"],
+    "src_cdn" : null
+}

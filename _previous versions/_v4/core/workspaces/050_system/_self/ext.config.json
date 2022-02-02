@@ -1,0 +1,5 @@
+{
+    "name":"core-system",
+    "accessible-by":["admin"],
+    "session-show-state":"CORE.SYSTEM_COLLAPSIBLE_OPEN"
+}

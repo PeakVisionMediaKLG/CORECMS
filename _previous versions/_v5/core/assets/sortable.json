@@ -1,0 +1,4 @@
+{
+    "src_local" : ["script","/core/assets/html5sortable-master/dist/html5sortable.min.js"],
+    "src_cdn" : null
+}
