@@ -16,15 +16,16 @@ $CONFIG_WORKSPACES = array(
     "cat_content"       =>          array(
                                     "content_templates" =>      null,
                                     ),  */
-    "cat_files"         =>          array(
+    "cat_files"         =>       null, /*   array(
                                     "files_manager"     =>      null
-                                    ),  
-/*    "cat_system"        =>          array(
+                                    ),  */
+    "cat_system"        =>          array(
                                     "system_users"      =>      null,
-                                    "system_database"   =>      null,
-                                    "system settings"   =>      null,         
+                                    /*"system_database"   =>      null,
+                                    "system settings"   =>      null,   */      
                                     ), 
-    "cat_extensions"    =>          null*/
+    /*"cat_extensions"    =>          null*/
+    "widget_logout"        =>          null,
 
 );
 

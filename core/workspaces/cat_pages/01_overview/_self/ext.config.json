@@ -1,0 +1,4 @@
+{
+    "name":"core-pages-overview",
+    "accessible-by":["admin","editor"]
+}

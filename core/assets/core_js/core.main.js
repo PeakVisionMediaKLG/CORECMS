@@ -48,7 +48,7 @@ function coreAction(element,serialize=0,reload=1)
             }
             
                 $.ajax({
-                    type: "POST",url:CORE_PROTOCOL + CORE_DOMAIN + path,
+                    type: "POST",url:CORE_PROTOCOL + CORE_HOST + path,
                     data: {"data":theData},
                     success: function(msg){if(JQUERY_DEBUG_TO_CONSOLE){console.log(msg);}}
                 })       
@@ -59,7 +59,7 @@ function coreAction(element,serialize=0,reload=1)
                     {
                         
                         $.ajax({
-                            type: "POST",url: CORE_PROTOCOL + CORE_DOMAIN + 'core/actions/session.set.value.php',
+                            type: "POST",url: CORE_PROTOCOL + CORE_HOST + 'core/actions/session.set.value.php',
                             data: {thekey: 'CORE.ACTIONMESSAGE',thevalue:data}
                                                                 })  
                         .done(function(data){
@@ -154,7 +154,7 @@ function coreModal(element)
         //getScrollPos();
         if(JQUERY_DEBUG_TO_CONSOLE){console.log($(element).data());}
 		$.ajax({ 
-                type: "POST",url:CORE_PROTOCOL + CORE_DOMAIN + $(element).data('path'),
+                type: "POST",url:CORE_PROTOCOL + CORE_HOST + $(element).data('path'),
                 data: {"data":$(element).data()},
 				
                 })
@@ -215,7 +215,9 @@ $(document).on('click','.core-action-btn-nr', function($e) {
     coreAction($(this),0,0);
 });
 
-
+$(document).on('click','.core-add-action-btn', function($e) {
+    coreAction($(this),0,0);
+});
 
 $(document).on('change','input:checkbox.core-checkbox', function() { 
     if($(this).prop('checked')==true) 

@@ -1,0 +1,4 @@
+{
+    "name":"core-system-database",
+    "accessible-by":["admin"]
+}

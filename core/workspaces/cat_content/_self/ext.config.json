@@ -1,0 +1,5 @@
+{
+    "name":"core-content",
+    "accessible-by":["admin","editor"],
+    "session-show-state":"CORE.CONTENT_COLLAPSIBLE_OPEN"
+}

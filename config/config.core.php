@@ -26,7 +26,7 @@ $CONFIG = array(
 
     /* CORE SYSTEM VARIABLES */
     "coreProtocol"                  =>  "http://",
-    "coreDomain"                    =>  "localhost/",
+    "coreHost"                    =>  "localhost/",
 
     /* ERROR REPORTING FOR JQUERY */
     "jQueryDebugToConsole"          =>  1,

@@ -1,0 +1,5 @@
+{
+    "name":"core-app",
+    "accessible-by":["admin"],
+    "session-show-state":"CORE.APPLICATION_COLLAPSIBLE_OPEN"
+}
