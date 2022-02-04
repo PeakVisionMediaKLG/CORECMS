@@ -1,7 +1,7 @@
 <?php
 $extConfigArray = array(   
-    "name"                  =>      "core-files",
+    "name"                  =>      "cat_files",
     "adminAccessOnly"       =>      0,
-    "session-show-state"    =>      "CORE.FILES_COLLAPSIBLE_OPEN"
+    "session-show-state"    =>      "CORE.COLLAPSIBLE_OPEN_FILES"
 );
 ?>

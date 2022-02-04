@@ -1,7 +1,7 @@
 <?php
 $extConfigArray = array(    
-    "name"                  =>      "core_system",
+    "name"                  =>      "cat_system",
     "adminAccessOnly"       =>      1,
-    "session-show-state"    =>      "CORE.SYSTEM_COLLAPSIBLE_OPEN"
+    "session-show-state"    =>      "CORE.COLLAPSIBLE_OPEN_SYSTEM"
 );
 ?>

@@ -1,5 +1,0 @@
-{
-    "name":"core-pages",
-    "accessible-by":["admin","editor"],
-    "session-show-state":"CORE.PAGES_COLLAPSIBLE_OPEN"
-}

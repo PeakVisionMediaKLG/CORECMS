@@ -5,25 +5,27 @@ class USER
 	public 		$DB;
 	
 	public 		$AUTH_OK;
-    public 		$IS_SYSTEMADMIN;
-    public      $IS_ADMIN;
-	public		$USER_ROLE;
-	
+
 	public		$ID; // (primary)	
-	public 		$IDENTIFIER; // (u)
+	protected	$IDENTIFIER; // (u)
 	public		$USERNAME; // (u)
 	protected	$PASSWORD;
+	protected	$SALT;
+
+	public		$ALLOWED_WORKSPACES;
+	public		$DISALLOWED_WORKSPACES;
+    public      $IS_ACTIVE;
+    public      $IS_ADMIN;    
+
 	public		$PREFERRED_LANGUAGE;
 	public		$FIRST_NAME;
 	public		$LAST_NAME;
 	public		$GENDER;
 	public		$EMAIL;
-	public 		$AVATAR;
+
     public		$DATE_CREATED;
 	
 	public 	    $VALUES;
-	
-	protected		$SALT;
 	
 	function INITIALIZE()
 	{
@@ -36,11 +38,20 @@ class USER
         
         if($this->VALUES)
         {
+            
+            $sessionValues=array();
+
             foreach($this->VALUES as $key => $value)
             {
                 $key=strtoupper($key);
                 $this->{$key}=$value;
+                if($key != "PASSWORD") $sessionValues[$key] = $value;
             }
+
+            if($this->ALLOWED_WORKSPACES != "") $this->ALLOWED_WORKSPACES = \json_encode($this->ALLOWED_WORKSPACES); else $this->ALLOWED_WORKSPACES = array();
+            if($this->DISALLOWED_WORKSPACES != "") $this->DISALLOWED_WORKSPACES = \json_encode($this->DISALLOWED_WORKSPACES); else $this->DISALLOWED_WORKSPACES = array();
+            
+            $_SESSION['CORE.USER'] = $sessionValues;
         }
         else
         {
@@ -61,7 +72,7 @@ class USER
                                     " LIMIT 1"
                                 );
 
-                    if(count($result)>0)
+                    if($result and count($result)>0)
                     {             
                         foreach($result as $id => $row)
                         {
@@ -128,12 +139,22 @@ class USER
             }
         }
 
-	function PRINT_AVATAR($height=50)
+	function GET_AVATAR($height=50)
 		{
-			if($this->GET_VALUE('avatar') !="") $avatar = $this->GET_VALUE('avatar'); 
-			else 
-			{if($this->GET_VALUE('gender') !="female") $avatar = "img/img_avatar_male.png";}
-			echo "<img src='$avatar' class='be-avatar' height='$height'>";
+            switch($this->GENDER)
+            {
+                case "female":
+                    $avatar = "img/img_avatar_female.png";    
+                break;
+                case "male":
+                    $avatar = "img/img_avatar_male.png";
+                break;
+                case "diverse":
+                default:
+                    $avatar = "img/img_avatar_diverse.png";
+                break;
+            }
+			return $avatar;
 		}
 	
 	function SIGN_OUT()
@@ -148,6 +169,5 @@ class USER
         {
             die('Access denied.');
         }	
-	
 }
 ?>

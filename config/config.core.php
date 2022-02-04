@@ -9,7 +9,7 @@ $CONFIG = array(
 	"dbUser"            	        =>  "root",
 	"dbPassword"        	        =>  "",
 
-    "dbTablePrefix"                 =>  "v3_",	
+    "dbTablePrefix"                 =>  "",	
 	"dbCharset"                     =>  "utf8mb4",
 	"dbCollation"                   =>  "utf8mb4_general_ci",
 

@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once('../root.directory.php');
+require_once('../../../../root.directory.php');
 require_once(ROOT.'core/classes/traits.core.php');
 require_once(ROOT.'core/classes/class.db.php');
 require_once(ROOT.'core/classes/class.user.php');
