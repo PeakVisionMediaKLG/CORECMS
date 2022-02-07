@@ -1,22 +1,23 @@
 <?php
+require_once(ROOT.'core/classes/traits.core.php');
 include_once(ROOT.'core/classes/class.db.php');
 include_once(ROOT.'core/classes/class.user.php');
 include_once(ROOT.'core/classes/class.core.php');
 
-$DB = new DB();
-$USER = new USER();
+$DB = new CORE\DB();
+$USER = new CORE\USER();
 $USER->DB = $DB;
 $USER->CHECK_SESSION_STATE();
 
 if(!$USER->AUTH_OK) 
 { 
-    header("Location: login/login.php");
+    header("Location: core.php");
     die();    
 }
 
 require_once(ROOT.'core/classes/class.component.php');    
 require_once(ROOT.'core/classes/class.core.php');    
-$CORE = new CORE(); 
+$CORE = new CORE\CORE(); 
 $CORE->DB = $DB;
 $CORE->USER = $USER; 
 

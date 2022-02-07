@@ -139,7 +139,7 @@ class USER
             }
         }
 
-	function GET_AVATAR($height=50)
+	function GET_AVATAR()
 		{
             switch($this->GENDER)
             {

@@ -52,9 +52,10 @@ class CORE
             $this->DOM_PATH[$key] = $this->CREATE_URL(ROOT."core/workspaces/".$key."/");
             $this->EXT_PATH[$key] = ROOT."core/workspaces/".$key."/";
             
-            if(file_exists($this->EXT_PATH[$key]."txt/".$this->USER->PREFERRED_LANGUAGE.".json")) 
+            $activeLanguage = $this->USER->PREFERRED_LANGUAGE ?? "en";
+            if(file_exists($this->EXT_PATH[$key]."txt/".$activeLanguage.".json")) 
             {
-                    $txt_json_file = file_get_contents($this->EXT_PATH[$key]."txt/".$this->USER->PREFERRED_LANGUAGE.".json");
+                    $txt_json_file = file_get_contents($this->EXT_PATH[$key]."txt/".$activeLanguage.".json");
                     $TXT = json_decode($txt_json_file, true);
                     //var_dump($TXT);
             }
@@ -74,42 +75,38 @@ class CORE
     {
         foreach ($WorkSpaceList as $key => $subSpaces)
         {       
-                $this->DOM_PATH[$key] = ROOT."core/workspaces/".$key."/";
-                $this->EXT_PATH[$key] = ROOT."core/workspaces/".$key."/";
+            $this->DOM_PATH[$key] = ROOT."core/workspaces/".$key."/";
+            $this->EXT_PATH[$key] = ROOT."core/workspaces/".$key."/";
 
-                if(file_exists($this->DOM_PATH[$key]."ext.config.php")) 
-                {
+            if(!require($this->EXT_PATH[$key]."ext.config.php")) die('Extension configuration missing: '.$key);                   
 
-                    if(!require($this->EXT_PATH[$key]."ext.config.php")) die('Extension configuration missing: '.$key);                   
-
-                    if( ($this->USER->IS_ADMIN and $extConfigArray['adminAccessOnly']) or 
-                        (!$this->USER->IS_ADMIN and !$extConfigArray['adminAccessOnly']) or 
-                        (!$this->USER->IS_ADMIN and $extConfigArray['adminAccessOnly'] and in_array($extConfigArray['name'],$this->USER->ALLOWED_WORKSPACES)))
-                    { 
-                        if(!in_array($extConfigArray['name'],$this->USER->DISALLOWED_WORKSPACES))
-                        {
-                            if(file_exists($this->DOM_PATH[$key]."ext.styles.css")) 
-                            {   
-                                $this->CORE_CSS_INCLUDES .= "<link rel='stylesheet' type='text/css' href='".$this->CREATE_URL($this->DOM_PATH[$key])."ext.styles.css"."'>";
-                            }
-                                
-                            if(file_exists($this->DOM_PATH[$key]."ext.scripts.js")) 
-                            {   
-                                $this->CORE_JS_INCLUDES .= "<script src='".$this->DOM_PATH[$key]."ext.scripts.js"."'></script>";
-                            }
-                            
-                            if(file_exists($this->DOM_PATH[$key]."txt/".$this->USER->PREFERRED_LANGUAGE.".json")) 
-                            {
-                                    $txt_json_file = file_get_contents($this->DOM_PATH[$key]."txt/".$this->USER->PREFERRED_LANGUAGE.".json");
-                                    $TXT = json_decode($txt_json_file, true);
-                                    //var_dump($TXT);
-                            }
-                            
-                            if(\is_array($subSpaces)) { $this->BUILD_CORE_INCLUDES($subSpaces); }
+                if( ($this->USER->IS_ADMIN) or 
+                    (!$this->USER->IS_ADMIN and !$extConfigArray['adminAccessOnly']) or 
+                    (!$this->USER->IS_ADMIN and $extConfigArray['adminAccessOnly'] and in_array($extConfigArray['name'],$this->USER->ALLOWED_WORKSPACES)))
+                { 
+                    if(!in_array($extConfigArray['name'],$this->USER->DISALLOWED_WORKSPACES))
+                    {
+                        if(file_exists($this->DOM_PATH[$key]."ext.styles.css")) 
+                        {   
+                            $this->CORE_CSS_INCLUDES .= "<link rel='stylesheet' type='text/css' href='".$this->CREATE_URL($this->DOM_PATH[$key])."ext.styles.css"."'>";
                         }
+                            
+                        if(file_exists($this->DOM_PATH[$key]."ext.scripts.js")) 
+                        {   
+                            $this->CORE_JS_INCLUDES .= "<script src='".$this->DOM_PATH[$key]."ext.scripts.js"."'></script>";
+                        }
+                        
+                        if(file_exists($this->DOM_PATH[$key]."txt/".$this->USER->PREFERRED_LANGUAGE.".json")) 
+                        {
+                                $txt_json_file = file_get_contents($this->DOM_PATH[$key]."txt/".$this->USER->PREFERRED_LANGUAGE.".json");
+                                $TXT = json_decode($txt_json_file, true);
+                                //var_dump($TXT);
+                        }
+                        
+                        if(\is_array($subSpaces)) { $this->BUILD_CORE_INCLUDES($subSpaces); }
                     }
-                    else continue;
-                }    
+                }
+            else continue;
         }
     }    
 

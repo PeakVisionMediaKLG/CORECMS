@@ -1,3 +1,12 @@
 {
-    "Users":"Users"
+    "Users":"Users",
+    "User management":"User management",
+    "New user":"New user",
+    "Active":"Active",
+    "Preferred language":"Preferred language",
+    "Admin":"Admin",
+    "Created":"Created",
+    "Edit":"Edit",
+    "Reset password":"Reset password",
+    "Delete":"Delete"
 }

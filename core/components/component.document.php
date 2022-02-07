@@ -1,9 +1,39 @@
 <?php
 //writes the HTML code for the document header, wrapping the body elements
-
+require_once(ROOT."core/classes/class.assetloader.php");
 class DOCUMENT extends CORE\COMPONENT
 {
-    static function HEADER($params = NULL)
+  static function HEADER($params = NULL)
+  {
+    $DB = $params['DB'];
+    $CORE = $params['CORE'];
+    ?>
+    <!doctype html>
+      <html lang="<?php echo isset($params['lang']) ? $params['lang']: "EN_US" ; ?>">
+      <head>
+          <title><?php echo $params['title']; ?></title>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <?php
+                CORE\ASSETLOADER::GET($params['assets'],$DB);
+                $CORE->JS_SESSION();
+          ?>
+      </head>
+      <body>  
+      <?php    
+  }
+  
+  static function FOOTER($params = NULL)
+  {
+      $DB = $params['DB'];
+      CORE\ASSETLOADER::GET($params['assets'],$DB);
+      ?>
+      </body>
+    </html>
+  <?php
+  }
+
+  /*static function HEADER($params = NULL)
     {
       // Parameters: Language, Title,
         ?>
@@ -23,9 +53,9 @@ class DOCUMENT extends CORE\COMPONENT
           <body>
 
         <?php		
-    }
+    }*/
 
-    static function FOOTER($params = NULL)
+    /*static function FOOTER($params = NULL)
     {
     ?>
             <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
@@ -33,7 +63,7 @@ class DOCUMENT extends CORE\COMPONENT
           </body>
         </html>
     <?php
-    }
+    }*/
 
 
 
