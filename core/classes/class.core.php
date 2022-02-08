@@ -108,7 +108,18 @@ class CORE
                 }
             else continue;
         }
-    }    
+    }  
+    
+    function GET_LANGUAGES ()
+    {
+        $baseLang = array("id"=>0,"name"=>"english","code_2digit"=>"en","code_5digit"=>"en_US","short_caption"=>"EN","long_caption"=>"English");
+        $additonalLanguages = array();
+
+        $additonalLanguages = $this->DB->RETRIEVE('core_languages',array(),array());
+        array_unshift($additonalLanguages,$baseLang);
+
+        return $additonalLanguages;
+    }
 
 /*    
     function BUILD_CORE_INCLUDES($this->DOM_PATH[$key])

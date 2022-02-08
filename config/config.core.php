@@ -16,8 +16,10 @@ $CONFIG = array(
 	"dbGeneralLog"                  =>  0,
     "dbInternalLog"                 =>  0,
 	"dbStrictMode"                  =>  1,
+    
     "dbShowErrors"                  =>  1, 
-    "dbShowMessages"                =>  0, 
+    "dbShowMessages"                =>  0,
+
 	"dbAutoDumpOnLogin"             =>  0, 
 
 	"dbSessionSalt"			        => 	"core-salt",        // Add-in for md5 encrypted user authentication variables
