@@ -1,13 +1,19 @@
 <?php
 session_start(); 
 require_once('../../root.directory.php');
+require_once(ROOT.'core/classes/traits.core.php');
 require_once(ROOT.'core/classes/class.db.php');
 require_once(ROOT.'core/classes/class.user.php');
+include_once(ROOT.'core/classes/class.core.php');
 require_once(ROOT.'core/classes/class.component.php');
 
 $DB = new CORE\DB();
 $USER = new CORE\USER();
 $USER->DB = $DB;
+
+$CORE = new CORE\CORE(); 
+$CORE->DB = $DB;
+$CORE->USER = $USER; 
 
 $TXT = json_decode(file_get_contents(ROOT.'core/login/txt/'.($USER->PREFERRED_LANGUAGE ?? 'en').'.json'),true);
 
@@ -34,8 +40,8 @@ if($LOGIN_FORM_ACTION=="") //no input provided, check if $_SESSION['session_iden
 {
 	$USER->CHECK_SESSION_STATE();
 }
-
-	DOCUMENT::HEADER(array('title'=>"Log in - Core"));
+DOCUMENT::HEADER(array('title'=>'CORE - Log in','lang'=>'en_US','assets'=>array("bootstrap_css","bootstrap_icons","jquery"/*,"core_css","core_js"*/),"DB"=>$DB,"CORE"=>$CORE));
+	//DOCUMENT::HEADER(array('title'=>"Log in - Core"));
 		
 		CONTAINER::PRE(array('class'=>'container-fluid'));
 			ROW::PRE(array('style'=>'height:95%;padding-top:10%'));
@@ -129,5 +135,5 @@ if($LOGIN_FORM_ACTION=="") //no input provided, check if $_SESSION['session_iden
 			ROW::POST();
 		CONTAINER::POST();
 		
-	DOCUMENT::FOOTER();
+	DOCUMENT::FOOTER(array('DB'=>$DB,"CORE"=>$CORE,"assets"=>array("bootstrap_js")));
 ?>

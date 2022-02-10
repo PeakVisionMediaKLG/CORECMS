@@ -50,7 +50,7 @@ $CORE->USER = $USER;
     <?php
             ROW::PRE(array('class'=>'g-0 p-0 m-0 core-h100'));
                 COLUMN::PRE(array('class'=>'col-12 col-sm-6 col-md-3 col-xl-3 col-xxl-2 bg-light p-3 core-menu-panel core-h100'));
-                    H::PRINT(array("class"=>"m-3","type"=>4,"style"=>"margin-left:15px;","heading"=>BI::GET(array('icon'=>'bootstrap','style'=>'font-size: 20px; position:relative;top:-2px;'))." Manager"));
+                    H::PRINT(array("class"=>"m-3","type"=>4,"style"=>"margin-left:15px;","heading"=>BI::GET(array('icon'=>'clipboard-data','style'=>'font-size: 20px; position:relative;top:-2px;'))." Manager"));
                     HR::PRINT();
                     UL::PRE(array("class"=>"list-unstyled ps-0 flex-column mb-auto","style"=>"min-height:80vh;max-height:80vh; overflow-y:auto;"));
                         $CORE->BUILD_CORE($CORE->WORKSPACES);
