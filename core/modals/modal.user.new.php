@@ -22,7 +22,7 @@ $modalcontent = HIDDEN::PRINT_R(array('name'=>'table','value'=>'core_users')).
 					'class'=>'mt-2 has-validation',		
 					'label'=>TXT['Username'],
 					'type'=>'text',
-					'name'=>'coredata_username',
+					'name'=>'core_data__username',
 					'tabindex'=>'60',
 					'required'=>'required',
 					'value'=>'',
@@ -35,7 +35,7 @@ $modalcontent = HIDDEN::PRINT_R(array('name'=>'table','value'=>'core_users')).
 					'class'=>'mt-2 has-validation',		
 					'label'=>TXT['Password'],
 					'type'=>'password',
-					'name'=>'coredata_ph_password',
+					'name'=>'core_data__ph_password',
 					'tabindex'=>'80',
 					'required'=>'required',
 					'value'=>'',
@@ -48,7 +48,7 @@ $modalcontent = HIDDEN::PRINT_R(array('name'=>'table','value'=>'core_users')).
 					'class'=>'mt-2 has-validation',		
 					'label'=>TXT['First name'],
 					'type'=>'text',
-					'name'=>'coredata_first_name',
+					'name'=>'core_data__first_name',
 					'tabindex'=>'100',
 					'required'=>'required',
 					'value'=>'',
@@ -60,7 +60,7 @@ $modalcontent = HIDDEN::PRINT_R(array('name'=>'table','value'=>'core_users')).
 					'class'=>'mt-2 has-validation',		
 					'label'=>TXT['Last name'],
 					'type'=>'text',
-					'name'=>'coredata_last_name',
+					'name'=>'core_data__last_name',
 					'tabindex'=>'120',
 					'required'=>'required',
 					'liveValidation'=>array('alphaNum')
@@ -71,7 +71,7 @@ $modalcontent = HIDDEN::PRINT_R(array('name'=>'table','value'=>'core_users')).
 					'class'=>'mt-2 has-validation',		
 					'label'=>TXT['E-mail'],
 					'type'=>'text',
-					'name'=>'coredata_email',
+					'name'=>'core_data__email',
 					'tabindex'=>'140',
 					'value'=>'',
 					'liveValidation'=>array('eMail')
@@ -85,7 +85,7 @@ $modalcontent = HIDDEN::PRINT_R(array('name'=>'table','value'=>'core_users')).
 						SELECT::PRINT_R(array(
 							'class'=>'has-validation',
 							'label'=>TXT['Preferred language'],
-							'name'=>'coredata_preferred_language',
+							'name'=>'core_data__preferred_language',
 							'tabindex'=>'160',
 							'options'=>$BE->BELANGUAGES,
 							'selectedOption'=>'en'
@@ -100,17 +100,17 @@ $modalcontent = HIDDEN::PRINT_R(array('name'=>'table','value'=>'core_users')).
 						SELECT::PRINT_R(array(
 							'class'=>'has-validation',
 							'label'=>TXT['Gender'],
-							'name'=>'coredata_gender',
+							'name'=>'core_data__gender',
 							'tabindex'=>'180',							
 							'options'=>$BE->LOADVALUESET('genders',1),
 							'selectedOption'=>''
 						)).
 					COLUMN::POST_R().
 				ROW::POST_R(). 
-				HR::PRINT_R().CHECKBOX::PRINT_R(array('class'=>'core-checkbox mt-2','caption'=>TXT['Admin'],'name'=>'coredata_is_admin]','tabindex'=>'200'),array()).
-				HIDDEN::PRINT_R(array('name'=>'coredata_date_created','value'=>time()));
+				HR::PRINT_R().CHECKBOX::PRINT_R(array('class'=>'core-checkbox mt-2','caption'=>TXT['Admin'],'name'=>'core_data__is_admin]','tabindex'=>'200'),array()).
+				HIDDEN::PRINT_R(array('name'=>'core_data__date_created','value'=>time()));
 
-				if($USER->IS_SYSTEMADMIN) $modalcontent .= HR::PRINT_R().CHECKBOX::PRINT_R(array('class'=>'core-checkbox mt-2','caption'=>TXT['System admin'],'name'=>'coredata_is_systemadmin]','tabindex'=>'220'),array());
+				if($USER->IS_SYSTEMADMIN) $modalcontent .= HR::PRINT_R().CHECKBOX::PRINT_R(array('class'=>'core-checkbox mt-2','caption'=>TXT['System admin'],'name'=>'core_data__is_systemadmin]','tabindex'=>'220'),array());
 
 $modal= new MODAL(array(
                         'id'=>"core-new-user-".time(),

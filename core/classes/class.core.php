@@ -121,6 +121,65 @@ class CORE
         return $additonalLanguages;
     }
 
+    function LOAD_LANGUAGES ()
+    {
+        $allLangs = $this->GET_LANGUAGES();
+        $languageOptions = array();
+        foreach($allLangs as $key => $value)
+        {
+            $languageOptions[$value['long_caption']] = $value['code_2digit'];
+        }
+        return $languageOptions;
+    }
+
+    function LOAD_VALUESET($name = NULL)
+    {
+        if($name){
+            $valueSetPath = ROOT."core/valuesets/".$name."/";
+
+            if(file_exists($valueSetPath."valueset.php")) 
+            {
+                if(file_exists($valueSetPath.$this->USER->PREFERRED_LANGUAGE.".json")) 
+                {
+                        $txt_json_file = file_get_contents($valueSetPath.$this->USER->PREFERRED_LANGUAGE.".json");
+                        $TXT = json_decode($txt_json_file, true);
+                        //var_dump($TXT);
+                } else die("Valueset TXT file not found! - ".$name);   
+                            
+                require($valueSetPath."valueset.php");
+
+                $optionPairs = array();
+                //print_r($values);
+                foreach($values as $key => $value)
+                {
+                    $optionPairs[$value['caption']]=$value['value'];
+                }
+                return $optionPairs;
+            } else die($valueSetPath."valueset.php");
+        }
+    }
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*    
     function BUILD_CORE_INCLUDES($this->DOM_PATH[$key])
     {
@@ -255,6 +314,6 @@ class CORE
 
 
 
-}
+
 
 ?>

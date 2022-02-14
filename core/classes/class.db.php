@@ -70,6 +70,7 @@ public $dbAutoDumpOnLogin;
 
     public function EXEC_TBL($preTable,$table,$postTable)
     {
+        //echo $preTable.$this->dbTablePrefix.$table.$postTable;
         $transaction = $this->GET_OBJECT($preTable.$this->dbTablePrefix.$table.$postTable);
         return $transaction;
     }
@@ -170,6 +171,8 @@ public $dbAutoDumpOnLogin;
 
         $query="UPDATE ".$this->dbTablePrefix.$table." SET ".$queryColumns.$queryConditions.$extended;
 
+        echo $query;
+        
         if(isset($params))
         {
             $transaction=$this->GET_OBJECT($query,...$params);

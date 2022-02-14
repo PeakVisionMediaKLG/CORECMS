@@ -33,7 +33,7 @@ while ($settingsRow=$getSetting->fetch_array())
 						'class'=>'mt-2 has-validation',		
 						'label'=>TXT['Name'],
 						'type'=>'text',
-						'name'=>'coredata_name',
+						'name'=>'core_data__name',
 						'required'=>'required',
 						'liveValidation'=>array('alphaNum','Unique'),
 						'value'=>$settingsRow['name']
@@ -42,7 +42,7 @@ while ($settingsRow=$getSetting->fetch_array())
 					SELECT::PRINT_R(array(
 						'class'=>'has-validation mt-2',
 						'label'=>TXT['Type'],
-						'name'=>'coredata_type',
+						'name'=>'core_data__type',
 						'options'=>$BE->LOADVALUESET('input_types',1),
 						'selectedOption'=>$settingsRow['type'],
 						'disabled'=>'disabled'
@@ -51,7 +51,7 @@ while ($settingsRow=$getSetting->fetch_array())
 					CHECKBOX::PRINT_R(array('class'=>'core-checkbox',
 											'divclass'=>'mt-3',
 											'caption'=>TXT['Essential'],
-											'name'=>'coredata_essential',
+											'name'=>'core_data__essential',
 											'value'=>$settingsRow['essential'],
 											'disabled'=>$nonAuthorizedDisabled
 											),
@@ -65,15 +65,15 @@ while ($settingsRow=$getSetting->fetch_array())
 							$modalContent .= 
 							CHECKBOX::PRINT_R(array(	'divclass'=>'form-switch',
 													'class'=>'core-checkbox mt-2',
-													'name'=>'coredata_value',
+													'name'=>'core_data__value',
 													'value'=>$settingsRow['value'],
 													'disabled'=>$nonAuthorizedDisabled,
 												),
-											array(  'data-coredata_table'=>'core_settings',
-													'data-coredata_condition'=>'id',
-													'data-coredata_conditionvalue'=>$settingsRow['value'],
-													'data-coredata_column'=>'value',
-													'data-coredata_type'=>'bool'
+											array(  'data-core_data__table'=>'core_settings',
+													'data-core_data__condition'=>'id',
+													'data-core_data__conditionvalue'=>$settingsRow['value'],
+													'data-core_data__column'=>'value',
+													'data-core_data__type'=>'bool'
 												)     
 													);
 						break;    
@@ -82,14 +82,14 @@ while ($settingsRow=$getSetting->fetch_array())
 							$modalContent .=
 							TEXTBOX::PRINT_R(array( 'inputclass'=>'form-control-sm',
 													'inline'=>1,
-													'name'=>'coredata_value',
+													'name'=>'core_data__value',
 													'value'=>$settingsRow['value']
 												),
-											array(  'data-coredata_table'=>'core_settings',
-													'data-coredata_condition'=>'id',
-													'data-coredata_conditionvalue'=>$settingsRow['id'],
-													'data-coredata_column'=>'value',
-													'data-coredata_type'=>'text'
+											array(  'data-core_data__table'=>'core_settings',
+													'data-core_data__condition'=>'id',
+													'data-core_data__conditionvalue'=>$settingsRow['id'],
+													'data-core_data__column'=>'value',
+													'data-core_data__type'=>'text'
 												)     
 										);                                                            
 						break;
@@ -99,14 +99,14 @@ while ($settingsRow=$getSetting->fetch_array())
 							COLOR_PICKER::PRINT_R(array(   'class'=>'',
 													'label'=>'',
 													'id'=>'colorpicker'.time(),
-													'name'=>'coredata_value',
+													'name'=>'core_data__value',
 													'value'=>$settingsRow['value']
 												),
-											array(  'data-coredata_table'=>'core_settings',
-													'data-coredata_condition'=>'id',
-													'data-coredata_conditionvalue'=>$settingsRow['value'],
-													'data-coredata_column'=>'value',
-													'data-coredata_type'=>'text'
+											array(  'data-core_data__table'=>'core_settings',
+													'data-core_data__condition'=>'id',
+													'data-core_data__conditionvalue'=>$settingsRow['value'],
+													'data-core_data__column'=>'value',
+													'data-core_data__type'=>'text'
 												)     
 										); 
 						break; 
@@ -117,7 +117,7 @@ while ($settingsRow=$getSetting->fetch_array())
                             SELECT::PRINT_R(array(
                                 'class'=>'has-validation',
                                 'label'=>'caption_'.$USER->PREFERRED_LANGUAGE,
-                                'name'=>'coredata_valueset',
+                                'name'=>'core_data__valueset',
                                 'id'=>$settingsRow['valueset'],
                                 'tabindex'=>'180',							
                                 'options'=>$BE->GET_VALUESETS(),
@@ -135,7 +135,7 @@ while ($settingsRow=$getSetting->fetch_array())
 								'class'=>'mt-2 has-validation',		
 								'label'=>TXT['Caption'." ".strtoupper($value)],
 								'type'=>'text',
-								'name'=>'coredata_caption_'.$value,
+								'name'=>'core_data__caption_'.$value,
 								'value'=>$settingsRow['caption_'.$value],
 								'required'=>'required',
 								'liveValidation'=>array('alphaNum'),

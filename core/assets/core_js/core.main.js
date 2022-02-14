@@ -305,6 +305,9 @@ $(document).on('change', '.core-checkbox', function() {
     basic_validate(this);
 });
 
+$(document).on('change', '.core-select', function() {
+    basic_validate(this);
+});
 
 $(document).on('change', 'select.core-extend', function($e){
 	$e.preventDefault();

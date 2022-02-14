@@ -170,7 +170,8 @@ public $dbAutoDumpOnLogin;
         }       
 
         $query="UPDATE ".$this->dbTablePrefix.$table." SET ".$queryColumns.$queryConditions.$extended;
-
+        
+      
         if(isset($params))
         {
             $transaction=$this->GET_OBJECT($query,...$params);

@@ -20,7 +20,7 @@ $modalContent = HIDDEN::PRINT_R(array('name'=>'table','value'=>'core_settings'))
 					'class'=>'mt-2 has-validation',		
 					'label'=>TXT['Name'],
 					'type'=>'text',
-					'name'=>'coredata_name',
+					'name'=>'core_data__name',
 					'required'=>'required',
 					'liveValidation'=>array('alphaNum','Unique'),
 					)
@@ -28,14 +28,14 @@ $modalContent = HIDDEN::PRINT_R(array('name'=>'table','value'=>'core_settings'))
 				SELECT::PRINT_R(array(
 					'class'=>'has-validation mt-2',
 					'label'=>TXT['Type'],
-					'name'=>'coredata_type',
+					'name'=>'core_data__type',
 					'options'=>$BE->LOADVALUESET('input_types',1),
 					'selectedOption'=>''
 				)).
 				CHECKBOX::PRINT_R(array('class'=>'core-checkbox',
 										'divclass'=>'mt-3',
 										'caption'=>TXT['Essential'],
-										'name'=>'coredata_essential]',),
+										'name'=>'core_data__essential]',),
 										array()).
 				HR::PRINT_R();
 				foreach($BE->BELANGUAGES as $key => $value)
@@ -47,7 +47,7 @@ $modalContent = HIDDEN::PRINT_R(array('name'=>'table','value'=>'core_settings'))
 							'class'=>'mt-2 has-validation',		
 							'label'=>TXT['Caption'." ".strtoupper($value)],
 							'type'=>'text',
-							'name'=>'coredata_caption_'.$value,
+							'name'=>'core_data__caption_'.$value,
 							'required'=>'required',
 							'liveValidation'=>array('alphaNum'),
 							),array('data-inum'=>0)

@@ -14,7 +14,7 @@ include_once("../includes/user.auth.php");
 $coredata = array();
 foreach($data as $key => $value)
 {
-    if(strpos($key,'coredata_')!==false) $coredata[str_replace('coredata_','',$key)] = $value;
+    if(strpos($key,'core_data__')!==false) $coredata[str_replace('core_data__','',$key)] = $value;
 }
 //print_r($data);
 

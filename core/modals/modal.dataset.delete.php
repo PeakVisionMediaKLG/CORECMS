@@ -31,7 +31,7 @@ $modalContent.="<div class='row w100'><div class='col-12 text-center'><b>".TXT['
 		if(!is_numeric($key))  $modalContent.="<tr class='core-tablerow-std'><td class='p-2'><b>$key:</b></td><td class='p-2'>$value</td></tr>";	
 	}
 $modalContent.="</table></div></div>";
-$modalContent.=HIDDEN::PRINT_R(array('name'=>'coredata_table','value'=>$data['table'])).HIDDEN::PRINT_R(array('name'=>'coredata_condition','value'=>$data['condition'])).HIDDEN::PRINT_R(array('name'=>'coredata_conditionvalue','value'=>$data['conditionvalue']));
+$modalContent.=HIDDEN::PRINT_R(array('name'=>'core_data__table','value'=>$data['table'])).HIDDEN::PRINT_R(array('name'=>'core_data__condition','value'=>$data['condition'])).HIDDEN::PRINT_R(array('name'=>'core_data__conditionvalue','value'=>$data['conditionvalue']));
 
 $modal= new MODAL(array(
     'id'=>"core-delete-general-".time(),

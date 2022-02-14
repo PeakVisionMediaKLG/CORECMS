@@ -24,6 +24,7 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['User management'],'lang'=>'en_US',
     ROW::POST();
     ROW::PRE(array('class'=>'mx-auto w90 g-3'));
         //var_dump($allUsersData);
+        $odd=0;
         foreach ($allUsersData as $key => $userData)
         {   
             if($USER->ID == $userData['id'] or $USER->IS_ADMIN){
@@ -41,11 +42,15 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['User management'],'lang'=>'en_US',
                         $avatar = "img/img_avatar_diverse.png";
                     break;
                 }
-                
+
+                if($odd % 2) $oddColor='background-color:#e6f2ff;'; else $oddColor="";
+                $odd++;
+
                 COLUMN::PRE(array('class'=>'col-xs-12 col-md-6 col-lg-4 col-xxl-3'));
                     CARD::PRE(array('class'=>'',
                                     'image'=>$CORE->CREATE_URL(ROOT."core/workspaces/widget_logout/".$avatar),
                                     'imageclass'=>'mt-3 mx-auto be-user-card-image w-50',
+                                    'style'=>$oddColor
                                     ));
                         TABLE::PRE();
                             TR::PRE();TH::PRE(); echo $userData['username'];   echo '&nbsp;&nbsp;&nbsp;  # '.$userData['id'];  TH::POST();TR::POST();            
@@ -68,14 +73,15 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['User management'],'lang'=>'en_US',
                                             BTN::PRE(array( 'class'=>'btn btn-outline-primary core-modal-btn',
                                                             'caption'=>BI::GET(array('icon'=>'pencil','size'=>'16')),
                                                             'disabled'=>$editDisabled),
-                                                    array(  'data-path'=>'core/modals/modal.users.edit/modal.php',
+                                                    array(  'data-path'=>$EXT_DOMPATH."modals/modal.users.edit.php", //'core/modals/modal.users.edit/modal.php',
                                                             'data-condition'=>$userData['id'],
+                                                            
                                                             'data-bs-toggle'=>"tooltip", 
                                                             'data-bs-placement'=>"bottom", 
                                                             'title'=>$TXT['Edit']));
                                             BTN::POST();
                                         COLUMN::POST();
-                                        COLUMN::PRE(array('class'=>'col text-center'));
+                                        /*COLUMN::PRE(array('class'=>'col text-center'));
                                             if($USER->ID == $userData['id'] 
                                                 or ($USER->IS_ADMIN and (!$userData['is_admin']))
                                             ){$editDisabled = "";} else {$editDisabled = "disabled";}
@@ -89,7 +95,7 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['User management'],'lang'=>'en_US',
                                                             'data-bs-placement'=>"bottom", 
                                                             'title'=>$TXT['Reset password']));
                                             BTN::POST();
-                                        COLUMN::POST();                                    
+                                        COLUMN::POST();*/                                    
                                         COLUMN::PRE(array('class'=>'col text-center'));
                                             if(($USER->ID != $userData['id'] and $USER->IS_ADMIN)
                                                 and count($allUsersData)>1 
@@ -98,7 +104,7 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['User management'],'lang'=>'en_US',
                                             BTN::PRE(array( 'class'=>'btn btn-outline-primary core-modal-btn',
                                                             'caption'=>BI::GET(array('icon'=>'trash','size'=>'16')),
                                                             'disabled'=>$deleteDisabled),
-                                                    array(  'data-path'=>'core/modals/modal.dataset.delete.php',
+                                                    array(  'data-path'=>$EXT_PATH[$extConfigArray['name']], //'core/modals/modal.dataset.delete.php',
                                                             'data-table'=>'core_users',
                                                             'data-condition'=>'id',
                                                             'data-conditionvalue'=>$userData['id'],

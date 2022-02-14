@@ -25,8 +25,8 @@ if(strpos($data['file'],'user-')!==false) $createdBy = TXT['user created']; else
     $modalContent.="<tr class='core-tablerow-std'><td class='p-2'><b>".TXT['File']."</b></td><td class='p-2'>".$data['file']."</td></tr>";
     $modalContent.="<tr class='core-tablerow-std'><td class='p-2'><b>".TXT['Created by']."</b></td><td class='p-2'>".$createdBy."</td></tr>";    
     $modalContent.="<tr class='core-tablerow-std'><td class='p-2'><b>".TXT['Date']."</b></td><td class='p-2'>".$DB->DUMP_TIMESTAMP($data['file'])."</td></tr>";
-    $modalContent.=HIDDEN::PRINT_R(array('name'=>'coredata_file','value'=>$data['file']));
-    $modalContent.=HIDDEN::PRINT_R(array('name'=>'coredata_directory','value'=>$data['directory']));    
+    $modalContent.=HIDDEN::PRINT_R(array('name'=>'core_data__file','value'=>$data['file']));
+    $modalContent.=HIDDEN::PRINT_R(array('name'=>'core_data__directory','value'=>$data['directory']));    
 
 $modalContent.="</table></div>";
 

@@ -1,5 +1,5 @@
 <?php
-require_once("../../includes/modal.auth.php");
+require_once("../../../includes/modal.auth.php");
 header("Cache-Control: no-cache");
 
 $data = $_POST['data'] ?? die('no data sent');

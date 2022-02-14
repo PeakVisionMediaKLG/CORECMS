@@ -23,7 +23,7 @@ $modalContent =
 				'class'=>'mt-2 mb-4 has-validation',		
 				'label'=>TXT['Name'],
 				'type'=>'text',
-				'name'=>'coredata_name',
+				'name'=>'core_data__name',
 				'required'=>'required',
 				'liveValidation'=>array('alphaNum','Unique'),
 			),array()
@@ -35,7 +35,7 @@ $modalContent =
                 'class'=>'w-100',		
                 'label'=>TXT['set values'],
                 'type'=>'text',
-                'name'=>'coredata_contained_values',
+                'name'=>'core_data__contained_values',
                 'id'=>'set_values',
                 'required'=>'required',
                 ),array()
@@ -43,7 +43,7 @@ $modalContent =
             CHECKBOX::PRINT_R(array(	'class'=>'core-checkbox',
                                         'divclass'=>'mt-3',
 										'caption'=>TXT['Essential'],
-										'name'=>'coredata_essential',
+										'name'=>'core_data__essential',
 										'disabled'=>$disabled,
                                     ),array()
 									).
@@ -57,7 +57,7 @@ $modalContent =
 					'class'=>'mt-2 has-validation',		
 					'label'=>TXT['Caption']." ".$key,
 					'type'=>'text',
-					'name'=>'coredata_caption_'.$value.'',
+					'name'=>'core_data__caption_'.$value.'',
 					'required'=>'required',
 					'liveValidation'=>array('alphaNum'),
 					),array()

@@ -24,8 +24,15 @@ $CORE->DB = $DB;
 $CORE->USER = $USER; 
 
 require_once('../ext.config.php');
-$DOM_PATH[$extConfigArray['name']] = $CORE->CREATE_URL(ROOT."core/workspaces/".$extConfigArray['name']."/");
+$DOM_PATH[$extConfigArray['name']] = "core/workspaces/".$extConfigArray['name']."/";
+$_SESSION["EXT"][$extConfigArray['name']]['DOM_PATH'] = "core/workspaces/".$extConfigArray['name']."/";
+$EXT_DOMPATH="core/workspaces/".$extConfigArray['name']."/";
+
+//$DOM_PATH[$extConfigArray['name']] = $CORE->CREATE_URL(ROOT."core/workspaces/".$extConfigArray['name']."/");
+
 $EXT_PATH[$extConfigArray['name']] = ROOT."core/workspaces/".$extConfigArray['name']."/";
+$_SESSION["EXT"][$extConfigArray['name']]['PHP_PATH'] = str_replace("\\","/",ROOT."core/workspaces/".$extConfigArray['name']."/");
+$EXT_PHPPATH = str_replace("\\","/",ROOT."core/workspaces/".$extConfigArray['name']."/");
 
 $activeLanguage = $USER->PREFERRED_LANGUAGE ?? "en";
 if(file_exists($EXT_PATH[$extConfigArray['name']]."txt/".$activeLanguage.".json")) 

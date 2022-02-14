@@ -12,6 +12,7 @@ class SELECT extends CORE\COMPONENT
 			$options=$params['options'];
 			$selectedOption=$params['selectedOption'] ?? "";
 			if(isset($params['emptyOption'])) $CODE .= "<option value=''></option>";
+			//print_r($options);
 			 foreach($options as $key => $value)
 				 {	if($value==$selectedOption) $selected="selected"; else $selected="";
 				 	$CODE .= "<option value='$value' $selected>$key</option>";
