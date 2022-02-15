@@ -44,7 +44,8 @@ if($adminNum<2) $lastAdmin="disabled"; else $lastAdmin="";
                         'name'=>'core_data__ph__password',
                         'tabindex'=>'100',
                         'required'=>'required',
-                        'value'=>substr($userRow['password'],0,5),
+                        'value'=>'',
+                        'autocomplete'=>'new-password',
                         'liveValidation'=>array('alphaNum')
                         )
                     ).                

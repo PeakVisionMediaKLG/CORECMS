@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 04. Feb 2022 um 15:50
+-- Erstellungszeit: 15. Feb 2022 um 10:26
 -- Server-Version: 10.4.22-MariaDB
 -- PHP-Version: 8.1.1
 
@@ -49,7 +49,8 @@ CREATE TABLE `core_users` (
 --
 
 INSERT INTO `core_users` (`id`, `identifier`, `username`, `password`, `allowed_workspaces`, `disallowed_workspaces`, `is_active`, `is_admin`, `preferred_language`, `first_name`, `last_name`, `gender`, `email`, `date_created`) VALUES
-(2, '2297aa9f09d86e9af9e1da9467620a7f', 'Admin', '$2y$10$0GRAubD3tGeMWXOy4U7lIOQDb0LeQsdqmLJqkOHcpjdOU3us6QS9S', 'admin', '', 1, 1, 'en', 'John', 'Doe', 'male', '', '');
+(1, '2297aa9f09d86e9af9e1da9467620a7f', 'Admin', '$2y$10$ZeEzss9Ty4lwSRudmJmx6OtbAC7sYmauZ7uim0IX2dOtyHULC5HTa', '', '', 1, 1, 'en', 'John', 'Doe', 'male', '', ''),
+(2, '', 'Editor', '$2y$10$LRGDaTaggxMaFtqs4CypZet18rn.9KWpqfZFqRcEyMBb2B6GYZlVi', '', '', 1, 0, 'en', 'Jane', 'Doe', 'female', '', '1644917046');
 
 --
 -- Indizes der exportierten Tabellen

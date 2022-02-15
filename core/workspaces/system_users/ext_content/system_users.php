@@ -11,17 +11,22 @@ $allUsersData = $DB->RETRIEVE(
                              );
 
 DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['User management'],'lang'=>'en_US','assets'=>array("bootstrap_css","bootstrap_icons","core_css","jquery","core_js"),"DB"=>$DB,"CORE"=>$CORE));
-    ROW::PRE(array('class'=>'mx-auto w90 gx-3'));
-        COLUMN::PRE(array('class'=>'text-center col-12 mt-5'));
-            H::PRINT(array('heading'=>$TXT['User management'],'type'=>4));
+
+    ROW::PRE(array('class'=>'g-0 p-0 m-0'));
+        COLUMN::PRE(array('class'=>'col-12 col-sm-10 offset-sm-1 p-3'));
+            H::PRINT(array("class"=>"m-3","type"=>4,"style"=>"margin-left:15px;","heading"=>$TXT['User management']));
+            HR::PRINT(); 
         COLUMN::POST();
+    ROW::POST();
 
         if($USER->IS_ADMIN){
-            COLUMN::PRE(array('class'=>'col-12 text-center my-4'));
-                BTN::PRE(array('class'=>'btn btn-outline-primary core-modal-btn','caption'=>$TXT['New user']." ".BI::GET(array('icon'=>'person-plus','size'=>'16'))),array('data-path'=>'core/modals/modal.user.new.php'));BTN::POST();
-            COLUMN::POST();
+            ROW::PRE(array('class'=>'g-0 p-0 m-0'));
+                COLUMN::PRE(array('class'=>'col-12 text-center mb-4'));
+                    BTN::PRE(array('class'=>'btn btn-outline-primary core-modal-btn','caption'=>$TXT['New user']." ".BI::GET(array('icon'=>'person-plus','size'=>'16'))),array('data-path'=>$EXT_DOMPATH."modals/modal.users.create.php"));BTN::POST();
+                COLUMN::POST();
+            ROW::POST();
         }
-    ROW::POST();
+
     ROW::PRE(array('class'=>'mx-auto w90 g-3'));
         //var_dump($allUsersData);
         $odd=0;
@@ -81,21 +86,7 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['User management'],'lang'=>'en_US',
                                                             'title'=>$TXT['Edit']));
                                             BTN::POST();
                                         COLUMN::POST();
-                                        /*COLUMN::PRE(array('class'=>'col text-center'));
-                                            if($USER->ID == $userData['id'] 
-                                                or ($USER->IS_ADMIN and (!$userData['is_admin']))
-                                            ){$editDisabled = "";} else {$editDisabled = "disabled";}
-
-                                            BTN::PRE(array( 'class'=>'btn btn-outline-primary core-modal-btn',
-                                                            'caption'=>BI::GET(array('icon'=>'key','size'=>'16')),
-                                                            'disabled'=>$editDisabled),
-                                                    array(  'data-path'=>'core/modals/modal.user.password.php',
-                                                            'data-condition'=>$userData['id'],
-                                                            'data-bs-toggle'=>"tooltip", 
-                                                            'data-bs-placement'=>"bottom", 
-                                                            'title'=>$TXT['Reset password']));
-                                            BTN::POST();
-                                        COLUMN::POST();*/                                    
+                         
                                         COLUMN::PRE(array('class'=>'col text-center'));
                                             if(($USER->ID != $userData['id'] and $USER->IS_ADMIN)
                                                 and count($allUsersData)>1 
@@ -112,7 +103,7 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['User management'],'lang'=>'en_US',
                                                             'data-bs-placement'=>"bottom", 
                                                             'title'=>$TXT['Delete']));
                                             BTN::POST();
-                                        COLUMN::POST();                                      
+                                        COLUMN::POST();
                                     ROW::POST();
                                 TD::POST();
                             TR::POST();   

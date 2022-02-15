@@ -1,18 +1,22 @@
 <?php
-session_start();
-include_once(substr(getcwd(),0,strpos(getcwd(),"core")).'/root.directory.php');
-include_once(ROOT.'core/includes/core.includes.php');
+/* CORECMS - https://github.com/PeakVisionMediaKLG/CORECMS */
+require_once('../../../../root.directory.php');
+include_once(ROOT.'core/includes/ext.header.php');
 
-if($USER->AUTH_OK) {
+DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['App languages'],'lang'=>'en_US','assets'=>array("bootstrap_css","bootstrap_icons","core_css","jquery","core_js","sortable"),"DB"=>$DB,"CORE"=>$CORE));
 
-    $ASSETS_HEAD = array("bootstrap_css","bootstrap_icons","core_css","jquery","core_js","sortable");
-    include_once(ROOT.'core/includes/core.header.php');
-
-        ROW::PRE(array('class'=>'g-0 p-0 m-0 core-h100'));
+        ROW::PRE(array('class'=>'g-0 p-0 m-0'));
             COLUMN::PRE(array('class'=>'col-12 col-sm-10 offset-sm-1 p-3'));
                 H::PRINT(array("class"=>"m-3","type"=>4,"style"=>"margin-left:15px;","heading"=>$TXT['App - Languages']));
                 HR::PRINT();
-
+            COLUMN::POST();
+            COLUMN::PRE(array('class'=>'col-12 text-center mb-4'));
+                BTN::PRE(array('class'=>'btn btn-outline-primary core-modal-btn','caption'=>$TXT['Add language']." ".BI::GET(array('icon'=>'plus','size'=>'16'))),array('data-path'=>$EXT_DOMPATH."modals/modal.languages.create.php"));BTN::POST();
+            COLUMN::POST();
+        ROW::POST();
+        
+        ROW::PRE(array('class'=>'mx-auto g-0 px-5 m-0'));
+            COLUMN::PRE();
                 $language_data = $DB->RETRIEVE(
                     'app_languages',
                     array(),
@@ -24,9 +28,10 @@ if($USER->AUTH_OK) {
                     THEAD::PRE();
                         TH::PRE(); echo $TXT['ID']; TH::POST();
                         TH::PRE(); echo $TXT['Language']; TH::POST();
-                        TH::PRE(); echo $TXT['Code']; TH::POST();
-                        TH::PRE(); echo $TXT['Caption']; TH::POST();
+                        TH::PRE(); echo $TXT['2-digit code']; TH::POST();
+                        TH::PRE(); echo $TXT['5-digit code']; TH::POST();
                         TH::PRE(); echo $TXT['Short caption']; TH::POST();
+                        TH::PRE(); echo $TXT['Long caption']; TH::POST();
                         TH::PRE(); echo $TXT['Active']; TH::POST();
                         TH::PRE(); echo $TXT['Edit']; TH::POST();
                         TH::PRE(); echo $TXT['Delete']; TH::POST();
@@ -44,13 +49,14 @@ if($USER->AUTH_OK) {
                             TR::PRE(array("class"=>"js-sortable-tr"));
                                 TD::PRE(); echo $language_row['id']; HIDDEN::PRINT(array("name"=>$i."_id","value"=>$language_row['id'])); TD::POST();
                                 TD::PRE(); echo $language_row['name']; TD::POST();
-                                TD::PRE(); echo $language_row['code']; TD::POST();
-                                TD::PRE(); echo $language_row['caption']; TD::POST();
+                                TD::PRE(); echo $language_row['code_2digit']; TD::POST();
+                                TD::PRE(); echo $language_row['code_5digit']; TD::POST();
                                 TD::PRE(); echo $language_row['short_caption']; TD::POST();
+                                TD::PRE(); echo $language_row['long_caption']; TD::POST();
                                 TD::PRE(); CHECKBOX::PRINT(array(
                                     "class"=>"",
                                     "name"=>"id",
-                                    "value"=>$language_row['active'],
+                                    "value"=>$language_row['is_active'],
                                     "disabled"=>"disabled"
                                 ));
                                 TD::POST();
@@ -59,9 +65,9 @@ if($USER->AUTH_OK) {
                                         "class"=>"btn btn-sm btn-outline-secondary core-modal-btn",
                                         ),
                                             array(
-                                                'data-path'=>'core/modals/modal.db.dataset.edit/modal.php',
+                                                'data-path'=>$EXT_DOMPATH."modals/modal.languages.edit.php",
                                                 'data-table'=>'app_languages',
-                                                'data-id'=>$language_row['id'],      
+                                                'data-condition'=>$language_row['id'],      
                                             ));
                                         echo $TXT['Edit'];
                                     BTN::POST();  
@@ -92,21 +98,8 @@ if($USER->AUTH_OK) {
                     }    
                     TBODY::POST(); 
                 TABLE::POST();FORM::POST();
-                BTN::PRE(array(
-                    "class"=>"btn btn-sm btn-outline-secondary core-modal-btn",
-                    ),
-                        array(
-                            'data-path'=>'core/modals/modal.db.dataset.insert/modal.php',
-                            'data-table'=>'app_languages',                                           
-                        )
-                );
-                    echo BI::GET(array('icon'=>'plus','size'=>'16','style'=>"position:relative;top:-2px;"))." ".$TXT['Add language'];
-                BTN::POST();
             COLUMN::POST();
         ROW::POST();
 
-    $ASSETS_BODY = array("core_sortable_js","bootstrap_js");  
-    include_once(ROOT.'core/includes/core.footer.php'); 
-}
-
+    DOCUMENT::FOOTER(array("DB"=>$DB,"CORE"=>$CORE,"assets"=>array("core_sortable_js","bootstrap_js")));
 ?>    

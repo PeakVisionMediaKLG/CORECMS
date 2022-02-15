@@ -13,7 +13,11 @@ foreach($data as $key => $value)
 {   
     if(strpos($key,"core_data__")!== false)
     {
-        $columns[substr($key,11)]=$value;
+        if(strpos($key,"ph__")!== false and $value !== false)
+        {
+            $columns[substr($key,15)]=password_hash($value,PASSWORD_DEFAULT);
+        }
+        else $columns[substr($key,11)]=$value;
     }
 }
 print_r($columns);
