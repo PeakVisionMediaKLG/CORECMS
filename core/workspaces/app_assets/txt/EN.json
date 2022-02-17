@@ -1,4 +1,15 @@
 {
     "Assets":"Assets",
-    "App - Assets":"App - Assets"
+    "App - Assets":"App - Assets",
+    "Add asset":"Add asset",
+    "ID":"ID",
+    "Name":"Name",
+    "Source from file":"Source from file",
+    "Source from database":"Source from database",
+    "PHP Eval":"PHP Eval",
+    "Active":"Active",
+    "Edit":"Edit",
+    "Delete":"Delete",
+    "Add language":"Add language",
+    "Move":"Move"
 }

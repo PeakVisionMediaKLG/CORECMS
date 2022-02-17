@@ -25,6 +25,8 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['App languages'],'lang'=>'en_US','a
                     );
                 FORM::PRE(array("class"=>'js-sortable-form'));
                 TABLE::PRE();
+                    if ($language_data and count($language_data) > 0) 
+                    {   
                     THEAD::PRE();
                         TH::PRE(); echo $TXT['ID']; TH::POST();
                         TH::PRE(); echo $TXT['Language']; TH::POST();
@@ -37,15 +39,15 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['App languages'],'lang'=>'en_US','a
                         TH::PRE(); echo $TXT['Delete']; TH::POST();
                         TH::PRE(); echo $TXT['Move']; TH::POST();
                     THEAD::POST();
+                    }
                     TBODY::PRE(array("class"=>"js-sortable-table"),array("data-path"=>"core/actions/db.dataset.reorder.php"));
                     HIDDEN::PRINT(array("name"=>"table","value"=>"app_languages")); 
-                    if (count($language_data) > 0) 
+                    if ($language_data and count($language_data) > 0) 
                     {   
                         
                         $i=1;
                         foreach($language_data as $key => $language_row)
                         {
-                            if($i==1) $disabled="disabled"; else $disabled="";
                             TR::PRE(array("class"=>"js-sortable-tr"));
                                 TD::PRE(); echo $language_row['id']; HIDDEN::PRINT(array("name"=>$i."_id","value"=>$language_row['id'])); TD::POST();
                                 TD::PRE(); echo $language_row['name']; TD::POST();
@@ -75,7 +77,7 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['App languages'],'lang'=>'en_US','a
                                 TD::PRE();
                                     BTN::PRE(array(
                                         "class"=>"btn btn-sm btn-outline-secondary core-modal-btn",
-                                        "disabled"=>$disabled),
+                                            ),
                                             array(
                                                 'data-path'=>'core/modals/modal.db.dataset.delete/modal.php',
                                                 'data-table'=>'app_languages',

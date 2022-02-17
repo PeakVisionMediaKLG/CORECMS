@@ -52,21 +52,33 @@ class CORE
             $this->DOM_PATH[$key] = $this->CREATE_URL(ROOT."core/workspaces/".$key."/");
             $this->EXT_PATH[$key] = ROOT."core/workspaces/".$key."/";
             
-            $activeLanguage = $this->USER->PREFERRED_LANGUAGE ?? "en";
-            if(file_exists($this->EXT_PATH[$key]."txt/".$activeLanguage.".json")) 
-            {
-                    $txt_json_file = file_get_contents($this->EXT_PATH[$key]."txt/".$activeLanguage.".json");
-                    $TXT = json_decode($txt_json_file, true);
-                    //var_dump($TXT);
+            if(!require($this->EXT_PATH[$key]."ext.config.php")) die('Extension configuration missing: '.$key); 
+
+            if( ($this->USER->IS_ADMIN) or 
+            (!$this->USER->IS_ADMIN and !$extConfigArray['adminAccessOnly']) or 
+            (!$this->USER->IS_ADMIN and $extConfigArray['adminAccessOnly'] and in_array($extConfigArray['name'],$this->USER->ALLOWED_WORKSPACES)))
+            { 
+                if(!in_array($extConfigArray['name'],$this->USER->DISALLOWED_WORKSPACES))
+                {
+
+                    $activeLanguage = $this->USER->PREFERRED_LANGUAGE ?? "en";
+                    if(file_exists($this->EXT_PATH[$key]."txt/".$activeLanguage.".json")) 
+                    {
+                            $txt_json_file = file_get_contents($this->EXT_PATH[$key]."txt/".$activeLanguage.".json");
+                            $TXT = json_decode($txt_json_file, true);
+                            //var_dump($TXT);
+                    }
+                    
+                    if(!require($this->EXT_PATH[$key]."ext.config.php")) die('Extension configuration missing: '.$key);
+
+                    if(!require($this->EXT_PATH[$key]."ext.pre.php")) die('Extension pre file missing: '.$key);
+
+                    if(\is_array($subSpaces)) { $this->BUILD_CORE($subSpaces); }
+
+                    if(!require($this->EXT_PATH[$key]."ext.post.php")) die('Extension post file missing: '.$key);
+                }
             }
-            
-            if(!require($this->EXT_PATH[$key]."ext.config.php")) die('Extension configuration missing: '.$key);
-
-            if(!require($this->EXT_PATH[$key]."ext.pre.php")) die('Extension pre file missing: '.$key);
-
-            if(\is_array($subSpaces)) { $this->BUILD_CORE($subSpaces); }
-
-            if(!require($this->EXT_PATH[$key]."ext.post.php")) die('Extension post file missing: '.$key);
+            else continue;
         }
 
     }
@@ -100,7 +112,6 @@ class CORE
                         {
                                 $txt_json_file = file_get_contents($this->DOM_PATH[$key]."txt/".$this->USER->PREFERRED_LANGUAGE.".json");
                                 $TXT = json_decode($txt_json_file, true);
-                                //var_dump($TXT);
                         }
                         
                         if(\is_array($subSpaces)) { $this->BUILD_CORE_INCLUDES($subSpaces); }
@@ -143,19 +154,19 @@ class CORE
                 {
                         $txt_json_file = file_get_contents($valueSetPath.$this->USER->PREFERRED_LANGUAGE.".json");
                         $TXT = json_decode($txt_json_file, true);
-                        //var_dump($TXT);
-                } else die("Valueset TXT file not found! - ".$name);   
+                } 
+                else die("Valueset TXT file not found! - ".$name);   
                             
                 require($valueSetPath."valueset.php");
 
                 $optionPairs = array();
-                //print_r($values);
                 foreach($values as $key => $value)
                 {
                     $optionPairs[$value['caption']]=$value['value'];
                 }
                 return $optionPairs;
-            } else die($valueSetPath."valueset.php");
+            }
+            else die($valueSetPath."valueset.php");
         }
     }
 
