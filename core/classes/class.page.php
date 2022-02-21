@@ -1,4 +1,5 @@
 <?php
+namespace CORE;
 class PAGE
 {
 public $DB;
@@ -17,7 +18,9 @@ function GET_ALL_PAGES()
             "core_pages",
             array(),
             array(),
-        )[0];  
+        );
+        
+        return $this->ALL_PAGES;
     }
 
 function GET_PAGE($pageToGet)

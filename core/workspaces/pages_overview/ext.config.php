@@ -1,6 +1,6 @@
 <?php
 $extConfigArray = array(   
-    "name"              =>  "app_assets",
-    "adminAccessOnly"   =>  1
+    "name"              =>  "pages_overview",
+    "adminAccessOnly"   =>  0
 );
 ?>

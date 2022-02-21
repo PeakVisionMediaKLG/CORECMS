@@ -1,15 +1,10 @@
 {
-    "Assets":"Assets",
-    "App - Assets":"App - Assets",
-    "Add asset":"Add asset",
-    "ID":"ID",
-    "Name":"Name",
-    "Source from file":"Source from file",
-    "Source from database":"Source from database",
-    "PHP Eval":"PHP Eval",
+    "Pages - Overview":"Pages - Overview",
+    "Add page":"Add page",
+    "Overview":"Overview",
     "Active":"Active",
     "Edit":"Edit",
     "Delete":"Delete",
-    "Add language":"Add language",
-    "Move":"Move"
+    "Move":"Move",
+    "URL":"URL"
 }
