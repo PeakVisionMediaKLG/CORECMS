@@ -8,5 +8,15 @@
     "Created":"Created",
     "Edit":"Edit",
     "Reset password":"Reset password",
-    "Delete":"Delete"
+    "Delete":"Delete",
+    "Username":"Username",
+    "Password":"Password",
+    "First name":"First name",
+    "Last name":"Last name",
+    "E-mail":"E-mail",
+    "Gender":"Gender",
+    "Edit user":"Edit user",
+    "Create user":"Create user",
+    "Cancel":"Cancel",
+    "Save":"Save"
 }

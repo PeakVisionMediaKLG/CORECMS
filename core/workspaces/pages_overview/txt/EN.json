@@ -1,10 +1,14 @@
 {
     "Pages - Overview":"Pages - Overview",
-    "Add page":"Add page",
     "Overview":"Overview",
+    "Add page object":"Add page object",
+    "ID":"ID",
+    "Internal name":"Internal name",
+    "Object type":"Object type",    
     "Active":"Active",
     "Edit":"Edit",
     "Delete":"Delete",
     "Move":"Move",
-    "URL":"URL"
+    "Localization":"Localization",
+    "Parent":"Parent"
 }

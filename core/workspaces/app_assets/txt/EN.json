@@ -11,5 +11,8 @@
     "Edit":"Edit",
     "Delete":"Delete",
     "Add language":"Add language",
-    "Move":"Move"
+    "Move":"Move",
+    "Edit asset":"Edit asset",
+    "Cancel":"Cancel",
+    "Save":"Save"
 }

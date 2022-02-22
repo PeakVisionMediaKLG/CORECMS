@@ -22,9 +22,9 @@ $CORE->DB = $DB;
 $CORE->USER = $USER;
 
 //echo substr($_SERVER ['SCRIPT_FILENAME'],0,strlen($_SERVER ['SCRIPT_FILENAME'])-9).$USER->PREFERRED_LANGUAGE.".json";
-if(file_exists($USER->PREFERRED_LANGUAGE.".json")) //substr($_SERVER ['SCRIPT_FILENAME'],0,strlen($_SERVER ['SCRIPT_FILENAME'])-9).$USER->PREFERRED_LANGUAGE.".json")
+if(file_exists("../txt/".$USER->PREFERRED_LANGUAGE.".json")) //substr($_SERVER ['SCRIPT_FILENAME'],0,strlen($_SERVER ['SCRIPT_FILENAME'])-9).$USER->PREFERRED_LANGUAGE.".json")
 {
-        $txt_json_file = file_get_contents($USER->PREFERRED_LANGUAGE.".json"); //substr($_SERVER ['SCRIPT_FILENAME'],0,strlen($_SERVER ['SCRIPT_FILENAME'])-9).$USER->PREFERRED_LANGUAGE.".json"
+        $txt_json_file = file_get_contents("../txt/".$USER->PREFERRED_LANGUAGE.".json"); //substr($_SERVER ['SCRIPT_FILENAME'],0,strlen($_SERVER ['SCRIPT_FILENAME'])-9).$USER->PREFERRED_LANGUAGE.".json"
         $TXT = json_decode($txt_json_file, true);
         //var_dump($TXT);
 } else $TXT=array();

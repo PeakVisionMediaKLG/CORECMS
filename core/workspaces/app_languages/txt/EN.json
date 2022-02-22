@@ -12,5 +12,10 @@
     "Edit":"Edit",
     "Delete":"Delete",
     "Add language":"Add language",
-    "Move":"Move"
+    "Move":"Move",
+    "Name":"Name",
+    "Edit language":"Edit language",
+    "Create language":"Create language",
+    "Cancel":"Cancel",
+    "Save":"Save"
 }
