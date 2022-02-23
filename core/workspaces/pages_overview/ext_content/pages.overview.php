@@ -18,9 +18,9 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['Pages - Overview'],'lang'=>'en_US'
     
         ROW::PRE(array('class'=>'mx-auto g-0 px-5 m-0'));
            
-            COLUMN::PRE();
+            COLUMN::PRE(array("class"=>"col-12"));
                 FORM::PRE(array("class"=>'js-sortable-form'));
-                TABLE::PRE();
+                STATIC_TABLE::PRE();
 
                     CORE\PAGE::PREPARE_PAGE_OBJECTS("",$DB);
                     $pageData = CORE\PAGE::$SORTED_PAGE_OBJECTS;
@@ -31,12 +31,12 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['Pages - Overview'],'lang'=>'en_US'
                         TH::PRE(); echo $TXT['Internal name']; TH::POST();
                         TH::PRE(); echo $TXT['ID']; TH::POST();
                         TH::PRE(); echo $TXT['Object type']; TH::POST();
-                        TH::PRE(); echo $TXT['Active']; TH::POST();
                         TH::PRE(); echo $TXT['Localization']; TH::POST();
+                        TH::PRE(); echo $TXT['Active']; TH::POST();
                     THEAD::POST();
                     }
                     TBODY::PRE(array("class"=>"js-sortable-table"),array("data-path"=>"core/actions/db.dataset.reorder.php"));
-                    HIDDEN::PRINT(array("name"=>"table","value"=>"app_assets")); 
+                    HIDDEN::PRINT(array("name"=>"table","value"=>"app_page_objects")); 
                     if ($pageData and count($pageData) > 0) 
                     {   
                         $i=1;
@@ -52,14 +52,6 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['Pages - Overview'],'lang'=>'en_US'
                                     HIDDEN::PRINT(array("name"=>$i."_id","value"=>$pageRow['id'])); 
                                 TD::POST();
                                 TD::PRE(); echo $pageRow['object_type']; TD::POST();
-                                TD::PRE(); CHECKBOX::PRINT(array(
-                                    "class"=>"",
-                                    "name"=>"id",
-                                    "value"=>$pageRow['is_active'],
-                                    "disabled"=>"disabled"
-                                ));
-                                TD::POST();
-
                                 TD::PRE();
                                     $appLanguages = $DB->RETRIEVE(
                                         'app_languages',
@@ -67,73 +59,86 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['Pages - Overview'],'lang'=>'en_US'
                                         array(),
                                         " ORDER BY id ASC"
                                      );
-                                     print_r($appLanguages);
+                                    //print_r($appLanguages);
+                                    DIV::PRE(array("class"=>"btn-group", "role"=>"group")); 
                                     foreach($appLanguages as $key => $languageValues)
                                     {
                                         $localizedPage  = $DB->RETRIEVE(
                                             'app_pages',
                                             array(),
-                                            array("shared_id"=>$pageRow['id']),
+                                            array("shared_id"=>$pageRow['id'],"language"=>$languageValues['code_2digit']),
                                             " ORDER BY id ASC LIMIT 1"
                                          );
                                          if($localizedPage)
                                          {
                                             $localizedPage=$localizedPage[0];
                                             //print_r($localizedPage);
-                                            DIV::PRE(array("class"=>"btn-group", "role"=>"group"));
-                                                BTN::PRE(array("class"=>"btn btn-sm btn-outline-secondary","disabled"=>"disabled"));
-                                                    echo strtoupper($languageValues['code_2digit']);
-                                                BTN::POST();
-                                                BTN::PRE(array(
-                                                    "class"=>"btn btn-sm btn-outline-secondary core-modal-btn",
-                                                        ),
-                                                        array(
-                                                            'data-path'=>'core/modals/modal.db.dataset.delete/modal.php',
-                                                            'data-table'=>'app_assets',
-                                                            'data-id'=>$pageRow['id']   
-                                                        )
-                                                );
-                                                    echo BI::GET(array('icon'=>'pen','size'=>'16'));
-                                                BTN::POST();
-                                                BTN::PRE(array(
-                                                    "class"=>"btn btn-sm btn-outline-secondary core-modal-btn",
-                                                        ),
-                                                        array(
-                                                            'data-path'=>'core/modals/modal.db.dataset.delete/modal.php',
-                                                            'data-table'=>'app_assets',
-                                                            'data-id'=>$pageRow['id']   
-                                                        )
-                                                );
-                                                    echo BI::GET(array('icon'=>'eye-fill','size'=>'16'));
-                                                BTN::POST();           
-                                            DIV::POST();
+                                            BTN_DROPDOWN::PRE(array("class"=>"btn btn-sm btn-secondary",
+                                                "id"=>$languageValues['code_2digit']."_dropdown",
+                                                "caption"=>strtoupper($languageValues['code_2digit'])
+                                            ));
+                                                LI::PRE();
+                                                    A::PRE(array("class"=>"dropdown-item","href"=>"#"),array('data-path'=>$EXT_DOMPATH."modals/modal.page_object.create.php"));
+                                                        echo $TXT['Edit page'];
+                                                    A::POST();
+                                                LI::POST();
+                                                LI::PRE();
+                                                    A::PRE(array("class"=>"dropdown-item","href"=>"#"),array('data-path'=>$EXT_DOMPATH."modals/modal.page_object.create.php"));
+                                                        echo $TXT['Edit content'];
+                                                    A::POST();
+                                                LI::POST();    
+                                                LI::PRE();
+                                                    A::PRE(array("class"=>"dropdown-item","href"=>"#"),array('data-path'=>$EXT_DOMPATH."modals/modal.page_object.create.php"));
+                                                        echo $TXT['Edit content (headless)'];
+                                                    A::POST();
+                                                LI::POST();
+                                                LI::PRE();
+                                                    A::PRE(array("class"=>"dropdown-item","href"=>"show.php?url=".$localizedPage['url'],"target"=>"_blank"),array('data-path'=>$EXT_DOMPATH."modals/modal.page_object.create.php"));
+                                                        echo $TXT['View'];
+                                                    A::POST();
+                                                LI::POST();
+                                            BTN_DROPDOWN::POST();
                                          }
                                          else 
                                          {
-                                            
+                                            $excludedLanguages = json_decode($pageRow['excluded_languages']) ?? array();
+                                            if(!in_array($languageValues['code_2digit'],$excludedLanguages))
+                                            {
+                                                BTN::PRE(array("class"=>"btn btn-sm btn-outline-secondary",
+                                                    "id"=>$languageValues['code_2digit']."_dropdown",
+                                                    "caption"=>strtoupper($languageValues['code_2digit']).BI::GET(array('icon'=>'plus','size'=>'16'))
+                                                ));
+                                                BTN::POST();
+                                            }                                            
                                          }    
                                     }
+                                    DIV::POST();
                                 TD::POST();
-
+                                TD::PRE(); CHECKBOX::PRINT(array(
+                                    "class"=>"",
+                                    "name"=>"id",
+                                    "value"=>$pageRow['is_active'],
+                                    //"disabled"=>"disabled"
+                                ));
+                                TD::POST();
                                 TD::PRE();
                                     BTN::PRE(array(
                                         "class"=>"btn btn-sm btn-outline-secondary core-modal-btn",
                                         ),
                                             array(
-                                                'data-path'=>$EXT_DOMPATH."modals/modal.assets.edit.php",
-                                                'data-table'=>'app_assets',
+                                                'data-path'=>$EXT_DOMPATH."modals/modal.page_objects.edit.php",
+                                                'data-table'=>'app_page_objects',
                                                 'data-condition'=>$pageRow['id'],      
                                             ));
                                         echo $TXT['Edit'];
                                     BTN::POST();  
-                                TD::POST();
-                                TD::PRE();
+
                                     BTN::PRE(array(
                                         "class"=>"btn btn-sm btn-outline-secondary core-modal-btn",
                                             ),
                                             array(
                                                 'data-path'=>'core/modals/modal.db.dataset.delete/modal.php',
-                                                'data-table'=>'app_assets',
+                                                'data-table'=>'app_page_objects',
                                                 'data-id'=>$pageRow['id']   
                                             )
                                     );
@@ -155,6 +160,5 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['Pages - Overview'],'lang'=>'en_US'
                 TABLE::POST();FORM::POST();
             COLUMN::POST();
         ROW::POST();
-                    
     DOCUMENT::FOOTER(array("DB"=>$DB,"CORE"=>$CORE,"assets"=>array("core_sortable_js","bootstrap_js")));
 ?>    

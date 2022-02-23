@@ -69,5 +69,24 @@ static function PREPARE_PAGE_OBJECTS($parent, $DB)
         }
         SELF::$INDENTATION--;
     }
+
+static function SELECT_PARENT($pageObjects,$currentObject = NULL)
+    {
+        $optionPairs = array(""=>"");
+        foreach($pageObjects as $key => $values)
+        {
+            if(($values['id']!=$currentObject) and 
+            ($values['object_type']!="separator"))
+            {   
+                $indentation="";
+                for($i=1;$i<$values['INDENTATION'];$i++) $indentation.="&nbsp;&nbsp;";
+                $optionPairs[$indentation.$values['internal_name']]=$values['id'];
+                $indentation=NULL;
+            }
+
+        }
+        return $optionPairs;
+    }
+    
 }
 ?>

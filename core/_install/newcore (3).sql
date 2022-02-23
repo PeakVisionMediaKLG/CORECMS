@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 17. Feb 2022 um 16:32
+-- Erstellungszeit: 23. Feb 2022 um 17:42
 -- Server-Version: 10.4.22-MariaDB
 -- PHP-Version: 8.1.1
 
@@ -111,7 +111,7 @@ CREATE TABLE `app_languages` (
 
 INSERT INTO `app_languages` (`id`, `name`, `code_2digit`, `code_5digit`, `short_caption`, `long_caption`, `is_active`) VALUES
 (1, 'english', 'en', 'en_US', 'EN', 'English', 1),
-(2, 'deutsch', 'de', 'de_DE', 'DE', 'Deutsch', 1);
+(2, 'deutsch', 'de', 'de_DE', 'DE', 'Deutsch', 0);
 
 -- --------------------------------------------------------
 
@@ -122,25 +122,82 @@ INSERT INTO `app_languages` (`id`, `name`, `code_2digit`, `code_5digit`, `short_
 CREATE TABLE `app_pages` (
   `id` int(11) NOT NULL,
   `shared_id` varchar(255) NOT NULL,
-  `shared_parent` varchar(255) NOT NULL,
   `language` varchar(255) NOT NULL,
-  `page_type` varchar(255) NOT NULL,
-  `group_member` varchar(255) NOT NULL,
   `url` varchar(255) NOT NULL,
   `link_text` varchar(255) NOT NULL,
   `title` varchar(255) NOT NULL,
   `show_in_navigation` tinyint(4) NOT NULL,
-  `navigation_position` int(11) NOT NULL,
   `auth_access_only` tinyint(4) NOT NULL,
-  `active` tinyint(4) NOT NULL,
+  `is_active` tinyint(4) NOT NULL,
+  `created_by` varchar(255) NOT NULL,
+  `created_date` varchar(255) NOT NULL,
+  `edited_by` varchar(255) DEFAULT NULL,
+  `edited_date` varchar(255) DEFAULT NULL,
+  `deleted_by` varchar(255) DEFAULT NULL,
+  `deleted_date` varchar(255) DEFAULT NULL,
+  `access_counter` int(11) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Daten für Tabelle `app_pages`
+--
+
+INSERT INTO `app_pages` (`id`, `shared_id`, `language`, `url`, `link_text`, `title`, `show_in_navigation`, `auth_access_only`, `is_active`, `created_by`, `created_date`, `edited_by`, `edited_date`, `deleted_by`, `deleted_date`, `access_counter`) VALUES
+(1, '1', 'en', 'home_en', 'home', 'home', 1, 0, 1, 'Admin', '', '', '', '', '', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `app_pages_templates`
+--
+
+CREATE TABLE `app_pages_templates` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `language` varchar(255) NOT NULL,
+  `page_type` varchar(255) NOT NULL,
+  `group_member` varchar(255) NOT NULL,
+  `link_text` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `is_active` tinyint(4) NOT NULL,
+  `created_by` varchar(255) NOT NULL,
+  `created_date` varchar(255) NOT NULL,
+  `edited_by` varchar(255) NOT NULL,
+  `edited_date` varchar(255) NOT NULL,
+  `deleted_by` varchar(255) NOT NULL,
+  `deleted_date` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `app_page_objects`
+--
+
+CREATE TABLE `app_page_objects` (
+  `id` int(11) NOT NULL,
+  `parent` varchar(255) NOT NULL,
+  `internal_name` varchar(255) NOT NULL,
+  `object_type` varchar(255) NOT NULL,
+  `object_order` int(11) NOT NULL,
+  `excluded_languages` text NOT NULL,
   `created_by` varchar(255) NOT NULL,
   `created_date` varchar(255) NOT NULL,
   `edited_by` varchar(255) NOT NULL,
   `edited_date` varchar(255) NOT NULL,
   `deleted_by` varchar(255) NOT NULL,
   `deleted_date` varchar(255) NOT NULL,
-  `access_counter` int(11) NOT NULL
+  `is_active` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Daten für Tabelle `app_page_objects`
+--
+
+INSERT INTO `app_page_objects` (`id`, `parent`, `internal_name`, `object_type`, `object_order`, `excluded_languages`, `created_by`, `created_date`, `edited_by`, `edited_date`, `deleted_by`, `deleted_date`, `is_active`) VALUES
+(1, '', 'home', 'page', 0, '', 'Admin', '', '', '', '', '', 1),
+(2, '1', 'subhome', 'page', 0, '[\"de\"]', 'Admin', '', '', '', '', '', 1),
+(3, '', 'top', 'page', 0, '', 'Admin', '', '', '', '', '', 1);
 
 -- --------------------------------------------------------
 
@@ -230,7 +287,22 @@ ALTER TABLE `app_languages`
 -- Indizes für die Tabelle `app_pages`
 --
 ALTER TABLE `app_pages`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `url` (`url`);
+
+--
+-- Indizes für die Tabelle `app_pages_templates`
+--
+ALTER TABLE `app_pages_templates`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `url` (`name`);
+
+--
+-- Indizes für die Tabelle `app_page_objects`
+--
+ALTER TABLE `app_page_objects`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `internal_name` (`internal_name`);
 
 --
 -- Indizes für die Tabelle `core_languages`
@@ -254,7 +326,7 @@ ALTER TABLE `core_users`
 -- AUTO_INCREMENT für Tabelle `app_assets`
 --
 ALTER TABLE `app_assets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT für Tabelle `app_headless_content`
@@ -278,7 +350,19 @@ ALTER TABLE `app_languages`
 -- AUTO_INCREMENT für Tabelle `app_pages`
 --
 ALTER TABLE `app_pages`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT für Tabelle `app_pages_templates`
+--
+ALTER TABLE `app_pages_templates`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT für Tabelle `app_page_objects`
+--
+ALTER TABLE `app_page_objects`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT für Tabelle `core_languages`

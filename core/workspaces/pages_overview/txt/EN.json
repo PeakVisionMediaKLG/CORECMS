@@ -7,8 +7,17 @@
     "Object type":"Object type",    
     "Active":"Active",
     "Edit":"Edit",
+    "Edit page":"Edit page",
+    "Edit page object":"Edit page object",
+    "Edit content (headless)":"Edit content (headless)",
+    "Edit content":"Edit content",
+    "View":"View",
     "Delete":"Delete",
     "Move":"Move",
     "Localization":"Localization",
-    "Parent":"Parent"
+    "Parent":"Parent",
+    "Parent page":"Parent page",
+    "Cancel":"Cancel",
+    "Save":"Save",
+    "":""
 }
