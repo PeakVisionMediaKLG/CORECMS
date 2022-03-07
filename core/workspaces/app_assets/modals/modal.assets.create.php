@@ -49,7 +49,7 @@ $data['table'] = 'app_assets';
                     COLUMN::PRE_R(array('class'=>'col')).
                         CHECKBOX::PRINT_R(array('class'=>'core-checkbox mt-2 mb-2',
                         'caption'=>$TXT['PHP Eval'],
-                        'name'=>'core_data__eval]',
+                        'name'=>'core_data__eval',
                         'value'=>0,
                         'tabindex'=>'220'),
                         array()).
@@ -59,7 +59,7 @@ $data['table'] = 'app_assets';
                         COLUMN::PRE_R(array('class'=>'col')).
                             CHECKBOX::PRINT_R(array('class'=>'core-checkbox mt-2 mb-2',
                             'caption'=>$TXT['Active'],
-                            'name'=>'core_data__is_active]',
+                            'name'=>'core_data__is_active',
                             'value'=>0,
                             'tabindex'=>'230'),
                             array()).

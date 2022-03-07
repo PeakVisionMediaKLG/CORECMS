@@ -80,7 +80,7 @@ static function SELECT_PARENT($pageObjects,$currentObject = NULL)
             {   
                 $indentation="";
                 for($i=1;$i<$values['INDENTATION'];$i++) $indentation.="&nbsp;&nbsp;";
-                $optionPairs[$indentation.$values['internal_name']]=$values['id'];
+                $optionPairs[$indentation.$values['name']]=$values['id'];
                 $indentation=NULL;
             }
 
