@@ -42,7 +42,10 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['Pages - Overview'],'lang'=>'en_US'
                         $i=1;
                         foreach($pageData as $key => $pageRow)
                         {   
-                            TR::PRE();
+                            $indentationBrightness = (1-($pageRow['INDENTATION']-1)*0.05)*100;
+                            $indentationColor = "background-color: hsl(0, 0%, ".$indentationBrightness."%)";
+
+                        TR::PRE(array("class"=>"check-indentation",                    "style"=>$indentationColor));
                                 TD::PRE(); 
                                     for($i=1;$i<$pageRow['INDENTATION'];$i++)
                                     { echo "&nbsp;&nbsp;&nbsp;&nbsp;"; } 
@@ -78,13 +81,14 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['Pages - Overview'],'lang'=>'en_US'
                                                 "caption"=>strtoupper($languageValues['code_2digit'])
                                             ));
                                                 LI::PRE();
-                                                    A::PRE(array("class"=>"dropdown-item core-modal-btn","href"=>"#"),array('data-path'=>$EXT_DOMPATH."modals/modal.page.edit.php"));
+                                                    A::PRE(array("class"=>"dropdown-item core-modal-btn","href"=>"#"),array('data-path'=>$EXT_DOMPATH."modals/modal.page.edit.php",'data-table'=>'app_pages',
+                                                    'data-condition'=>$localizedPage['id']));
                                                         echo $TXT['Edit page'];
                                                     A::POST();
                                                 LI::POST();
                                                 LI::PRE();
                                                     A::PRE(array("class"=>"dropdown-item"));
-                                                        echo $TXT['Edit content (headless)'];
+                                                        echo $TXT['Edit content'];
                                                     A::POST();
                                                 LI::POST();
                                                 LI::PRE();
@@ -157,6 +161,53 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['Pages - Overview'],'lang'=>'en_US'
                                     );
                                         echo $TXT['Delete'];
                                     BTN::POST();  
+                                TD::POST();
+                                TD::PRE();
+
+                                $currentLevelItemsArray = $DB->RETRIEVE(
+                                    'app_page_objects',
+                                    array('id'),
+                                    array('parent'=>$pageRow['parent']),
+                                    " ORDER BY id ASC"
+                                );
+                                
+                                if($currentLevelItemsArray) $currentLevelItems=count($currentLevelItemsArray); else $currentLevelItems=0;
+                                if($currentLevelItems>1)
+                                {
+                                    DIV::PRE(array("class"=>"btn-group", "role"=>"group"));
+                                        if($pageRow['id']!=$currentLevelItemsArray[0]['id'])
+                                        {
+                                            BTN::PRE(array(
+                                                "class"=>"btn btn-sm btn-outline-secondary core-action-btn"
+                                                    ),
+                                                    array(
+                                                        'data-path'=>'core/actions/db.pageobject.move.php',
+                                                        'data-table'=>'app_page_objects',
+                                                        'data-direction'=>'up',
+                                                        'data-id'=>$pageRow['id'],
+                                                        'data-parent'=>$pageRow['parent'], 
+                                                    )
+                                            );
+                                                echo BI::GET(array('icon'=>'chevron-up','size'=>'16'));
+                                            BTN::POST();
+                                        }
+                                        if($pageRow['id']!=$currentLevelItemsArray[count($currentLevelItemsArray)-1]['id']) {
+                                            BTN::PRE(array(
+                                                "class"=>"btn btn-sm btn-outline-secondary core-action-btn"
+                                                    ),
+                                                    array(
+                                                        'data-path'=>'core/actions/db.pageobject.move.php',
+                                                        'data-table'=>'app_page_objects',
+                                                        'data-direction'=>'down',
+                                                        'data-id'=>$pageRow['id'],
+                                                        'data-parent'=>$pageRow['parent'], 
+                                                    )
+                                            );
+                                                echo BI::GET(array('icon'=>'chevron-down','size'=>'16'));
+                                            BTN::POST();
+                                        }
+                                    DIV::POST();
+                                }
                                 TD::POST();
                             TR::POST();
                             $i++;

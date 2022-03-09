@@ -12,6 +12,7 @@
     "Edit page":"Edit page",
     "Delete page":"Delete page",
     "Edit page object":"Edit page object",
+    "Edit content":"Edit content",
     "Edit content (headless)":"Edit content (headless)",
     "View page":"View page",
     "Delete":"Delete",
@@ -26,5 +27,6 @@
     "&#60;title&#62;":"&#60;title&#62;",
     "Show in navigation":"Show in navigation",
     "Authorized access only":"Authorized access only",
+    "Page access counter":"Page access counter",
     "":""
 }

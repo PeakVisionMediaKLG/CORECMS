@@ -1,3 +1,13 @@
+/*:root{
+  --color-indentation: 255,255,255;
+}
+
+tr.check-indentation{background-color: rgb(var(--color-indentation));}*/
+
+:root{
+  --color-indentation: hsl(0, 0%, 100%);
+}
+
 .core-h100{height:100vh;}
 
 .core-panel-divider {
@@ -72,4 +82,8 @@
   overflow-y: auto;
 }
 
+a.core-modal-btn:hover{cursor:pointer;}
+
 .top-most-layer{z-index:1000000;}
+
+.core-on-top{z-index:1000000 !important;};

@@ -6,7 +6,7 @@ class TR extends CORE\COMPONENT
 	static function PRECODE ($params=NULL,$data=NULL)
 		{
 			/* Params: id, class, label */
-			$CODE = "<tr ".(new self)->WRITE($params,'id')." ".(new self)->WRITE($params,'class').">";
+			$CODE = "<tr ".(new self)->WRITE($params,'id')." ".(new self)->WRITE($params,'class')." ".(new self)->WRITE($params,'style').">";
 			return $CODE;
 		}
 	

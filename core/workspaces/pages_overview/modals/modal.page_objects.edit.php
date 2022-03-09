@@ -70,7 +70,17 @@ $pageData = CORE\PAGE::$SORTED_PAGE_OBJECTS;
                         'autocomplete'=>'off',
                         'liveValidation'=>array('alphaNum','Unique'),
                         )
-                    ).                    
+                    ).
+                    ROW::PRE_R(array('class'=>'my-2')).
+                        COLUMN::PRE_R(array('class'=>'col')).
+                            CHECKBOX::PRINT_R(array('class'=>'core-checkbox mt-2 mb-2',
+                            'caption'=>$TXT['Active'],
+                            'name'=>'core_data__is_active]',
+                            'value'=>$pageRow['is_active'],
+                            'tabindex'=>'180'),
+                            array()).
+                        COLUMN::POST_R().
+                    ROW::POST_R().                    
                     HIDDEN::PRINT_R(array('name'=>'edited_by','value'=>$USER->USERNAME)). 
                     HIDDEN::PRINT_R(array('name'=>'edited_date','value'=>time()));                     
 
