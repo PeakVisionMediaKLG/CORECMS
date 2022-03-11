@@ -4,6 +4,7 @@
     "Add page object":"Add page object",
     "Create page object":"Create page object",
     "ID":"ID",
+    "Name":"Name",
     "Internal name":"Internal name",
     "Object type":"Object type",    
     "Active":"Active",
@@ -14,6 +15,7 @@
     "Edit page object":"Edit page object",
     "Edit content":"Edit content",
     "Edit content (headless)":"Edit content (headless)",
+    "Visual content":"Visual content",
     "View page":"View page",
     "Delete":"Delete",
     "Move":"Move",
@@ -28,5 +30,9 @@
     "Show in navigation":"Show in navigation",
     "Authorized access only":"Authorized access only",
     "Page access counter":"Page access counter",
+
+    "Headless content":"Headless content",
+    "Add headless content":"Add headless content",
+    "Back to pages overview":"< Back to pages overview",
     "":""
 }

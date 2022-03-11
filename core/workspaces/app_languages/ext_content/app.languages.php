@@ -40,7 +40,7 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['App languages'],'lang'=>'en_US','a
                         TH::PRE(); echo $TXT['Move']; TH::POST();
                     THEAD::POST();
                     }
-                    TBODY::PRE(array("class"=>"js-sortable-table"),array("data-path"=>"core/actions/db.dataset.reorder.php"));
+                    TBODY::PRE(array("class"=>"js-sortable-table"),array("data-path"=>$CORE_DOMPATH."core/actions/db.dataset.reorder.php"));
                     HIDDEN::PRINT(array("name"=>"table","value"=>"app_languages")); 
                     if ($language_data and count($language_data) > 0) 
                     {   
@@ -79,7 +79,7 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['App languages'],'lang'=>'en_US','a
                                         "class"=>"btn btn-sm btn-outline-secondary core-modal-btn",
                                             ),
                                             array(
-                                                'data-path'=>'core/modals/modal.db.dataset.delete/modal.php',
+                                                'data-path'=>$CORE_DOMPATH.'core/modals/modal.db.dataset.delete/modal.php',
                                                 'data-table'=>'app_languages',
                                                 'data-id'=>$language_row['id']   
                                             )
@@ -95,8 +95,6 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['App languages'],'lang'=>'en_US','a
                             TR::POST();
                             $i++;
                         }
-                        
-                       
                     }    
                     TBODY::POST(); 
                 TABLE::POST();FORM::POST();

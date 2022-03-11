@@ -59,6 +59,9 @@ $CORE->USER = $USER;
                 COLUMN::PRE(array("class"=>"col-auto core-panel-divider d-none d-sm-block core-h100"));
                 COLUMN::POST();
                 COLUMN::PRE(array("class"=>"col p-0 core-right-panel core-h100"));
+                    DIV::PRE(array("class"=>"core-alert-space"));
+
+                    DIV::POST();
                     $iframe_src = $_SESSION['CORE.CURRENT_RIGHT_PANE'] ?? "about:blank";
                     IFRAME::PRINT(array("name"=>"core-main-panel", "style"=>"width:100%; height:100vh; margin:0; padding:0; ","src"=>$iframe_src,"title"=>"core-main-panel"));
                 COLUMN::POST();    

@@ -12,7 +12,7 @@ $data['table'] = 'app_pages';
 
     $modalcontent = HIDDEN::PRINT_R(array('name'=>'table','value'=>'app_pages')).
                     HIDDEN::PRINT_R(array('name'=>'core_data__language','value'=>$data['language'])).
-                    HIDDEN::PRINT_R(array('name'=>'core_data__shared_id','value'=>$data['shared_id'])).
+                    HIDDEN::PRINT_R(array('name'=>'core_data__shared_identifier','value'=>$data['shared_identifier'])).
                     TEXTBOX::PRINT_R(array(
                         'inline'=>1,
                         'class'=>'mt-2 has-validation',		

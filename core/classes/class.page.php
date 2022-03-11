@@ -64,7 +64,7 @@ static function PREPARE_PAGE_OBJECTS($parent, $DB)
                 }
                 SELF::$SORTED_PAGE_OBJECTS[$currentID]["INDENTATION"] = SELF::$INDENTATION;
 
-                SELF::PREPARE_PAGE_OBJECTS(SELF::$SORTED_PAGE_OBJECTS[$currentID]['id'],$DB); 
+                SELF::PREPARE_PAGE_OBJECTS(SELF::$SORTED_PAGE_OBJECTS[$currentID]['shared_identifier'],$DB); 
             }
         }
         SELF::$INDENTATION--;
@@ -75,12 +75,12 @@ static function SELECT_PARENT($pageObjects,$currentObject = NULL)
         $optionPairs = array(""=>"");
         foreach($pageObjects as $key => $values)
         {
-            if(($values['id']!=$currentObject) and 
+            if(($values['shared_identifier']!=$currentObject) and 
             ($values['object_type']!="separator"))
             {   
                 $indentation="";
                 for($i=1;$i<$values['INDENTATION'];$i++) $indentation.="&nbsp;&nbsp;";
-                $optionPairs[$indentation.$values['name']]=$values['id'];
+                $optionPairs[$indentation.$values['name']]=$values['shared_identifier'];
                 $indentation=NULL;
             }
 

@@ -39,7 +39,7 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['App - Assets'],'lang'=>'en_US','as
                         TH::PRE(); echo $TXT['Move']; TH::POST();
                     THEAD::POST();
                     }
-                    TBODY::PRE(array("class"=>"js-sortable-table"),array("data-path"=>"core/actions/db.dataset.reorder.php"));
+                    TBODY::PRE(array("class"=>"js-sortable-table"),array("data-path"=>$CORE_DOMPATH."core/actions/db.dataset.reorder.php"));
                     HIDDEN::PRINT(array("name"=>"table","value"=>"app_assets")); 
                     if ($asset_data and count($asset_data) > 0) 
                     {   
@@ -83,7 +83,7 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['App - Assets'],'lang'=>'en_US','as
                                         "class"=>"btn btn-sm btn-outline-secondary core-modal-btn",
                                             ),
                                             array(
-                                                'data-path'=>'core/modals/modal.db.dataset.delete/modal.php',
+                                                'data-path'=>$CORE_DOMPATH.'core/modals/modal.db.dataset.delete/modal.php',
                                                 'data-table'=>'app_assets',
                                                 'data-id'=>$asset_row['id']   
                                             )

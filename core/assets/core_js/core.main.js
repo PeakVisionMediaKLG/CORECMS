@@ -26,6 +26,8 @@ Core functions
 function coreAction(element,serialize=0,reload=1)
     {
         var path = $(element).data('path');
+        path = path.replace(CORE_PROTOCOL + CORE_HOST,"");
+
         //var scroll = $(element).data('scroll');
         var timeOut = $(element).data('timeout') ?? 300;
         var appendTo = $(element).data('append-to');
@@ -54,7 +56,7 @@ function coreAction(element,serialize=0,reload=1)
                 })       
                 .done(function(data){
 
-                    if(JQUERY_DEBUG_TO_CONSOLE){console.log(data);}
+                    /*if(JQUERY_DEBUG_TO_CONSOLE){console.log(data);}*/
                     if(JQUERY_DEBUG_TO_DOCUMENT)
                     {
                         
@@ -151,10 +153,13 @@ $(document).on('shown.bs.modal','.modal', function () {
 
 function coreModal(element)
     {	
+        var path = $(element).data('path');
+        path = path.replace(CORE_PROTOCOL + CORE_HOST,"");
+
         //getScrollPos();
         if(JQUERY_DEBUG_TO_CONSOLE){console.log($(element).data());}
 		$.ajax({ 
-                type: "POST",url:CORE_PROTOCOL + CORE_HOST + $(element).data('path'),
+                type: "POST",url:CORE_PROTOCOL + CORE_HOST + path,
                 data: {"data":$(element).data()},
 				
                 })

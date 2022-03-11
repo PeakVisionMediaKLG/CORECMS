@@ -20,6 +20,7 @@ class CORE
         $this->WORKSPACES = $CONFIG_WORKSPACES;
         $this->CORE_CSS_INCLUDES="";
         $this->CORE_JS_INCLUDES="";
+
         $this->DOM_PATH = array();
         $this->EXT_PATH = array();
     }

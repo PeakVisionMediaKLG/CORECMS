@@ -32,7 +32,7 @@ $CONFIG = array(
 
     /* ERROR REPORTING FOR JQUERY */
     "jQueryDebugToConsole"          =>  1,
-    "jQueryDebugToDocument"         =>  0,
+    "jQueryDebugToDocument"         =>  1,
 
     /* LOAD ASSETS FROM CDN IF AVAILABLE */
     "useCDN"                        =>  1,

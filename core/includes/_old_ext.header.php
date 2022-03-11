@@ -27,13 +27,10 @@ require_once('../ext.config.php');
 $DOM_PATH[$extConfigArray['name']] = "core/workspaces/".$extConfigArray['name']."/";
 $_SESSION["CORE.EXT"][$extConfigArray['name']]['DOM_PATH'] = "core/workspaces/".$extConfigArray['name']."/";
 
-//$EXT_DOMPATH = "core/workspaces/".$extConfigArray['name']."/";
+$EXT_DOMPATH = "core/workspaces/".$extConfigArray['name']."/";
 
-$EXT_DOMPATH = $CORE->CREATE_URL(ROOT."core/workspaces/".$extConfigArray['name']."/");
+//$EXT_DOMPATH = $CORE->CREATE_URL(ROOT."core/workspaces/".$extConfigArray['name']."/");
 //$DOM_PATH[$extConfigArray['name']] = 
-
-$CORE_DOMPATH = $CORE->CREATE_URL("");
-//echo $CORE_DOMPATH;
 
 $EXT_PATH[$extConfigArray['name']] = ROOT."core/workspaces/".$extConfigArray['name']."/";
 $_SESSION["CORE.EXT"][$extConfigArray['name']]['PHP_PATH'] = str_replace("\\","/",ROOT."core/workspaces/".$extConfigArray['name']."/");
