@@ -140,7 +140,7 @@ if($adminNum<2) $lastAdmin="disabled"; else $lastAdmin="";
                             
 
                     }
-$modal= new MODAL(array(
+$modal= new CORE\MODAL(array(
                         'id'=>"core-edit-user-".time(),
                         'title'=>$TXT['Edit user'],
                         'content'=>$modalcontent,

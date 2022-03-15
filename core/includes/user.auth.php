@@ -1,4 +1,5 @@
-<?php //session.check.php
+<?php 
+
 session_start();
 require_once(substr(getcwd(),0,strpos(getcwd(),"core")).'/root.directory.php'); 
 require_once(ROOT.'core/classes/class.db.php');

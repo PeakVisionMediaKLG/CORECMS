@@ -78,7 +78,7 @@ $data['table'] = 'app_languages';
                     ROW::POST_R();                     
 
                     
-$modal= new MODAL(array(
+$modal= new CORE\MODAL(array(
                         'id'=>"core-edit-asset-".time(),
                         'title'=>$TXT['Edit asset'],
                         'content'=>$modalcontent,

@@ -82,7 +82,7 @@ $modalContent =
             );
 		}	
     }
-$modal= new MODAL(array(
+$modal= new CORE\MODAL(array(
                         'id'=>"core-edit-valueset-".time(),
                         'title'=>TXT['Edit value set'],
                         'content'=>$modalContent,

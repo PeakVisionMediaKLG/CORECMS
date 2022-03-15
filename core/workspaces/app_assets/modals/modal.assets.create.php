@@ -67,7 +67,7 @@ $data['table'] = 'app_assets';
                     ROW::POST_R();                     
 
                     
-$modal= new MODAL(array(
+$modal= new CORE\MODAL(array(
                         'id'=>"core-create-asset-".time(),
                         'title'=>$TXT['Add asset'],
                         'content'=>$modalcontent,

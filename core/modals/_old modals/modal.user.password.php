@@ -46,7 +46,7 @@ include_once(ROOT."core/classes/class.component.php");
                     );
 
 
-$modal= new MODAL(array(
+$modal= new CORE\MODAL(array(
                         'id'=>"core-edit-password-".time(),
                         'title'=>TXT['Reset password'],
                         'content'=>$modalcontent,

@@ -33,7 +33,7 @@ $modalContent.="<div class='row w100'><div class='col-12 text-center'><b>".TXT['
 $modalContent.="</table></div></div>";
 $modalContent.=HIDDEN::PRINT_R(array('name'=>'core_data__table','value'=>$data['table'])).HIDDEN::PRINT_R(array('name'=>'core_data__condition','value'=>$data['condition'])).HIDDEN::PRINT_R(array('name'=>'core_data__conditionvalue','value'=>$data['conditionvalue']));
 
-$modal= new MODAL(array(
+$modal= new CORE\MODAL(array(
     'id'=>"core-delete-general-".time(),
     'title'=>TXT['Delete'],
     'content'=>$modalContent,

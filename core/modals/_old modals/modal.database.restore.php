@@ -30,7 +30,7 @@ if(strpos($data['file'],'user-')!==false) $createdBy = TXT['user created']; else
 
 $modalContent.="</table></div>";
 
-$modal= new MODAL(array(
+$modal= new CORE\MODAL(array(
     'id'=>"core-database-restore-".time(),
     'title'=>TXT['Restore database'],
     'content'=>$modalContent,

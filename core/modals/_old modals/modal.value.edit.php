@@ -81,7 +81,7 @@ $modalContent =
             );
 		}	
     }
-$modal= new MODAL(array(
+$modal= new CORE\MODAL(array(
                         'id'=>"core-edit-value-".time(),
                         'title'=>TXT['Edit value'],
                         'content'=>$modalContent,

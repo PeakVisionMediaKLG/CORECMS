@@ -26,7 +26,7 @@ $modalContent.="<div class='row w90 mx-auto'>
 
 $modalContent.="</div></div>";
 
-$modal= new MODAL(array(
+$modal= new CORE\MODAL(array(
     'id'=>"core-database-view-".time(),
     'title'=>TXT['Restore database'],
     'content'=>$modalContent,

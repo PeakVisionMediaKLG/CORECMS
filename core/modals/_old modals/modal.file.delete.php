@@ -29,7 +29,7 @@ $modalContent.="<div class='row w90 mx-auto'><table class='core-table-std'>";
 
 $modalContent.="</table></div>";
 
-$modal= new MODAL(array(
+$modal= new CORE\MODAL(array(
     'id'=>"core-delete-file-".time(),
     'title'=>TXT['Delete file(s)'],
     'content'=>$modalContent,

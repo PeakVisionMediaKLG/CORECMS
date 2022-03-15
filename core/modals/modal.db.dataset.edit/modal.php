@@ -23,7 +23,7 @@ $get_values = $get_values[0];
 
 $modalcontent .= AUTOFORM::GET_FORM($data['table'],$USER->PREFERRED_LANGUAGE,$get_values);
 
-$modal = new MODAL(array(
+$modal = new CORE\MODAL(array(
     "id"=>"core-edit-dataset.".time(), //modal id
     "title"=>TXT['Edit dataset'], //modal title
     "content"=>$modalcontent, //modal content

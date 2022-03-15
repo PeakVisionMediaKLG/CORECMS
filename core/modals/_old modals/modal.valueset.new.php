@@ -64,7 +64,7 @@ $modalContent =
 				);
 		}	
 
-$modal= new MODAL(array(
+$modal= new CORE\MODAL(array(
                         'id'=>"core-new-valueset-".time(),
                         'title'=>TXT['New value set'],
                         'content'=>$modalContent,

@@ -116,7 +116,7 @@ $modalContent .=
 $modalContent .=	
 TABLE::POST_R();
 
-$modal= new MODAL(array(
+$modal= new CORE\MODAL(array(
                         'id'=>"core-new-value-".time(),
                         'title'=>TXT['New value'],
                         'content'=>$modalContent,

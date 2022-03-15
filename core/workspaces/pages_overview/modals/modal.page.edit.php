@@ -97,7 +97,7 @@ $data['table'] = 'app_pages';
                     ROW::POST_R();                     
 
                     
-$modal= new MODAL(array(
+$modal= new CORE\MODAL(array(
                         'id'=>"core-edit-page-".time(),
                         'title'=>$TXT['Edit page'],
                         'content'=>$modalcontent,

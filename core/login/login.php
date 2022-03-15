@@ -1,4 +1,5 @@
 <?php
+
 session_start(); 
 require_once('../../root.directory.php');
 require_once(ROOT.'core/classes/traits.core.php');
@@ -30,7 +31,7 @@ if($LOGIN_FORM_ACTION==$TXT['Sign in'])
     if(@$USER->ERROR_RESPONSE==2) {$INPUT_RESPONSE.=$TXT['Please input both your user name and password.']; $ERROR="is-invalid";}
     if(@$USER->ERROR_RESPONSE==1) {$INPUT_RESPONSE.=$TXT['The provided login information is incorrect.']; $ERROR="is-invalid";}
 }
-//echo $INPUT_RESPONSE;
+
 if($LOGIN_FORM_ACTION==$TXT['Sign out'])
 {
     $USER->SIGN_OUT();
@@ -40,8 +41,8 @@ if($LOGIN_FORM_ACTION=="") //no input provided, check if $_SESSION['session_iden
 {
 	$USER->CHECK_SESSION_STATE();
 }
-DOCUMENT::HEADER(array('title'=>'CORE - Log in','lang'=>'en_US','assets'=>array("bootstrap_css","bootstrap_icons","jquery"/*,"core_css","core_js"*/),"DB"=>$DB,"CORE"=>$CORE));
-	//DOCUMENT::HEADER(array('title'=>"Log in - Core"));
+
+	DOCUMENT::HEADER(array('title'=>'CORE - Log in','lang'=>'en_US','assets'=>array("bootstrap_css","bootstrap_icons","jquery"/*,"core_css","core_js"*/),"DB"=>$DB,"CORE"=>$CORE));
 		
 		CONTAINER::PRE(array('class'=>'container-fluid'));
 			ROW::PRE(array('style'=>'height:95%;padding-top:10%'));

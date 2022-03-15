@@ -17,7 +17,7 @@ $modalcontent="<p>".TXT['Insert dataset'].":</p><br>";
 $modalcontent .= AUTOFORM::GET_FORM($data['table'],$USER->PREFERRED_LANGUAGE);
 //echo $modalcontent;
 
-$modal = new MODAL(array(
+$modal = new CORE\MODAL(array(
     "id"=>"core-edit-dataset.".time(), //modal id
     "title"=>TXT['Insert dataset'], //modal title
     "content"=>$modalcontent, //modal content

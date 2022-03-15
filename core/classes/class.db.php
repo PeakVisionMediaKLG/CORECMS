@@ -1,4 +1,5 @@
 <?php
+
 namespace CORE;
 class DB
 {
@@ -50,16 +51,38 @@ public $dbAutoDumpOnLogin;
         if($this->dbGeneralLog) $this->EXEC("SET GLOBAL general_log = 'ON'");
         if($this->dbStrictMode) mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
-        //var_dump($this);
-
         $this->statementID = 0;
     }   
+
+    
+    public function GET_TABLE_HEADERS($table = NULL)
+    {
+        if($table)
+        {
+            $tableFields=array();
+
+            $headerSql = mysqli_query($this->CONNECTION,'DESCRIBE '.$table);
+
+            while($result = mysqli_fetch_assoc($headerSql)) 
+            {
+                array_push($tableFields,$result['Field']);
+            }
+            
+            return $tableFields;
+        }
+        else 
+        {
+            die('Function GET_TABLE_HEADERS - no table submitted!');
+        }
+    }
+
 
     public function EXEC($query)
     {
         $queryResult = $this->GET_OBJECT($query);
         return $queryResult;
     }
+
 
     public function MULTI_EXEC($query)
     {
@@ -68,12 +91,14 @@ public $dbAutoDumpOnLogin;
         return $queryResult;
     }    
 
+
     public function EXEC_TBL($preTable,$table,$postTable)
     {
         //echo $preTable.$this->dbTablePrefix.$table.$postTable;
         $transaction = $this->GET_OBJECT($preTable.$this->dbTablePrefix.$table.$postTable);
         return $transaction;
     }
+
 
     public function DELETE($table,$conditions,$extended=null)
     {
@@ -104,6 +129,7 @@ public $dbAutoDumpOnLogin;
         } 
         else $this->MESSAGE("No parameters set for: ".$query);    
     }
+
 
     public function INSERT($table,$columns,$extended=null)
     {
@@ -140,6 +166,7 @@ public $dbAutoDumpOnLogin;
         else $this->ERROR("No parameters set for: ".$query);
     }
 
+
     public function UPDATE($table,$columns,$conditions,$extended=null)
     {
         $params=array();
@@ -171,7 +198,7 @@ public $dbAutoDumpOnLogin;
 
         $query="UPDATE ".$this->dbTablePrefix.$table." SET ".$queryColumns.$queryConditions.$extended;
 
-        echo $query;
+        //echo $query;
         
         if(isset($params))
         {
@@ -186,6 +213,7 @@ public $dbAutoDumpOnLogin;
         else $this->ERROR("No parameters set for: ".$query);
 
     }
+
 
     public function RETRIEVE($table,$columns,$conditions,$extended=null)
     {
@@ -230,6 +258,7 @@ public $dbAutoDumpOnLogin;
 
     }
 
+
     public function MAP_RESULT($statementID)
     {
         $result = array();
@@ -259,6 +288,7 @@ public $dbAutoDumpOnLogin;
         $this->MESSAGE($errorMessage);
         $this->currentStatement[$statementID]->close();   
     }
+
 
     public function GET_OBJECT($query) //$preTable,$table,$postTable
     {
@@ -320,17 +350,20 @@ public $dbAutoDumpOnLogin;
         return $this->statementID;
     }
 
+
     public function MESSAGE($message) {
         if ($this->dbShowMessages) {
             echo $message;
         }
     }
 
+
     public function ERROR($error) {
         if ($this->dbShowErrors) {
             exit($error);
         }
     }
+
 
     protected function GET_TYPE($var)
     {

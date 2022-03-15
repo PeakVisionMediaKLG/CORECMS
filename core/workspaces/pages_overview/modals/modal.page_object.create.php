@@ -67,7 +67,7 @@ $pageData = CORE\PAGE::$SORTED_PAGE_OBJECTS;
                     HIDDEN::PRINT_R(array('name'=>'core_data__is_active','value'=>0));                     
 
                     
-$modal= new MODAL(array(
+$modal= new CORE\MODAL(array(
                         'id'=>"core-create-page_object-".time(),
                         'title'=>$TXT['Create page object'],
                         'content'=>$modalcontent,

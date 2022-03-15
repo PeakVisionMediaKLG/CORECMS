@@ -85,7 +85,7 @@ $pageData = CORE\PAGE::$SORTED_PAGE_OBJECTS;
                     HIDDEN::PRINT_R(array('name'=>'core_data__edited_date','value'=>time()));                     
 
                     
-$modal= new MODAL(array(
+$modal= new CORE\MODAL(array(
                         'id'=>"core-edit-page_object-".time(),
                         'title'=>$TXT['Edit page object'],
                         'content'=>$modalcontent,

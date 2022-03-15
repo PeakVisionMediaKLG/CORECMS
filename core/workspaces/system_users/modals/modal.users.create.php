@@ -126,7 +126,7 @@ $data['table'] = 'core_users';
                             
 
                     }
-$modal= new MODAL(array(
+$modal= new CORE\MODAL(array(
                         'id'=>"core-create-user-".time(),
                         'title'=>$TXT['Create user'],
                         'content'=>$modalcontent,

@@ -112,7 +112,7 @@ $modalcontent = HIDDEN::PRINT_R(array('name'=>'table','value'=>'core_users')).
 
 				if($USER->IS_SYSTEMADMIN) $modalcontent .= HR::PRINT_R().CHECKBOX::PRINT_R(array('class'=>'core-checkbox mt-2','caption'=>TXT['System admin'],'name'=>'core_data__is_systemadmin]','tabindex'=>'220'),array());
 
-$modal= new MODAL(array(
+$modal= new CORE\MODAL(array(
                         'id'=>"core-new-user-".time(),
                         'title'=>TXT['New user'],
                         'content'=>$modalcontent,

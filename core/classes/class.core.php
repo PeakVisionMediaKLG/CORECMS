@@ -1,4 +1,5 @@
 <?php
+
 namespace CORE;
 class CORE
 { 
@@ -14,6 +15,7 @@ class CORE
     public $CORE_CSS_INCLUDES;
     public $CORE_JS_INCLUDES;
 
+
     function __construct()
     {
         require_once(ROOT."config/config.workspaces.php");
@@ -24,6 +26,7 @@ class CORE
         $this->DOM_PATH = array();
         $this->EXT_PATH = array();
     }
+
 
 	function JS_SESSION()
 	{
@@ -46,6 +49,7 @@ class CORE
         //unset($_SESSION['KCFINDER']);;*/
 	}     
     
+
     function BUILD_CORE($WorkSpaceList)
     {
         foreach ($WorkSpaceList as $key => $subSpaces)
@@ -83,6 +87,7 @@ class CORE
         }
 
     }
+
 
     function BUILD_CORE_INCLUDES($WorkSpaceList)
     {
@@ -122,6 +127,7 @@ class CORE
         }
     }  
     
+
     function GET_LANGUAGES ()
     {
         $baseLang = array("id"=>0,"name"=>"english","code_2digit"=>"en","code_5digit"=>"en_US","short_caption"=>"EN","long_caption"=>"English");
@@ -132,6 +138,7 @@ class CORE
 
         return $additonalLanguages;
     }
+
 
     function LOAD_LANGUAGES ()
     {
@@ -144,6 +151,7 @@ class CORE
         return $languageOptions;
     }
 
+    
     function LOAD_VALUESET($name = NULL)
     {
         if($name){
@@ -170,12 +178,6 @@ class CORE
             else die($valueSetPath."valueset.php");
         }
     }
-
-
-
-
-
-
 
 }
 

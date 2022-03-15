@@ -83,7 +83,7 @@ $data['table'] = 'app_pages';
                     HIDDEN::PRINT_R(array('name'=>'core_data__created_date','value'=>time()));                    
 
                     
-$modal= new MODAL(array(
+$modal= new CORE\MODAL(array(
                         'id'=>"core-create-page-".time(),
                         'title'=>$TXT['Add page'],
                         'content'=>$modalcontent,

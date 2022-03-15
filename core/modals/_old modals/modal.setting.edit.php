@@ -144,7 +144,7 @@ while ($settingsRow=$getSetting->fetch_array())
 						TD::POST_R();
 					}	
 			}
-$modal= new MODAL(array(
+$modal= new CORE\MODAL(array(
                         'id'=>"core-edit-setting-".time(),
                         'title'=>TXT['Edit setting'],
                         'content'=>$modalContent,

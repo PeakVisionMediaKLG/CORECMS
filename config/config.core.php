@@ -1,5 +1,4 @@
 <?php
-// CORECMS - https://github.com/PeakVisionMediaKLG/CORECMS
 
 $CONFIG = array(
 
@@ -28,11 +27,11 @@ $CONFIG = array(
 
     /* CORE SYSTEM VARIABLES */
     "coreProtocol"                  =>  "http://",
-    "coreHost"                    =>  "localhost/",
+    "coreHost"                      =>  "localhost/",
 
     /* ERROR REPORTING FOR JQUERY */
     "jQueryDebugToConsole"          =>  1,
-    "jQueryDebugToDocument"         =>  1,
+    "jQueryDebugToDocument"         =>  0,
 
     /* LOAD ASSETS FROM CDN IF AVAILABLE */
     "useCDN"                        =>  1,

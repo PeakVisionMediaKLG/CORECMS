@@ -84,7 +84,7 @@ $data['table'] = 'app_languages';
                     ROW::POST_R();                     
 
                     
-$modal= new MODAL(array(
+$modal= new CORE\MODAL(array(
                         'id'=>"core-create-language-".time(),
                         'title'=>$TXT['Create language'],
                         'content'=>$modalcontent,

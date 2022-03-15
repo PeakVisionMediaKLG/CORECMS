@@ -84,7 +84,7 @@ $modalContent =
                     );
             }                                            
 
-$modal= new MODAL(array(
+$modal= new CORE\MODAL(array(
                         'id'=>"core-new-include-".time(),
                         'title'=>TXT['New include'],
                         'content'=>$modalContent,

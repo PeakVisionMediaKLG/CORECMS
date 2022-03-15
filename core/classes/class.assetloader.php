@@ -1,5 +1,4 @@
 <?php 
-/* CORECMS - https://github.com/PeakVisionMediaKLG/CORECMS */
 
 namespace CORE;
 class ASSETLOADER
@@ -27,6 +26,7 @@ class ASSETLOADER
             }
         } 
     }
+
 
     static function PREPARE($assetsToLoad, $useCDN)
     {

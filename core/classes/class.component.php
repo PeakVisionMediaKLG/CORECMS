@@ -1,5 +1,4 @@
 <?php 
-/* CORECMS - https://github.com/PeakVisionMediaKLG/CORECMS */
 
 namespace CORE;
 class COMPONENT
@@ -9,17 +8,20 @@ class COMPONENT
 	public $PRINT = 1;
 	public $CHILDREN;	
 	
+
 		static function PRE($params=NULL,$data=NULL)
 		{
 			$CODE = STATIC::PRECODE($params,$data);
 			echo $CODE;
 		}
 	
+
 		static function POST($params=NULL,$data=NULL)
 		{
 			$CODE = STATIC::POSTCODE($params,$data);
 			echo $CODE;
 		}	
+
 
 		static function PRINT($params=NULL,$data=NULL)
 		{
@@ -27,17 +29,20 @@ class COMPONENT
 			echo $print;
 		}	
 	
+
 		static function PRE_R($params=NULL,$data=NULL)
 		{
 			$CODE = STATIC::PRECODE($params,$data);
 			return $CODE;
 		}
 	
+
 		static function POST_R($params=NULL,$data=NULL)
 		{
 			$CODE = STATIC::POSTCODE($params,$data);
 			return $CODE;
 		}	
+
 
 		static function PRINT_R($params=NULL,$data=NULL)
 		{
@@ -60,6 +65,7 @@ class COMPONENT
 				}
 		}
 
+		
 	function WRITE_S($params,$what)
 		{	
 			if(isset($params) and count($params)>0){

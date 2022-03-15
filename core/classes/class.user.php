@@ -1,4 +1,5 @@
 <?php
+
 namespace CORE;
 class USER
 {
@@ -38,7 +39,6 @@ class USER
         
         if($this->VALUES)
         {
-            
             $sessionValues=array();
 
             foreach($this->VALUES as $key => $value)
@@ -69,7 +69,7 @@ class USER
                                     'core_users',
                                     array(),
                                     array('username'=>$user),
-                                    " LIMIT 1"
+                                    "LIMIT 1"
                                 );
 
                     if($result and count($result)>0)
@@ -78,7 +78,6 @@ class USER
                         {
                             if(password_verify($password, $row['password'])) // check if password matches hash
                             { 
-                                
                                 
                                 if($row['is_active']) // check if user status is active
                                 {
@@ -116,6 +115,7 @@ class USER
                 }
         }
 	
+
     function CHECK_SESSION_STATE()
         {
             if (isset($_SESSION['CORE.SESSIONIDENTIFIER'])){
@@ -139,6 +139,7 @@ class USER
             }
         }
 
+
 	function GET_AVATAR()
 		{
             switch($this->GENDER)
@@ -157,14 +158,16 @@ class USER
 			return $avatar;
 		}
 	
+
 	function SIGN_OUT()
         {
-        session_unset();
-        @session_destroy();
+            session_unset();
+            @session_destroy();
 
-        $this->AUTH_OK=0;
+            $this->AUTH_OK=0;
         }
     
+
     function DENIED()
         {
             die('Access denied.');
