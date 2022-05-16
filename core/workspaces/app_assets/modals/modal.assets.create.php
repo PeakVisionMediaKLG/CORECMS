@@ -64,7 +64,9 @@ $data['table'] = 'app_assets';
                             'tabindex'=>'230'),
                             array()).
                         COLUMN::POST_R().
-                    ROW::POST_R();                     
+                    ROW::POST_R().
+                    HIDDEN::PRINT_R(array('name'=>'core_data__created_by','value'=>$USER->USERNAME)).
+                    HIDDEN::PRINT_R(array('name'=>'core_data__created_date','value'=>time()));                      
 
                     
 $modal= new CORE\MODAL(array(

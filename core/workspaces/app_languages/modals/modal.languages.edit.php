@@ -90,7 +90,9 @@ $data['table'] = 'app_languages';
                             'tabindex'=>'220'),
                             array()).
                         COLUMN::POST_R().
-                    ROW::POST_R();                     
+                    ROW::POST_R().
+                    HIDDEN::PRINT_R(array('name'=>'core_data__edited_by','value'=>$USER->USERNAME)).
+                    HIDDEN::PRINT_R(array('name'=>'core_data__edited_date','value'=>time()));                      
 
                     
 $modal= new CORE\MODAL(array(

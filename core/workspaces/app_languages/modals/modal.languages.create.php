@@ -11,6 +11,7 @@ $data = $_POST['data'] ?? die('no data sent');
 $data['table'] = 'app_languages';
 
     $modalcontent = HIDDEN::PRINT_R(array('name'=>'table','value'=>'app_languages')).
+                    //HIDDEN::PRINT_R(array('name'=>'core_data__orginal_identifier','value'=>md5($data['table'].uniqid(rand(), TRUE)))).
                     TEXTBOX::PRINT_R(array(
                         'inline'=>1,
                         'class'=>'mt-2 has-validation',		
@@ -33,7 +34,7 @@ $data['table'] = 'app_languages';
                         'tabindex'=>'100',
                         'required'=>'required',
                         'value'=>'',
-                        'liveValidation'=>array('alphaNum')
+                        'liveValidation'=>array('alphaNum','Unique')
                         )
                     ).                
                     TEXTBOX::PRINT_R(array(
@@ -81,7 +82,9 @@ $data['table'] = 'app_languages';
                             'tabindex'=>'220'),
                             array()).
                         COLUMN::POST_R().
-                    ROW::POST_R();                     
+                    ROW::POST_R().
+                    HIDDEN::PRINT_R(array('name'=>'core_data__created_by','value'=>$USER->USERNAME)).
+                    HIDDEN::PRINT_R(array('name'=>'core_data__created_date','value'=>time()));                     
 
                     
 $modal= new CORE\MODAL(array(

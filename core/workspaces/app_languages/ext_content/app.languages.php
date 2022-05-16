@@ -79,7 +79,7 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['App languages'],'lang'=>'en_US','a
                                         "class"=>"btn btn-sm btn-outline-secondary core-modal-btn",
                                             ),
                                             array(
-                                                'data-path'=>$CORE_DOMPATH.'core/modals/modal.db.dataset.delete.backup/modal.php',
+                                                'data-path'=>$CORE_DOMPATH.'core/modals/modal.db.dataset.delete/modal.php',
                                                 'data-table'=>'app_languages',
                                                 'data-id'=>$language_row['id']   
                                             )

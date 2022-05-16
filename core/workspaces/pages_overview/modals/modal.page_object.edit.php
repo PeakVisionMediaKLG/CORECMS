@@ -53,7 +53,7 @@ $pageData = CORE\PAGE::$SORTED_PAGE_OBJECTS;
                                 'name'=>'core_data__parent',
                                 'id'=>'gender',
                                 'tabindex'=>'180',							
-                                'options'=>CORE\PAGE::SELECT_PARENT($pageData,$pageRow['shared_identifier']),
+                                'options'=>CORE\PAGE::SELECT_PARENT($pageData,$pageRow['unique_identifier']),
                                 'selectedOption'=>$pageRow['parent']
                             )).
                         COLUMN::POST_R().

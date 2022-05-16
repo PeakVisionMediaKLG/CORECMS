@@ -72,7 +72,7 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['Pages - Overview'],'lang'=>'en_US'
                                         $localizedPage  = $DB->RETRIEVE(
                                             'app_pages',
                                             array(),
-                                            array("shared_identifier"=>$pageRow['shared_identifier'],"language"=>$languageValues['code_2digit']),
+                                            array("unique_identifier"=>$pageRow['unique_identifier'],"language"=>$languageValues['code_2digit']),
                                             " ORDER BY id ASC LIMIT 1"
                                          );
                                          if($localizedPage)
@@ -134,7 +134,7 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['Pages - Overview'],'lang'=>'en_US'
                                                     "id"=>$languageValues['code_2digit']."_dropdown",
                                                     "caption"=>strtoupper($languageValues['code_2digit']).BI::GET(array('icon'=>'plus','size'=>'16'))
                                                 ),
-                                                array('data-path'=>$EXT_DOMPATH."modals/modal.page.create.php","data-language"=>$languageValues['code_2digit'],"data-shared_identifier"=>$pageRow['shared_identifier']));
+                                                array('data-path'=>$EXT_DOMPATH."modals/modal.page.create.php","data-language"=>$languageValues['code_2digit'],"data-unique_identifier"=>$pageRow['unique_identifier']));
                                                 BTN::POST();
                                             }                                            
                                          }    
