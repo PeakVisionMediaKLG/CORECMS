@@ -50,7 +50,8 @@ static function PREPARE_PAGE_OBJECTS($parent, $DB)
         $currentPageObjects = $DB->RETRIEVE(
             "app_page_objects",
             array(),
-            array("parent"=>$parent)
+            array("parent"=>$parent),
+            "ORDER BY id ASC"
         );
 
         if($currentPageObjects)

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 16. Mai 2022 um 12:28
--- Server-Version: 10.4.22-MariaDB
--- PHP-Version: 8.1.1
+-- Generation Time: May 24, 2022 at 10:56 AM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Datenbank: `newcore`
+-- Database: `newcore`
 --
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `app_assets`
+-- Table structure for table `app_assets`
 --
 
 CREATE TABLE `app_assets` (
@@ -41,17 +41,17 @@ CREATE TABLE `app_assets` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Daten für Tabelle `app_assets`
+-- Dumping data for table `app_assets`
 --
 
 INSERT INTO `app_assets` (`id`, `name`, `src_file`, `src_db`, `eval`, `is_active`, `created_by`, `created_date`, `edited_by`, `edited_date`) VALUES
 (1, 'Bootstrap 5.1 CSS', '', '<!-- Bootstrap CSS -->\r\n    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3\" crossorigin=\"anonymous\">', 0, 1, '', '', '', ''),
-(2, 'Bootstrap 5.1 JS', '', '<!-- Option 1: Bootstrap Bundle with Popper -->    <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p\" crossorigin=\"anonymous\"></script>', 0, 1, '', '', '', '');
+(2, 'Bootstrap 5.1 JS', '', '<!-- Option 1: Bootstrap Bundle with Popper -->    <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p\" crossorigin=\"anonymous\"></script>', 0, 1, '', '', 'Admin', '1653382001');
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `app_headless_content`
+-- Table structure for table `app_headless_content`
 --
 
 CREATE TABLE `app_headless_content` (
@@ -75,7 +75,7 @@ CREATE TABLE `app_headless_content` (
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `app_headless_content_archive`
+-- Table structure for table `app_headless_content_archive`
 --
 
 CREATE TABLE `app_headless_content_archive` (
@@ -96,7 +96,7 @@ CREATE TABLE `app_headless_content_archive` (
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `app_languages`
+-- Table structure for table `app_languages`
 --
 
 CREATE TABLE `app_languages` (
@@ -114,17 +114,17 @@ CREATE TABLE `app_languages` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Daten für Tabelle `app_languages`
+-- Dumping data for table `app_languages`
 --
 
 INSERT INTO `app_languages` (`id`, `name`, `code_2digit`, `code_5digit`, `short_caption`, `long_caption`, `is_active`, `created_by`, `created_date`, `edited_by`, `edited_date`) VALUES
 (1, 'english', 'en', 'en_US', 'EN', 'English', 1, '', '', '', ''),
-(2, 'deutsch', 'de', 'de_DE', 'DE', 'Deutsch', 0, '', '', '', '');
+(2, 'deutsch', 'de', 'de_DE', 'DE', 'Deutsch', 0, '', '', 'Admin', '1653381888');
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `app_pages`
+-- Table structure for table `app_pages`
 --
 
 CREATE TABLE `app_pages` (
@@ -148,7 +148,7 @@ CREATE TABLE `app_pages` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Daten für Tabelle `app_pages`
+-- Dumping data for table `app_pages`
 --
 
 INSERT INTO `app_pages` (`id`, `unique_identifier`, `shared_identifier`, `language`, `url`, `link_text`, `title`, `show_in_navigation`, `auth_access_only`, `access_counter`, `timed_from`, `timed_until`, `is_active`, `created_by`, `created_date`, `edited_by`, `edited_date`) VALUES
@@ -157,7 +157,7 @@ INSERT INTO `app_pages` (`id`, `unique_identifier`, `shared_identifier`, `langua
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `app_pages_archive`
+-- Table structure for table `app_pages_archive`
 --
 
 CREATE TABLE `app_pages_archive` (
@@ -183,7 +183,7 @@ CREATE TABLE `app_pages_archive` (
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `app_page_objects`
+-- Table structure for table `app_page_objects`
 --
 
 CREATE TABLE `app_page_objects` (
@@ -203,19 +203,19 @@ CREATE TABLE `app_page_objects` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Daten für Tabelle `app_page_objects`
+-- Dumping data for table `app_page_objects`
 --
 
 INSERT INTO `app_page_objects` (`id`, `unique_identifier`, `name`, `parent`, `object_type`, `excluded_languages`, `timed_from`, `timed_until`, `is_active`, `created_by`, `created_date`, `edited_by`, `edited_date`) VALUES
 (0, '11d19bbeec19d2ba4ee556f818f19ac0', 'test1', '', 'page', '', '', '', 0, 'Admin', '1647005905', '', ''),
 (1, 'f94cb1ae17316984927376e7a3c063ab', 'test2', '', 'page', '', '', '', 0, 'Admin', '1647006087', '', ''),
-(2, '13a096aca73fde935efd22b938e4868f', 'test3', '11d19bbeec19d2ba4ee556f818f19ac0', 'page', '', '', '', 0, 'Admin', '1647005932', '', ''),
-(3, '8f61ff8a08d1be541d2a787f527a320c', 'test4', '13a096aca73fde935efd22b938e4868f', 'page', '', '', '', 1, 'Admin', '1647006070', 'Admin', '1647006223');
+(2, '8f61ff8a08d1be541d2a787f527a320c', 'test4', '11d19bbeec19d2ba4ee556f818f19ac0', 'page', '', '', '', 1, 'Admin', '1647006070', 'Admin', '1653299905'),
+(3, '13a096aca73fde935efd22b938e4868f', 'test3', '11d19bbeec19d2ba4ee556f818f19ac0', 'page', '', '', '', 0, 'Admin', '1647005932', '', '');
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `app_page_objects_archive`
+-- Table structure for table `app_page_objects_archive`
 --
 
 CREATE TABLE `app_page_objects_archive` (
@@ -237,7 +237,7 @@ CREATE TABLE `app_page_objects_archive` (
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `core_languages`
+-- Table structure for table `core_languages`
 --
 
 CREATE TABLE `core_languages` (
@@ -250,7 +250,7 @@ CREATE TABLE `core_languages` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Daten für Tabelle `core_languages`
+-- Dumping data for table `core_languages`
 --
 
 INSERT INTO `core_languages` (`id`, `name`, `code_2digit`, `code_5digit`, `short_caption`, `long_caption`) VALUES
@@ -259,7 +259,7 @@ INSERT INTO `core_languages` (`id`, `name`, `code_2digit`, `code_5digit`, `short
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `core_users`
+-- Table structure for table `core_users`
 --
 
 CREATE TABLE `core_users` (
@@ -280,7 +280,7 @@ CREATE TABLE `core_users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Daten für Tabelle `core_users`
+-- Dumping data for table `core_users`
 --
 
 INSERT INTO `core_users` (`id`, `identifier`, `username`, `password`, `allowed_workspaces`, `disallowed_workspaces`, `is_active`, `is_admin`, `preferred_language`, `first_name`, `last_name`, `gender`, `email`, `date_created`) VALUES
@@ -288,31 +288,31 @@ INSERT INTO `core_users` (`id`, `identifier`, `username`, `password`, `allowed_w
 (2, '33414ed1f8fc7d5aef61146977d2d2fb', 'Editor', '$2y$10$LRGDaTaggxMaFtqs4CypZet18rn.9KWpqfZFqRcEyMBb2B6GYZlVi', '', '', 1, 0, 'en', 'Jane', 'Doe', 'female', '', '1644917046');
 
 --
--- Indizes der exportierten Tabellen
+-- Indexes for dumped tables
 --
 
 --
--- Indizes für die Tabelle `app_assets`
+-- Indexes for table `app_assets`
 --
 ALTER TABLE `app_assets`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `name` (`name`);
 
 --
--- Indizes für die Tabelle `app_headless_content`
+-- Indexes for table `app_headless_content`
 --
 ALTER TABLE `app_headless_content`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indizes für die Tabelle `app_headless_content_archive`
+-- Indexes for table `app_headless_content_archive`
 --
 ALTER TABLE `app_headless_content_archive`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `original_id` (`original_id`);
 
 --
--- Indizes für die Tabelle `app_languages`
+-- Indexes for table `app_languages`
 --
 ALTER TABLE `app_languages`
   ADD PRIMARY KEY (`id`),
@@ -320,7 +320,7 @@ ALTER TABLE `app_languages`
   ADD UNIQUE KEY `code_2digit` (`code_2digit`);
 
 --
--- Indizes für die Tabelle `app_pages`
+-- Indexes for table `app_pages`
 --
 ALTER TABLE `app_pages`
   ADD PRIMARY KEY (`id`),
@@ -328,13 +328,13 @@ ALTER TABLE `app_pages`
   ADD UNIQUE KEY `unique_identifier` (`unique_identifier`);
 
 --
--- Indizes für die Tabelle `app_pages_archive`
+-- Indexes for table `app_pages_archive`
 --
 ALTER TABLE `app_pages_archive`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indizes für die Tabelle `app_page_objects`
+-- Indexes for table `app_page_objects`
 --
 ALTER TABLE `app_page_objects`
   ADD PRIMARY KEY (`id`),
@@ -343,19 +343,19 @@ ALTER TABLE `app_page_objects`
   ADD UNIQUE KEY `name` (`name`);
 
 --
--- Indizes für die Tabelle `app_page_objects_archive`
+-- Indexes for table `app_page_objects_archive`
 --
 ALTER TABLE `app_page_objects_archive`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indizes für die Tabelle `core_languages`
+-- Indexes for table `core_languages`
 --
 ALTER TABLE `core_languages`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indizes für die Tabelle `core_users`
+-- Indexes for table `core_users`
 --
 ALTER TABLE `core_users`
   ADD PRIMARY KEY (`id`),
@@ -363,65 +363,65 @@ ALTER TABLE `core_users`
   ADD UNIQUE KEY `identifier` (`identifier`);
 
 --
--- AUTO_INCREMENT für exportierte Tabellen
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT für Tabelle `app_assets`
+-- AUTO_INCREMENT for table `app_assets`
 --
 ALTER TABLE `app_assets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT für Tabelle `app_headless_content`
+-- AUTO_INCREMENT for table `app_headless_content`
 --
 ALTER TABLE `app_headless_content`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT für Tabelle `app_headless_content_archive`
+-- AUTO_INCREMENT for table `app_headless_content_archive`
 --
 ALTER TABLE `app_headless_content_archive`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT für Tabelle `app_languages`
+-- AUTO_INCREMENT for table `app_languages`
 --
 ALTER TABLE `app_languages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT für Tabelle `app_pages`
+-- AUTO_INCREMENT for table `app_pages`
 --
 ALTER TABLE `app_pages`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT für Tabelle `app_pages_archive`
+-- AUTO_INCREMENT for table `app_pages_archive`
 --
 ALTER TABLE `app_pages_archive`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT für Tabelle `app_page_objects`
+-- AUTO_INCREMENT for table `app_page_objects`
 --
 ALTER TABLE `app_page_objects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT für Tabelle `app_page_objects_archive`
+-- AUTO_INCREMENT for table `app_page_objects_archive`
 --
 ALTER TABLE `app_page_objects_archive`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT für Tabelle `core_languages`
+-- AUTO_INCREMENT for table `core_languages`
 --
 ALTER TABLE `core_languages`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT für Tabelle `core_users`
+-- AUTO_INCREMENT for table `core_users`
 --
 ALTER TABLE `core_users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;

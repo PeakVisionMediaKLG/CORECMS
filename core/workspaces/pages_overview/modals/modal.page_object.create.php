@@ -61,7 +61,7 @@ $pageData = CORE\PAGE::$SORTED_PAGE_OBJECTS;
                         'liveValidation'=>array('alphaNum','Unique'),
                         )
                     ).
-                    HIDDEN::PRINT_R(array('name'=>'core_data__shared_identifier','value'=>md5(time()))).             
+                    HIDDEN::PRINT_R(array('name'=>'core_data__unique_identifier','value'=>md5(time()))).             
                     HIDDEN::PRINT_R(array('name'=>'core_data__created_by','value'=>$USER->USERNAME)). 
                     HIDDEN::PRINT_R(array('name'=>'core_data__created_date','value'=>time())).
                     HIDDEN::PRINT_R(array('name'=>'core_data__is_active','value'=>0));                     
