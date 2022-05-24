@@ -30,7 +30,7 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['Pages - Overview'],'lang'=>'en_US'
                     {   
                     THEAD::PRE();
                         TH::PRE(); echo $TXT['Name']; TH::POST();
-                        TH::PRE(); echo $TXT['ID']; TH::POST();
+                        //TH::PRE(); echo $TXT['ID']; TH::POST();
                         TH::PRE(); echo $TXT['Object type']; TH::POST();
                         TH::PRE(); echo $TXT['Localization']; TH::POST();
                         TH::PRE(); echo $TXT['Active']; TH::POST();
@@ -54,9 +54,9 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['Pages - Overview'],'lang'=>'en_US'
                                     { echo "&nbsp;&nbsp;&nbsp;&nbsp;"; } 
                                     echo BI::GET(array('icon'=>'file-earmark','size'=>'16'))." <b>".$pageRow['name']."</b>"; 
                                 TD::POST();
-                                TD::PRE(); echo $pageRow['id']; 
+                                //TD::PRE(); echo $pageRow['id']; 
                                     HIDDEN::PRINT(array("name"=>$i."_id","value"=>$pageRow['id'])); 
-                                TD::POST();
+                                //TD::POST();
                                 TD::PRE(); echo $pageRow['object_type']; TD::POST();
                                 TD::PRE();
                                     $appLanguages = $DB->RETRIEVE(
