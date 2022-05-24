@@ -35,7 +35,7 @@ $modal = new CORE\MODAL(array(
     "content"=>$modalcontent, //modal content
     "cancelLabel"=>TXT['Cancel'], //cancel caption
     "actionLabel"=>TXT['Delete'], //action caption
-    "actionPath"=>"core/actions/db.dataset.delete.php",//action path
+    "actionPath"=>"core/actions/db.dataset.delete.backup.php",//action path
     "dataAttributes"=>array('data-table'=>$data['table'],'data-id'=>$data['id']),//data-attribute
 ));
 

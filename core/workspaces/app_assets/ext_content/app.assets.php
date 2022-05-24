@@ -34,8 +34,7 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['App - Assets'],'lang'=>'en_US','as
                         TH::PRE(); echo $TXT['Source from database']; TH::POST();
                         TH::PRE(); echo $TXT['PHP Eval']; TH::POST();
                         TH::PRE(); echo $TXT['Active']; TH::POST();
-                        TH::PRE(); echo $TXT['Edit']; TH::POST();
-                        TH::PRE(); echo $TXT['Delete']; TH::POST();
+                        TH::PRE(); TH::POST();
                         TH::PRE(); echo $TXT['Move']; TH::POST();
                     THEAD::POST();
                     }
@@ -66,30 +65,61 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['App - Assets'],'lang'=>'en_US','as
                                     "disabled"=>"disabled"
                                 ));
                                 TD::POST();
-                                TD::PRE();
+                                TD::PRE(array("class"=>"text-nowrap"));
                                     BTN::PRE(array(
                                         "class"=>"btn btn-sm btn-outline-secondary core-modal-btn",
+                                        "title"=>$TXT['Edit'],
                                         ),
                                             array(
                                                 'data-path'=>$EXT_DOMPATH."modals/modal.assets.edit.php",
                                                 'data-table'=>'app_assets',
-                                                'data-condition'=>$asset_row['id'],      
+                                                'data-condition'=>$asset_row['id'], 
+                                                'data-bs-toggle'=>'tooltip'     
                                             ));
-                                        echo $TXT['Edit'];
+                                        echo BI::GET(array('icon'=>'pencil'));
                                     BTN::POST();  
-                                TD::POST();
-                                TD::PRE();
+
                                     BTN::PRE(array(
                                         "class"=>"btn btn-sm btn-outline-secondary core-modal-btn",
+                                        "title"=>$TXT['Delete'],
                                             ),
                                             array(
                                                 'data-path'=>$CORE_DOMPATH.'core/modals/modal.db.dataset.delete/modal.php',
                                                 'data-table'=>'app_assets',
-                                                'data-id'=>$asset_row['id']   
+                                                'data-id'=>$asset_row['id'],
+                                                'data-bs-toggle'=>'tooltip'   
                                             )
                                     );
-                                        echo $TXT['Delete'];
+                                        echo BI::GET(array('icon'=>'trash3'));
                                     BTN::POST();  
+
+                                    $backup_data = $DB->RETRIEVE(
+                                        'app_assets_archive',
+                                        array('edited_by','edited_date'),
+                                        array('unique_id'=>$asset_row['unique_id'],'edited_action'=>'update'),
+                                        " ORDER BY edited_date DESC LIMIT 1"
+                                        );
+                                        //print_r($backup_data);
+                                    if($backup_data)
+                                    {
+                                        BTN::PRE(array(
+                                            "class"=>"btn btn-sm btn-outline-secondary core-modal-btn",
+                                            "title"=>$TXT['Restore previous version']."<br>".$TXT['Author: '].$backup_data[0]['edited_by']."<br>".$TXT['Last edit: '].$backup_data[0]['edited_date'],
+                                                ),
+                                                array(
+                                                    'data-path'=>$CORE_DOMPATH.'core/modals/modal.db.dataset.restore/modal.php',
+                                                    'data-table'=>'app_assets',
+                                                    'data-unique_id'=>$asset_row['unique_id'],
+                                                    'data-bs-toggle'=>'tooltip',
+                                                    'data-bs-html'=>'true'  
+                                                )
+                                        );
+                                            echo BI::GET(array('icon'=>'arrow-clockwise'));
+                                        BTN::POST();   
+                                    }
+                                    else
+                                    {}
+                                
                                 TD::POST();
                                 TD::PRE(array('class'=>'text-center '));
                                     A::PRE(array("class"=>"js-sortable-handle"));

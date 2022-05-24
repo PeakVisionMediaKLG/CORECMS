@@ -8,8 +8,6 @@ $data = $_POST['data'] ?? die('no data sent');
 
 print_r($data);
 
-$conditions = array("id"=>$data['id']);
-
 $existingColumns = $DB->GET_TABLE_HEADERS($data['table']);
 print_r($existingColumns);
 
@@ -38,7 +36,7 @@ foreach($existingColumns as $key => $value)
 //array_push($values,array($USER->USERNAME,date(),"delete"));
 $updated_columns["edited_by"]=$USER->USERNAME;
 $updated_columns["edited_date"]=time();
-$updated_columns["edited_action"]="delete";
+$updated_columns["edited_action"]="update";
 
 print_r($updated_columns);
 
@@ -50,9 +48,28 @@ echo $DB->INSERT(
     $backup_conditions
 );
 
-/*echo $DB->DELETE(
-    $data['table'],
-    $conditions
-);*/
 
+
+/*
+$columns = array();
+foreach($data as $key => $value)
+{   
+    if(strpos($key,"core_data__")!== false)
+    {
+        if(strpos($key,"ph__")!== false and $value !== false)
+        {
+            $columns[substr($key,15)]=password_hash($value,PASSWORD_DEFAULT);
+        }
+        else $columns[substr($key,11)]=$value;
+    }
+}
+print_r($columns);
+$conditions = array("id"=>$data['id']);
+
+echo $DB->UPDATE(
+    $data['table'],
+    $columns,
+    $conditions
+);
+*/
 ?>

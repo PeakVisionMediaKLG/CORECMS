@@ -6,7 +6,7 @@ class BTN extends CORE\COMPONENT
 		static function PRECODE($params=NULL,$data=NULL)
 		{
 			
-			$CODE = "<button ".(new self)->WRITE_S($params,'type').(new self)->WRITE($params,'class').(new self)->WRITE($params,'href').(new self)->WRITE($params,'style').(new self)->WRITE_DATA($data)." ".(new self)->WRITE_S($params,'disabled').">
+			$CODE = "<button ".(new self)->WRITE_S($params,'type').(new self)->WRITE($params,'class').(new self)->WRITE($params,'href').(new self)->WRITE($params,'style').(new self)->WRITE_DATA($data)." ".(new self)->WRITE_S($params,'disabled')." ".(new self)->WRITE($params,'title').">
 			".(new self)->WRITE_S($params,'caption')."
 			";
 			return $CODE;

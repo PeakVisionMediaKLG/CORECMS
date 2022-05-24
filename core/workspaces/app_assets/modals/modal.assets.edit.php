@@ -88,7 +88,7 @@ $modal= new CORE\MODAL(array(
 						'staticModal'=>'',//'data-bs-backdrop="static"',
                         'cancelLabel'=>$TXT['Cancel'],
                         'actionLabel'=>$TXT['Save'],
-                        'actionPath'=>"core/actions/db.dataset.update.php",
+                        'actionPath'=>"core/actions/db.dataset.update.backup.php",
                         'dataAttributes'=>array('data-table'=>$data['table'],'data-id'=>$data['condition']), //array()
                         'actionDisabled'=>'disabled', //'disabled'
                         ));
