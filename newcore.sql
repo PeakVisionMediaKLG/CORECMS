@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 24, 2022 at 10:56 AM
+-- Generation Time: May 31, 2022 at 10:41 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -29,6 +29,33 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `app_assets` (
   `id` int(11) NOT NULL,
+  `unique_id` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `src_file` text NOT NULL,
+  `src_db` text NOT NULL,
+  `eval` tinyint(4) NOT NULL,
+  `is_active` tinyint(4) NOT NULL,
+  `created_by` varchar(255) NOT NULL,
+  `created_date` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `app_assets`
+--
+
+INSERT INTO `app_assets` (`id`, `unique_id`, `name`, `src_file`, `src_db`, `eval`, `is_active`, `created_by`, `created_date`) VALUES
+(1, '', 'Bootstrap 5.1 CSS', '', '<!-- Bootstrap CSS -->\r\n    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3\" crossorigin=\"anonymous\">', 0, 1, '', ''),
+(2, 'bla', 'Bootstrap 5.1 JS', '', '<!-- Option 1: Bootstrap Bundle with Popper -->    <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p\" crossorigin=\"anonymous\"></script>', 0, 1, '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `app_assets_archive`
+--
+
+CREATE TABLE `app_assets_archive` (
+  `id` int(11) NOT NULL,
+  `unique_id` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `src_file` text NOT NULL,
   `src_db` text NOT NULL,
@@ -37,16 +64,17 @@ CREATE TABLE `app_assets` (
   `created_by` varchar(255) NOT NULL,
   `created_date` varchar(255) NOT NULL,
   `edited_by` varchar(255) NOT NULL,
-  `edited_date` varchar(255) NOT NULL
+  `edited_date` varchar(255) NOT NULL,
+  `edited_action` varchar(255) NOT NULL,
+  `archive_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `app_assets`
+-- Dumping data for table `app_assets_archive`
 --
 
-INSERT INTO `app_assets` (`id`, `name`, `src_file`, `src_db`, `eval`, `is_active`, `created_by`, `created_date`, `edited_by`, `edited_date`) VALUES
-(1, 'Bootstrap 5.1 CSS', '', '<!-- Bootstrap CSS -->\r\n    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3\" crossorigin=\"anonymous\">', 0, 1, '', '', '', ''),
-(2, 'Bootstrap 5.1 JS', '', '<!-- Option 1: Bootstrap Bundle with Popper -->    <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p\" crossorigin=\"anonymous\"></script>', 0, 1, '', '', 'Admin', '1653382001');
+INSERT INTO `app_assets_archive` (`id`, `unique_id`, `name`, `src_file`, `src_db`, `eval`, `is_active`, `created_by`, `created_date`, `edited_by`, `edited_date`, `edited_action`, `archive_id`) VALUES
+(2, 'bla', 'Bootstrap 5.1 JS', '', '<!-- Option 1: Bootstrap Bundle with Popper -->    <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p\" crossorigin=\"anonymous\"></script>', 0, 1, '', '', 'Admin', '1653410742', 'update', 1);
 
 -- --------------------------------------------------------
 
@@ -108,18 +136,38 @@ CREATE TABLE `app_languages` (
   `long_caption` varchar(255) NOT NULL,
   `is_active` tinyint(4) NOT NULL,
   `created_by` varchar(255) NOT NULL,
-  `created_date` varchar(255) NOT NULL,
-  `edited_by` varchar(255) NOT NULL,
-  `edited_date` varchar(255) NOT NULL
+  `created_date` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `app_languages`
 --
 
-INSERT INTO `app_languages` (`id`, `name`, `code_2digit`, `code_5digit`, `short_caption`, `long_caption`, `is_active`, `created_by`, `created_date`, `edited_by`, `edited_date`) VALUES
-(1, 'english', 'en', 'en_US', 'EN', 'English', 1, '', '', '', ''),
-(2, 'deutsch', 'de', 'de_DE', 'DE', 'Deutsch', 0, '', '', 'Admin', '1653381888');
+INSERT INTO `app_languages` (`id`, `name`, `code_2digit`, `code_5digit`, `short_caption`, `long_caption`, `is_active`, `created_by`, `created_date`) VALUES
+(1, 'english', 'en', 'en_US', 'EN', 'English', 1, '', ''),
+(2, 'deutsch', 'de', 'de_DE', 'DE', 'Deutsch', 0, '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `app_languages_archive`
+--
+
+CREATE TABLE `app_languages_archive` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `code_2digit` varchar(2) NOT NULL,
+  `code_5digit` varchar(5) NOT NULL,
+  `short_caption` varchar(255) NOT NULL,
+  `long_caption` varchar(255) NOT NULL,
+  `is_active` tinyint(4) NOT NULL,
+  `created_by` varchar(255) NOT NULL,
+  `created_date` varchar(255) NOT NULL,
+  `edited_by` varchar(255) NOT NULL,
+  `edited_date` varchar(255) NOT NULL,
+  `edited_action` varchar(255) NOT NULL,
+  `archive_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -296,7 +344,14 @@ INSERT INTO `core_users` (`id`, `identifier`, `username`, `password`, `allowed_w
 --
 ALTER TABLE `app_assets`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `name` (`name`);
+  ADD UNIQUE KEY `name` (`name`),
+  ADD UNIQUE KEY `unique_id` (`unique_id`);
+
+--
+-- Indexes for table `app_assets_archive`
+--
+ALTER TABLE `app_assets_archive`
+  ADD PRIMARY KEY (`archive_id`);
 
 --
 -- Indexes for table `app_headless_content`
@@ -318,6 +373,12 @@ ALTER TABLE `app_languages`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `name` (`name`),
   ADD UNIQUE KEY `code_2digit` (`code_2digit`);
+
+--
+-- Indexes for table `app_languages_archive`
+--
+ALTER TABLE `app_languages_archive`
+  ADD PRIMARY KEY (`archive_id`);
 
 --
 -- Indexes for table `app_pages`
@@ -370,7 +431,13 @@ ALTER TABLE `core_users`
 -- AUTO_INCREMENT for table `app_assets`
 --
 ALTER TABLE `app_assets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `app_assets_archive`
+--
+ALTER TABLE `app_assets_archive`
+  MODIFY `archive_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `app_headless_content`
@@ -389,6 +456,12 @@ ALTER TABLE `app_headless_content_archive`
 --
 ALTER TABLE `app_languages`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `app_languages_archive`
+--
+ALTER TABLE `app_languages_archive`
+  MODIFY `archive_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `app_pages`
