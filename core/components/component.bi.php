@@ -1,11 +1,12 @@
 <?php
 //writes the HTML code for a bootstrap icon font
 
-class BI extends CORE\COMPONENT
+namespace CORE;
+class BI extends COMPONENT
 {
-	static function GET($params=NULL,$data=NULL)
-	{	//icon,size,color,style
-		return '<i class="bi-'.(new self)->WRITE_S($params,'icon').'" style="'.(new self)->WRITE_S($params,'style').';"></i>';
+	static function GET($attributes=NULL,$parameters=NULL)
+	{	
+		return '<i class="bi-'.(new self)->WRITE_S($parameters,'icon').'" '.(new self)->WRITE_ATTRIBUTES($attributes)."></i>";
 	}
 }
 ?>

@@ -1,16 +1,17 @@
 <?php
 //writes the HTML code for a bootstrap column
 
-class COLUMN extends CORE\COMPONENT
-	{	//class, style
-		static function PRECODE($params=NULL,$data=NULL)
+namespace CORE;
+class COLUMN extends COMPONENT
+	{	
+		static function PRECODE($attributes=NULL,$parameters=NULL)
 		{
-			$CODE = "<div class='".(new self)->WRITE_S($params,'class')."' ".(new self)->WRITE($params,'style')." ".(new self)->WRITE($params,'id').">
+			$CODE = "<div".(new self)->WRITE_ATTRIBUTES($attributes).">
 			";
 			return $CODE;
 		}
 
-		static function POSTCODE($params=NULL,$data=NULL)
+		static function POSTCODE($attributes=NULL,$parameters=NULL)
 		{
 			$CODE = "</div>
 			";

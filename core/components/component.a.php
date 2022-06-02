@@ -1,18 +1,18 @@
 <?php
 //writes the HTML code for a bootstrap <a> (link)
 
-class A extends CORE\COMPONENT
-{		//class,href,target,style,role
-		static function PRECODE($params=NULL,$data=NULL)
+namespace CORE;
+class A extends COMPONENT
+{		
+		static function PRECODE($attributes=NULL,$parameters=NULL)
 		{
-			
-			$CODE = "<a class='".(new self)->WRITE_S($params,'class')."'".(new self)->WRITE($params,'href').(new self)->WRITE($params,'id').(new self)->WRITE($params,'style').(new self)->WRITE($params,'target').(new self)->WRITE_DATA($data).(new self)->WRITE($params,'role').">
-			".(new self)->WRITE_S($params,'caption')."
+			$CODE = "<a".(new self)->WRITE_ATTRIBUTES($attributes).">
+			".(new self)->WRITE_S($parameters,'caption')."
 			";
 			return $CODE;
 		}
 
-		static function POSTCODE($params=NULL,$data=NULL)
+		static function POSTCODE($attributes=NULL,$parameters=NULL)
 		{
 			$CODE = "</a>
 			";

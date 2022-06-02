@@ -1,7 +1,7 @@
 <?php
 
 namespace CORE;
-trait WIDGETS 
+trait HELPERS 
 {
     public function CREATE_URL($previousUrl) 
     {  

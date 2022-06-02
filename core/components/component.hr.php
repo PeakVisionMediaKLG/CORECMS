@@ -1,11 +1,12 @@
 <?php
 //prints out a html horizontal rule
 
-class HR extends CORE\COMPONENT
-	{	//class, style
-		static function PRINTCODE($params=NULL,$data=NULL)
+namespace CORE;
+class HR extends COMPONENT
+	{	
+		static function PRINTCODE($attributes=NULL,$parameters=NULL)
 		{
-			$CODE = "<hr ".(new self)->WRITE($params,'class')." ".(new self)->WRITE($params,'style').">
+			$CODE = "<hr".(new self)->WRITE_ATTRIBUTES($attributes).">
 			";
 			return $CODE;
 		}

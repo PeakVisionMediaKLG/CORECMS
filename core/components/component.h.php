@@ -1,25 +1,25 @@
 <?php
 //displays a html heading
 
-class H extends CORE\COMPONENT
-	{	//class,type,heading
-
-		static function PRINTCODE($params=NULL,$data=NULL)
+namespace CORE;
+class H extends COMPONENT
+	{	
+		static function PRINTCODE($attributes=NULL,$parameters=NULL)
 		{
-			$CODE = "<h".(new self)->WRITE_S($params,'type')." class='".(new self)->WRITE_S($params,'class')."' ".(new self)->WRITE($params,'id')."  ".(new self)->WRITE($params,'value')." ".(new self)->WRITE($params,'style').">".(new self)->WRITE_S($params,'heading')."</h".(new self)->WRITE_S($params,'type').">
+			$CODE = "<h".(new self)->WRITE_S($parameters,'type').(new self)->WRITE_ATTRIBUTES($attributes).">".(new self)->WRITE_S($parameters,'heading')."</h".(new self)->WRITE_S($parameters,'type').">
 			";
 			return $CODE;
 		}
 
-		static function PRECODE($params=NULL,$data=NULL)
+		static function PRECODE($attributes=NULL,$parameters=NULL)
 		{
-			$CODE = "<h".(new self)->WRITE_S($params,'type')." class='".(new self)->WRITE_S($params,'class')."' ".(new self)->WRITE($params,'id')."  ".(new self)->WRITE($params,'value')." ".(new self)->WRITE($params,'style').">";
+			$CODE = "<h".(new self)->WRITE_S($parameters,'type').(new self)->WRITE_ATTRIBUTES($attributes).">";
 			return $CODE;
 		}
 	
-		static function POSTCODE($params=NULL,$data=NULL)
+		static function POSTCODE($attributes=NULL,$parameters=NULL)
 		{
-			$CODE = "</h".(new self)->WRITE_S($params,'type').">
+			$CODE = "</h".(new self)->WRITE_S($parameters,'type').">
 			";
 			return $CODE;
 		}

@@ -1,16 +1,17 @@
 <?php
 //prints out a html unordered list
 
-class UL extends CORE\COMPONENT
+namespace CORE;
+class UL extends COMPONENT
 	{
-	static function PRECODE ($params=NULL, $data=NULL)
+	static function PRECODE ($attributes=NULL,$parameters=NULL)
 		{
 			/* Params: id, class */
-			$CODE = "<ul ".(new self)->WRITE($params,'class').(new self)->WRITE($params,'id').(new self)->WRITE($params,'style').(new self)->WRITE_DATA($data).">";
+			$CODE = "<ul".(new self)->WRITE_ATTRIBUTES($attributes).">";
 			return $CODE;
 		}
 	
-	static function POSTCODE($params=NULL,$data=NULL)
+	static function POSTCODE($attributes=NULL,$parameters=NULL)
 		{
 			$CODE = "</ul>";
 			return $CODE;

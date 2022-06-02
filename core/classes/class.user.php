@@ -116,7 +116,7 @@ class USER
         }
 	
 
-    function CHECK_SESSION_STATE()
+    function AUTHENTICATE()
         {
             if (isset($_SESSION['CORE.SESSIONIDENTIFIER'])){
 
