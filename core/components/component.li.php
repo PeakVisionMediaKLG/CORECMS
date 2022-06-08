@@ -1,20 +1,16 @@
 <?php
-//writes the HTML code for a jquery UI multisortable list item
-
 namespace CORE;
 class LI extends COMPONENT
 	{	
-		static function PRECODE($attributes=NULL,$parameters=NULL)
+		static function PRECODE($attributes=NULL)
 		{
-			$CODE = "<li".(new self)->WRITE_ATTRIBUTES($attributes).">
-			";
+			$CODE = "<li".(new self)->WRITE_ATTRIBUTES($attributes).">".PHP_EOL;
 			return $CODE;
 		}
 
-		static function POSTCODE($attributes=NULL,$parameters=NULL)
+		static function POSTCODE($attributes=NULL)
 		{
-			$CODE = "</li>
-			";
+			$CODE = "</li>".PHP_EOL;
 			return $CODE;
 		}
     }

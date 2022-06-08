@@ -4,6 +4,7 @@ $EXT_CONFIG = array(
     "parent"        =>  "",
     "icon"          =>  "gear",
     "admin_only"    =>  1,
-    "view_state"    =>  "CORE.WS_SYSTEM.OPEN"
+    "view_state"    =>  "CORE.WS_SYSTEM.OPEN",
+    "active"        =>  1
 );
 ?>

@@ -1,12 +1,10 @@
 <?php
-//prints out an iframe html element
-
 namespace CORE;
 class IFRAME extends COMPONENT
 	{	
-		static function PRINTCODE($attributes=NULL,$parameters=NULL)
+		static function PRINTCODE($attributes=NULL)
 		{
-			$CODE = "<iframe".(new self)->WRITE_ATTRIBUTES($attributes)."></iframe>";
+			$CODE = "<iframe".(new self)->WRITE_ATTRIBUTES($attributes)."></iframe>".PHP_EOL;
 			return $CODE;
 		}
 	}

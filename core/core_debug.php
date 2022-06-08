@@ -9,7 +9,7 @@ require_once(ROOT.'core/classes/class.user.php');
 $DB = new CORE\DB();
 $USER = new CORE\USER();
 $USER->DB = $DB;
-$USER->CHECK_SESSION_STATE();
+$USER->AUTHENTICATE();
 
 if(!$USER->AUTH_OK) die('Access denied. Log in to continue.');
 

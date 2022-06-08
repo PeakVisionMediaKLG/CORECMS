@@ -30,13 +30,11 @@ $CORE->USER=$USER;
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <?php
-        echo CORE\LOADER::EXT_RESOURCES("head");
-        /*CORE\ASSETLOADER::GET($ASSETS_HEAD,$DB);*/
+        echo CORE\LOADER::EXT_RESOURCES("head",array("bootstrap_css","bootstrap_icons","core_css","jquery","core_js"));
 
         $CORE->JS_SESSION();
-        /*$CORE->BUILD_CORE_INCLUDES($CORE->WORKSPACES);
         echo $CORE->CORE_CSS_INCLUDES;
-        echo $CORE->CORE_JS_INCLUDES;*/
+        echo $CORE->CORE_JS_INCLUDES;
     ?>
 
 </head>
@@ -44,12 +42,11 @@ $CORE->USER=$USER;
     <?php
         CORE\ROW::PRE(array('class'=>'row g-0 p-0 m-0 core-h100'));
             CORE\COLUMN::PRE(array('class'=>'col-12 col-sm-6 col-md-3 col-xl-3 col-xxl-2 bg-light p-3 core-left-panel core-h100'));
-                CORE\H::PRE(array("class"=>"m-3","type"=>4,"style"=>"margin-left:15px;"),array("type"=>4)); echo CORE\BI::GET(array('style'=>'font-size: 20px; position:relative;top:-2px;'),array('icon'=>'disc'))." \core"; 
-                CORE\H::POST();
+                CORE\H::PRINT(array("class"=>"m-3","size"=>4,"style"=>"margin-left:15px;",'heading'=>CORE\BI::GET(array('style'=>'font-size: 20px; position:relative;top:-2px;','icon'=>'disc'))." \core")); 
                 CORE\HR::PRINT();
                 CORE\UL::PRE(array("class"=>"list-unstyled ps-0 flex-column mb-auto","style"=>"min-height:80vh;max-height:80vh; overflow-y:auto;"));
-                    $CORE->LEFT_PANEL();
-                //UL::POST(); -- the workspace widget_logout closes the UL
+                   $CORE->BUILD_EXTENSIONS();
+                CORE\UL::POST();
             CORE\COLUMN::POST();
             CORE\COLUMN::PRE(array("class"=>"col-auto core-panel-divider d-none d-sm-block core-h100"));
             CORE\COLUMN::POST();
@@ -57,14 +54,12 @@ $CORE->USER=$USER;
                 CORE\DIV::PRE(array("class"=>"core-alert-space"));
 
                 CORE\DIV::POST();
-                $iframe_src = $_SESSION['CORE.CURRENT_RIGHT_PANEL'] ?? "about:blank";
+                $iframe_src = $_SESSION['CORE.CURRENT_RIGHT_PANE'] ?? "about:blank";
                 CORE\IFRAME::PRINT(array("name"=>"core-main-panel", "style"=>"width:100%; height:100vh; margin:0; padding:0; ","src"=>$iframe_src,"title"=>"core-main-panel"));
             CORE\COLUMN::POST();    
         CORE\ROW::POST();
-        
-        $ASSETS_BODY = array("bootstrap_js","core_tooltip");
 
-        echo CORE\LOADER::EXT_RESOURCES("body");
+        echo CORE\LOADER::EXT_RESOURCES("body",array("bootstrap_js","core_tooltip"));
     ?>
 </body>
 </html>

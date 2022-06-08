@@ -1,23 +1,20 @@
 <?php
-//prints out a bootstrap button element
-
 namespace CORE;
 class BTN extends COMPONENT
 {		
-		static function PRECODE($attributes=NULL,$parameters=NULL)
+		static function PRECODE($attributes=NULL)
 		{
-			
-			$CODE = "<button".(new self)->WRITE_ATTRIBUTES($attributes).">
-			";
+			$caption = $attributes['caption'] ?? NULL;
+			$attributes = (new self)::REMOVE($attributes, array('caption'));
+
+			$CODE = "<button".(new self)->WRITE_ATTRIBUTES($attributes).">".$caption.PHP_EOL;
 			return $CODE;
 		}
 
-		static function POSTCODE($params=NULL,$data=NULL)
+		static function POSTCODE($attributes=NULL)
 		{
-			$CODE = "</button>
-			";
+			$CODE = "</button>".PHP_EOL;
 			return $CODE;
 		}	
 }
-
 ?>

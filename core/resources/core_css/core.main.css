@@ -8,6 +8,8 @@ tr.check-indentation{background-color: rgb(var(--color-indentation));}*/
   --color-indentation: hsl(0, 0%, 100%);
 }
 
+body{padding:0;margin:0;}
+
 .core-h100{height:100vh;}
 
 .core-panel-divider {

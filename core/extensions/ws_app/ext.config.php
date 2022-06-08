@@ -4,6 +4,7 @@ $EXT_CONFIG = array(
     "parent"        =>  "",
     "icon"          =>  "app-indicator",
     "admin_only"    =>  1,
-    "view_state"    =>  "CORE.WS_APP.OPEN"
+    "view_state"    =>  "CORE.WS_APP.OPEN",
+    "active"        =>  1
 );
 ?>

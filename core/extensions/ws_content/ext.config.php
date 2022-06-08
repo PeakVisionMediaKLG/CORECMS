@@ -4,6 +4,7 @@ $EXT_CONFIG = array(
     "parent"        =>  "",
     "icon"          =>  "diagram-3",
     "admin_only"    =>  1,
-    "view_state"    =>  "CORE.WS_CONTENT.OPEN"
+    "view_state"    =>  "CORE.WS_CONTENT.OPEN",
+    "active"        =>  1
 );
 ?>

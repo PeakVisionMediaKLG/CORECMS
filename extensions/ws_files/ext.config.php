@@ -4,6 +4,7 @@ $EXT_CONFIG = array(
     "parent"        =>  "",
     "icon"          =>  "images",
     "admin_only"    =>  1,
+    "active"        =>  1,
     "view_state"    =>  "CORE.WS_FILES.OPEN"
 );
 ?>

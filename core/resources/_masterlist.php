@@ -6,8 +6,10 @@ $RESOURCES_MASTERLIST = array(
 "core_css",
 "jquery",
 "core_js",
+"sortable",
+"core_sortable_js",
 "bootstrap_js",
-"core_tooltip"
+"core_tooltip",
 );
 
 ?>

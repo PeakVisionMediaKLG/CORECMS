@@ -1,21 +1,19 @@
 <?php
-//writes the HTML code for a bootstrap <a> (link)
-
 namespace CORE;
 class A extends COMPONENT
 {		
-		static function PRECODE($attributes=NULL,$parameters=NULL)
+		static function PRECODE($attributes=NULL)
 		{
-			$CODE = "<a".(new self)->WRITE_ATTRIBUTES($attributes).">
-			".(new self)->WRITE_S($parameters,'caption')."
-			";
+			$caption = $attributes['caption'] ?? NULL;
+			$attributes = (new self)::REMOVE($attributes, array('caption'));
+
+			$CODE = "<a".(new self)->WRITE_ATTRIBUTES($attributes).">".$caption.PHP_EOL;
 			return $CODE;
 		}
 
-		static function POSTCODE($attributes=NULL,$parameters=NULL)
+		static function POSTCODE($attributes=NULL)
 		{
-			$CODE = "</a>
-			";
+			$CODE = "</a>".PHP_EOL;
 			return $CODE;
 		}	
 }

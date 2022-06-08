@@ -13,8 +13,8 @@ class USER
 	protected	$PASSWORD;
 	protected	$SALT;
 
-	public		$ALLOWED_WORKSPACES;
-	public		$DISALLOWED_WORKSPACES;
+	public		$ALLOWED_EXTENSIONS;
+	public		$DISALLOWED_EXTENSIONS;
     public      $IS_ACTIVE;
     public      $IS_ADMIN;    
 
@@ -48,8 +48,8 @@ class USER
                 if($key != "PASSWORD") $sessionValues[$key] = $value;
             }
 
-            if($this->ALLOWED_WORKSPACES != "") $this->ALLOWED_WORKSPACES = \json_encode($this->ALLOWED_WORKSPACES); else $this->ALLOWED_WORKSPACES = array();
-            if($this->DISALLOWED_WORKSPACES != "") $this->DISALLOWED_WORKSPACES = \json_encode($this->DISALLOWED_WORKSPACES); else $this->DISALLOWED_WORKSPACES = array();
+            if($this->ALLOWED_EXTENSIONS != "") $this->ALLOWED_EXTENSIONS = \json_encode($this->ALLOWED_EXTENSIONS); else $this->ALLOWED_EXTENSIONS = array();
+            if($this->DISALLOWED_EXTENSIONS != "") $this->DISALLOWED_EXTENSIONS = \json_encode($this->DISALLOWED_EXTENSIONS); else $this->DISALLOWED_EXTENSIONS = array();
             
             $_SESSION['CORE.USER'] = $sessionValues;
         }

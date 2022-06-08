@@ -4,6 +4,7 @@ $EXT_CONFIG = array(
     "parent"        =>  "",
     "icon"          =>  "files",
     "admin_only"    =>  1,
-    "view_state"    =>  "CORE.WS_PAGES.OPEN"
+    "view_state"    =>  "CORE.WS_PAGES.OPEN",
+    "active"        =>  1
 );
 ?>

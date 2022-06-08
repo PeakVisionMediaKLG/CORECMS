@@ -4,9 +4,12 @@
 namespace CORE;
 class BI extends COMPONENT
 {
-	static function GET($attributes=NULL,$parameters=NULL)
+	static function GET($attributes=NULL)
 	{	
-		return '<i class="bi-'.(new self)->WRITE_S($parameters,'icon').'" '.(new self)->WRITE_ATTRIBUTES($attributes)."></i>";
+		$icon = $attributes['icon'] ?? NULL;
+		$attributes = (new self)::REMOVE($attributes, array('icon'));
+
+		return '<i class="bi-'.$icon.'" '.(new self)->WRITE_ATTRIBUTES($attributes)."></i>".PHP_EOL;
 	}
 }
 ?>
