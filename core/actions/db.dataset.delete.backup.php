@@ -8,7 +8,7 @@ $data = $_POST['data'] ?? die('no data sent');
 
 print_r($data);
 
-$conditions = array("id"=>$data['id']);
+$conditions = array("unique_id"=>$data['unique_id']);
 
 $existingColumns = $DB->GET_TABLE_HEADERS($data['table']);
 print_r($existingColumns);
@@ -16,7 +16,7 @@ print_r($existingColumns);
 $origin_columns = array();
 $origin_values = array();
 
-$datasetBackup = $DB->RETRIEVE($data['table'],array(),array('id'=>$data['id']))[0];
+$datasetBackup = $DB->RETRIEVE($data['table'],array(),array('unique_id'=>$data['unique_id']))[0];
 
 $updated_columns=array();
 
@@ -25,9 +25,12 @@ foreach($existingColumns as $key => $value)
     foreach($datasetBackup as $subkey => $subvalue)
     {
         if($value == $subkey) 
-        { 
-            array_push($origin_columns,$subkey); array_push($origin_values,$subvalue);
-            $updated_columns[$subkey]=$subvalue;
+        {
+            if($value!="id")
+            { 
+                array_push($origin_columns,$subkey); array_push($origin_values,$subvalue);
+                $updated_columns[$subkey]=$subvalue;
+            }
         }        
     }
 }
@@ -38,7 +41,7 @@ $updated_columns["edited_action"]="delete";
 
 print_r($updated_columns);
 
-$backup_conditions=array('id'=>$data['id']);
+$backup_conditions=array('unique_id'=>$data['unique_id']);
 
 echo $DB->INSERT(
     $data['table']."_archive",
@@ -46,7 +49,7 @@ echo $DB->INSERT(
     $backup_conditions
 );
 
-$conditions = array("id"=>$data['id']);
+$conditions = array("unique_id"=>$data['unique_id']);
 
 echo $DB->DELETE(
     $data['table'],

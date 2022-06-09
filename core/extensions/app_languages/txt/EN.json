@@ -17,5 +17,9 @@
     "Edit language":"Edit language",
     "Create language":"Create language",
     "Cancel":"Cancel",
-    "Save":"Save"
+    "Save":"Save",    
+    "Restore previous version":"Restore previous version",
+    "Author: ":"Author: ",
+    "Last edit: ":"Last edit: ",
+    "Date: ":"Date: "
 }

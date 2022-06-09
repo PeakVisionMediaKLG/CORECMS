@@ -12,7 +12,7 @@ $languages = $CORE->GET_LANGUAGES();
 $languageRow = $DB->RETRIEVE(
                             'app_languages',
                             array(),
-                            array('id'=>$data['condition']),
+                            array('unique_id'=>$data['condition']),
                             " LIMIT 1"
                             )[0];
                                 
@@ -30,7 +30,7 @@ $data['table'] = 'app_languages';
                         ''=>'required',
                         'value'=>$languageRow['name'],
                         'autocomplete'=>'off',
-                        'liveValidation'=>array('alphaNum','Unique'),
+                        'liveValidation'=>array('alphaNum'),
                         )
                     ).
                     TEXTBOX::PRINT_R(array(

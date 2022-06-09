@@ -6,8 +6,6 @@ header("Cache-Control: no-cache");
 if(!$USER->IS_ADMIN) die ('Unauthorized access.');
 
 $data = $_POST['data'] ?? die('no data sent');
-
-//$languages = $CORE->GET_LANGUAGES();
                                 
 $data['table'] = 'app_languages';
 
@@ -92,7 +90,7 @@ $modal= new MODAL(array(
                         'actionLabel'=>$TXT['Save'],
                         'actionPath'=>"core/actions/db.dataset.insert.php",
                         'dataAttributes'=>array('data-table'=>$data['table']),
-                        'actionDisabled'=>'disabled', //'disabled'
+                        'actionDisabled'=>'disabled',
                         ));
 
 echo $modal->GET_MODAL();  

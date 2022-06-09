@@ -30,15 +30,14 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['App - Assets'],'lang'=>'en','resou
                     THEAD::PRE();
                         TH::PRE(); echo $TXT['ID']; TH::POST();
                         TH::PRE(); echo $TXT['Name']; TH::POST();
-                        TH::PRE(); echo $TXT['Source from file']; TH::POST();
-                        TH::PRE(); echo $TXT['Source from database']; TH::POST();
-                        TH::PRE(); echo $TXT['PHP Eval']; TH::POST();
+                        TH::PRE(); echo $TXT['File']; TH::POST();
+                        TH::PRE(); echo $TXT['Database']; TH::POST();
+                        TH::PRE(); echo $TXT['Eval']; TH::POST();
                         TH::PRE(); echo $TXT['Active']; TH::POST();
                         TH::PRE(); TH::POST();
-                        TH::PRE(); echo $TXT['Move']; TH::POST();
                     THEAD::POST();
                     }
-                    TBODY::PRE(array("class"=>"js-sortable-table","data-path"=>$EXT_ARRAY['DOM_PATH']."core/actions/db.dataset.reorder.php"));
+                    TBODY::PRE(array("class"=>"js-sortable-table","data-path"=>$CORE->GET_DOM_PATH()."core/actions/db.dataset.reorder.php"));
                     HIDDEN::PRINT(array("name"=>"table","value"=>"app_assets")); 
                     if ($asset_data and count($asset_data) > 0) 
                     {   
@@ -66,37 +65,6 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['App - Assets'],'lang'=>'en','resou
                                 ));
                                 TD::POST();
                                 TD::PRE(array("class"=>"text-nowrap"));
-                                    TR_CONTROLS::PRE(array(
-                                        'edit-modal'=>$EXT_ARRAY['DOM_PATH']."modals/modal.assets.edit.php",
-                                        'backup-data'=>$backup_data,
-                                        'txt'=>$TXT,
-                                        'data-table'=>'app_assets',
-                                        'data-id'=>$asset_row['id'],
-                                    ));
-                                    TR_CONTROLS::POST();
-                                    /*
-                                    BTN::PRE(array(
-                                                "class"=>"btn btn-sm btn-outline-secondary core-modal-btn",
-                                                "title"=>$TXT['Edit'],
-                                                'data-path'=>$EXT_ARRAY['DOM_PATH']."modals/modal.assets.edit.php",
-                                                'data-table'=>'app_assets',
-                                                'data-condition'=>$asset_row['id'], 
-                                                'data-bs-toggle'=>'tooltip'     
-                                            ));
-                                        echo BI::GET(array('icon'=>'pencil'));
-                                    BTN::POST();  
-
-                                    BTN::PRE(array(
-                                                "class"=>"btn btn-sm btn-outline-secondary core-modal-btn",
-                                                "title"=>$TXT['Delete'],
-                                                'data-path'=>$EXT_ARRAY['DOM_PATH'].'core/modals/modal.db.dataset.delete/modal.php',
-                                                'data-table'=>'app_assets',
-                                                'data-id'=>$asset_row['id'],
-                                                'data-bs-toggle'=>'tooltip'   
-                                            )
-                                    );
-                                        echo BI::GET(array('icon'=>'trash3'));
-                                    BTN::POST();  */
 
                                     $backup_data = $DB->RETRIEVE(
                                         'app_assets_archive',
@@ -104,40 +72,19 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['App - Assets'],'lang'=>'en','resou
                                         array('unique_id'=>$asset_row['unique_id'],'edited_action'=>'update'),
                                         " ORDER BY edited_date DESC LIMIT 1"
                                         );
-                                        //print_r($backup_data);
-                                    if($backup_data)
-                                    {
-                                        BTN::PRE(array(
-                                                    "class"=>"btn btn-sm btn-outline-secondary core-modal-btn",
-                                                    "title"=>$TXT['Restore previous version']."<br>".$TXT['Author: '].$backup_data[0]['edited_by']."<br>".$TXT['Last edit: '].date("F j, Y, g:i a",$backup_data[0]['edited_date']),
-                                                    'data-path'=>$EXT_ARRAY['DOM_PATH'].'core/modals/modal.db.dataset.restore/modal.php',
-                                                    'data-table'=>'app_assets',
-                                                    'data-unique_id'=>$asset_row['unique_id'],
-                                                    'data-bs-toggle'=>'tooltip',
-                                                    'data-bs-html'=>'true'  
-                                                )
-                                        );
-                                            echo BI::GET(array('icon'=>'arrow-clockwise'));
-                                        BTN::POST();   
-                                    }
-                                    else
-                                    {
-                                        BTN::PRE(array(
-                                                    "class"=>"btn btn-sm btn-outline-secondary",
-                                                    "title"=>$TXT['Author: '].$asset_row['created_by']."<br>".$TXT['Date: '].date("F j, Y, g:i a",$asset_row['created_date']),
-                                                    'data-bs-toggle'=>'tooltip',
-                                                    'data-bs-html'=>'true', 
-                                                )
-                                        );
-                                            echo BI::GET(array('icon'=>'info-circle'));
-                                        BTN::POST();                                         
-                                    }
-                                TD::POST();
-                                TD::PRE(array('class'=>'text-center '));
-                                    A::PRE(array("class"=>"js-sortable-handle btn btn-sm btn-outline-primary"));
-                                    echo BI::GET(array('icon'=>'arrow-down-up','size'=>'20',"style"=>"position:relative;top:2px;"));
-                                    A::POST();
-                                TD::POST();
+
+                                    TR_CONTROLS::PRE(array(
+                                        'base-path'=>$CORE->GET_DOM_PATH(),
+                                        'edit-modal'=>$EXT_ARRAY['DOM_PATH']."modals/modal.assets.edit.php",
+                                        'dataset'=>$asset_row,
+                                        'backup-data'=>$backup_data,
+                                        'txt'=>$TXT,
+                                        'data-table'=>'app_assets',
+                                        'data-unique-id'=>$asset_row['unique_id'],
+                                        'movable'=>1
+                                    ));
+                                    TR_CONTROLS::POST();
+                                    
                             TR::POST();
                             $i++;
                         }

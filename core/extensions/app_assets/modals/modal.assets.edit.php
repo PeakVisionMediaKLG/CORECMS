@@ -12,11 +12,11 @@ $languages = $CORE->GET_LANGUAGES();
 $assetRow = $DB->RETRIEVE(
                             'app_assets',
                             array(),
-                            array('id'=>$data['condition']),
+                            array('unique_id'=>$data['condition']),
                             " LIMIT 1"
                         )[0];
                                 
-$data['table'] = 'app_languages';
+$data['table'] = 'app_assets';
 
     $modalcontent = HIDDEN::PRINT_R(array('name'=>'table','value'=>'app_assets')).
                     HIDDEN::PRINT_R(array('name'=>'condition','value'=>'id')). 
@@ -30,7 +30,7 @@ $data['table'] = 'app_languages';
                         ''=>'required',
                         'value'=>$assetRow['name'],
                         'autocomplete'=>'off',
-                        'liveValidation'=>array('alphaNum','Unique'),
+                        'liveValidation'=>array('alphaNum'),
                         )
                     ).
                     TEXTBOX::PRINT_R(array(
@@ -57,7 +57,7 @@ $data['table'] = 'app_languages';
                     ROW::PRE_R(array('class'=>'my-2')).
                     COLUMN::PRE_R(array('class'=>'col')).
                         CHECKBOX::PRINT_R(array('class'=>'core-checkbox mt-2 mb-2',
-                        'caption'=>$TXT['PHP Eval'],
+                        'caption'=>$TXT['Eval'],
                         'name'=>'core_data__eval',
                         'value'=>$assetRow['eval'],
                         'tabindex'=>'40'),

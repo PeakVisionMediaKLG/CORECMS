@@ -35,9 +35,7 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['App languages'],'lang'=>'en_US','r
                         TH::PRE(); echo $TXT['Short caption']; TH::POST();
                         TH::PRE(); echo $TXT['Long caption']; TH::POST();
                         TH::PRE(); echo $TXT['Active']; TH::POST();
-                        TH::PRE(); echo $TXT['Edit']; TH::POST();
-                        TH::PRE(); echo $TXT['Delete']; TH::POST();
-                        TH::PRE(); echo $TXT['Move']; TH::POST();
+                        TH::PRE(); TH::POST();
                     THEAD::POST();
                     }
                     TBODY::PRE(array("class"=>"js-sortable-table","data-path"=>$CORE->DOM_PATH."core/actions/db.dataset.reorder.php"));
@@ -62,8 +60,28 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['App languages'],'lang'=>'en_US','r
                                     "disabled"=>"disabled"
                                 ));
                                 TD::POST();
-                                TD::PRE();
-                                    BTN::PRE(array(
+                                TD::PRE(array("class"=>"text-nowrap"));
+
+                                    $backup_data = $DB->RETRIEVE(
+                                        'app_languages_archive',
+                                        array('edited_by','edited_date'),
+                                        array('unique_id'=>$language_row['unique_id'],'edited_action'=>'update'),
+                                        " ORDER BY edited_date DESC LIMIT 1"
+                                        );
+
+                                    TR_CONTROLS::PRE(array(
+                                        'base-path'=>$CORE->GET_DOM_PATH(),
+                                        'edit-modal'=>$EXT_ARRAY['DOM_PATH']."modals/modal.languages.edit.php",
+                                        'dataset'=>$language_row,
+                                        'backup-data'=>$backup_data,
+                                        'txt'=>$TXT,
+                                        'data-table'=>'app_languages',
+                                        'data-unique-id'=>$language_row['unique_id'],
+                                        'movable'=>1
+                                    ));
+                                    TR_CONTROLS::POST();
+
+                                   /* BTN::PRE(array(
                                                 "class"=>"btn btn-sm btn-outline-secondary core-modal-btn",
                                                 'data-path'=>$EXT_ARRAY['DOM_PATH']."modals/modal.languages.edit.php",
                                                 'data-table'=>'app_languages',
@@ -86,7 +104,7 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['App languages'],'lang'=>'en_US','r
                                 TD::PRE(array('class'=>'text-center '));
                                     A::PRE(array("class"=>"js-sortable-handle"));
                                     echo BI::GET(array('icon'=>'arrow-down-up',"style"=>"position:relative;top:2px;"));
-                                    A::POST();
+                                    A::POST();*/
                                 TD::POST();
                             TR::POST();
                             $i++;

@@ -13,6 +13,11 @@ class CORE
         $this->CORE_JS_INCLUDES="";
     } 
 
+    function GET_DOM_PATH()
+    {
+        return $this->CREATE_URL("");
+    }
+
 	function JS_SESSION()
 	{
 		$this->DOM_PATH = $this->CREATE_URL("");

@@ -14,7 +14,7 @@ print_r($existingColumns);
 $origin_columns = array();
 $origin_values = array();
 
-$datasetBackup = $DB->RETRIEVE($data['table'],array(),array('id'=>$data['id']))[0];
+$datasetBackup = $DB->RETRIEVE($data['table'],array(),array('unique_id'=>$data['id']))[0];
 
 $updated_columns=array();
 
@@ -24,8 +24,11 @@ foreach($existingColumns as $key => $value)
     {
         if($value == $subkey) 
         { 
+            if($value!="id")
+            {
             array_push($origin_columns,$subkey); array_push($origin_values,$subvalue);
             $updated_columns[$subkey]=$subvalue;
+            }
         }        
     }
 }
@@ -36,7 +39,7 @@ $updated_columns["edited_action"]="update";
 
 print_r($updated_columns);
 
-$backup_conditions=array('id'=>$data['id']);
+$backup_conditions=array('unique_id'=>$data['id']);
 
 echo $DB->INSERT(
     $data['table']."_archive",
@@ -58,7 +61,7 @@ foreach($data as $key => $value)
     }
 }
 print_r($columns);
-$conditions = array("id"=>$data['id']);
+$conditions = array("unique_id"=>$data['id']);
 
 echo $DB->UPDATE(
     $data['table'],

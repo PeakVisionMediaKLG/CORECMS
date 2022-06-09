@@ -40,6 +40,8 @@ class COMPONENT
 
 	static function FORCE($attributes,$forced_attribute)
 	{
+		//print_r($forced_attribute);
+		
 		foreach($forced_attribute as $key => $value)
 		{
 			if(isset($attributes[$key]))
@@ -52,11 +54,24 @@ class COMPONENT
 				} 
 				else 
 				{
-					$pos2 = strpos($attributes[$key], $value." ");
+					$pos2 = strpos($attributes[$key], " ".$value." ");
+
+					if(!(substr($attributes[$key], 0, strlen($value." ")) == $value." ") and  !($pos2 !== false))
+					{
+						$attributes[$key].= " ".$value;
+					}
+					
+					/*substr($attributes[$key], 0, strlen($value." ")) == $value." "
+					
+					echo "ist irgendwie vorhanden";
+					
+
 					if ($pos2 !== false) 
 					{
+						$print_it = 1;
+						echo " vorhanden mit abstand dahinter";
 						if($pos2!=0 and substr($attributes[$key],$pos-1,1)!=" ") $attributes[$key].= " ".$value;
-					} 
+					}*/
 				}
 			}
 			else $attributes[$key]=$value;
