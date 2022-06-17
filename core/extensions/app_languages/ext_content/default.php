@@ -10,8 +10,19 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['App languages'],'lang'=>'en_US','r
                 H::PRINT(array("class"=>"m-3","size"=>4,"style"=>"margin-left:15px;","heading"=>$TXT['App - Languages']));
                 HR::PRINT();
             COLUMN::POST();
-            COLUMN::PRE(array('class'=>'col-12 text-center mb-4'));
+            COLUMN::PRE(array('class'=>'col-12 text-center mb-4  text-nowrap'));
                 BTN::PRE(array('class'=>'btn btn-outline-primary core-modal-btn','caption'=>$TXT['Add language']." ".BI::GET(array('icon'=>'plus')),'data-path'=>$EXT_ARRAY['DOM_PATH']."modals/modal.languages.create.php"));BTN::POST();
+
+                $delete_data = $DB->RETRIEVE(
+                    'app_languages_archive',
+                    array('edited_by','edited_date'),
+                    array('edited_action'=>'delete'),
+                    " ORDER BY edited_date DESC LIMIT 1"
+                    );
+                if($delete_data)
+                {
+                BTN::PRE(array('class'=>'btn btn-outline-secondary core-modal-btn','title'=>$TXT['Restore language'],'caption'=>BI::GET(array('icon'=>'arrow-counterclockwise')),'data-path'=>$CORE->DOM_PATH."core/modals/modal.dataset.restore.php"));BTN::POST();
+                }
             COLUMN::POST();
         ROW::POST();
         

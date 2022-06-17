@@ -10,8 +10,7 @@ $allUsersData = $DB->RETRIEVE(
                                 " ORDER BY id ASC"
                              );
 
-//DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['User management'],'lang'=>'en_US','assets'=>array("bootstrap_css","bootstrap_icons","core_css","jquery","core_js"),"DB"=>$DB,"CORE"=>$CORE));
-DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['User management'],'lang'=>'en_US','DB'=>$DB,'CORE'=>$CORE,'resources'=>array()));
+DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['User management'],'lang'=>'en_US','DB'=>$DB,'CORE'=>$CORE,'resources'=>array("bootstrap_css","bootstrap_icons","core_css","jquery","core_js")));
 
     ROW::PRE(array('class'=>'g-0 p-0 m-0'));
         COLUMN::PRE(array('class'=>'col-12 col-sm-10 offset-sm-1 p-3'));
@@ -68,7 +67,7 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['User management'],'lang'=>'en_US',
                             TR::PRE();TD::PRE(); CHECKBOX::PRINT(array('caption'=>$TXT['Active'].' ','inline'=>1,'value'=>$userData['is_active'],'disabled'=>'disabled')); TD::POST();TR::POST();                    
                             TR::PRE();TD::PRE(); echo $TXT['Preferred language'].': <b>'.$userData['preferred_language'].'</b>';  TD::POST();TR::POST();
                             TR::PRE();TD::PRE(); CHECKBOX::PRINT(array('caption'=>$TXT['Admin'].' ','value'=>$userData['is_admin'],'disabled'=>'disabled')); TD::POST();TR::POST();              
-                            TR::PRE();TD::PRE(); echo $TXT['Created'].': <b>'.date("Y-m-d",intval($userData['date_created'])).'</b>';  TD::POST();TR::POST(); 
+                            TR::PRE();TD::PRE(); echo $TXT['Created'].': <b>'.date("Y-m-d",intval($userData['created_date'])).'</b>';  TD::POST();TR::POST(); 
 
                             TR::PRE();
                                 TD::PRE();
@@ -81,15 +80,13 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['User management'],'lang'=>'en_US',
                                             BTN::PRE(array( 'class'=>'btn btn-outline-primary core-modal-btn',
                                                             'caption'=>BI::GET(array('icon'=>'pencil')),
                                                             ''=>$editDisabled,
-                                                            'data-path'=>$EXT_ARRAY['DOM_PATH']."modals/modal.users.edit.php", //'core/modals/modal.users.edit/modal.php',
+                                                            'data-path'=>$EXT_ARRAY['DOM_PATH']."modals/modal.users.edit.php",
                                                             'data-condition'=>$userData['id'],                                                            
                                                             'data-bs-toggle'=>"tooltip", 
                                                             'data-bs-placement'=>"bottom", 
                                                             'title'=>$TXT['Edit']));
                                             BTN::POST();
-                                        COLUMN::POST();
-                         
-                                        COLUMN::PRE(array('class'=>'col text-center'));
+                                            
                                             if(($USER->ID != $userData['id'] and $USER->IS_ADMIN)
                                                 and count($allUsersData)>1 
                                                 ){$deleteDisabled = "";}    
@@ -116,5 +113,5 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['User management'],'lang'=>'en_US',
             }
         }
     ROW::POST();
-DOCUMENT::FOOTER(array("DB"=>$DB,"CORE"=>$CORE,"resources"=>array()));
+DOCUMENT::FOOTER(array("DB"=>$DB,"CORE"=>$CORE,"resources"=>array("bootstrap_js","core_tooltip")));
 ?> 

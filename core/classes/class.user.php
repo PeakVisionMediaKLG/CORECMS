@@ -8,7 +8,7 @@ class USER
 	public 		$AUTH_OK;
 
 	public		$ID; // (primary)	
-	protected	$IDENTIFIER; // (u)
+	protected	$UNIQUE_ID; // (u)
 	public		$USERNAME; // (u)
 	protected	$PASSWORD;
 	protected	$SALT;
@@ -24,7 +24,8 @@ class USER
 	public		$GENDER;
 	public		$EMAIL;
 
-    public		$DATE_CREATED;
+    public      $CREATED_BY;
+    public		$CREATED_DATE;
 	
 	public 	    $VALUES;
 	
@@ -33,7 +34,7 @@ class USER
         $this->VALUES = $this->DB->RETRIEVE(
             "core_users",
             array(),
-            array("identifier"=>$_SESSION['CORE.SESSIONIDENTIFIER']),
+            array("unique_id"=>$_SESSION['CORE.SESSIONIDENTIFIER']),
             "LIMIT 1"
         )[0];
         
@@ -56,7 +57,7 @@ class USER
         else
         {
             session_destroy();
-            die('User identification failed due to incorrect/missing identifier token. No user data retrieved.');
+            die('User identification failed due to incorrect/missing unique_id token. No user data retrieved.');
         } 
 	}
 
@@ -81,13 +82,13 @@ class USER
                                 
                                 if($row['is_active']) // check if user status is active
                                 {
-                                    $identifier = md5($this->SALT . md5($user . $this->SALT));
-                                    $_SESSION['CORE.SESSIONIDENTIFIER'] = $identifier;
+                                    $unique_id = md5($this->SALT . md5($user . $this->SALT));
+                                    $_SESSION['CORE.SESSIONIDENTIFIER'] = $unique_id;
                                     //print_r($_SESSION);
 
                                     $this->DB->UPDATE(
                                         "core_users",
-                                        array("identifier"=>$identifier),
+                                        array("unique_id"=>$unique_id),
                                         array("username"=>$user)
                                     );
 
