@@ -1,4 +1,5 @@
 <?php
+namespace CORE;
 require_once("../../../includes/modal.auth.php");
 header("Cache-Control: no-cache");
 
@@ -12,10 +13,13 @@ $languages = $CORE->GET_LANGUAGES();
                                 
 $data['table'] = 'app_page_objects';
 
-CORE\PAGE::PREPARE_PAGE_OBJECTS("",$DB);
-$pageData = CORE\PAGE::$SORTED_PAGE_OBJECTS;
+$CORE->BUILD_EXTENSIONS(1);
+
+PAGE::PREPARE_PAGE_OBJECTS("",$DB);
+$pageData = PAGE::$SORTED_PAGE_OBJECTS;
 
     $modalcontent = HIDDEN::PRINT_R(array('name'=>'table','value'=>'app_page_objects')).
+                    HIDDEN::PRINT_R(array('name'=>'core_data__unique_id','value'=>"po_".md5(microtime(true)))).
                     ROW::PRE_R(array('class'=>'my-2')).
                         COLUMN::PRE_R(array('class'=>'col')).
                             $TXT['Object type'].
@@ -27,8 +31,8 @@ $pageData = CORE\PAGE::$SORTED_PAGE_OBJECTS;
                                 'name'=>'core_data__object_type',
                                 'id'=>'object_type',
                                 'tabindex'=>'180',							
-                                'options'=>$CORE->LOAD_VALUESET('page_objects'),
-                                'selectedOption'=>''
+                                'options'=>$CORE->GET_VALUESET('pages_overview','page_objects'),
+                                'selected-option'=>''
                             )).
                         COLUMN::POST_R().
                     ROW::POST_R().                    
@@ -43,8 +47,8 @@ $pageData = CORE\PAGE::$SORTED_PAGE_OBJECTS;
                                 'name'=>'core_data__parent',
                                 'id'=>'gender',
                                 'tabindex'=>'180',							
-                                'options'=>CORE\PAGE::SELECT_PARENT($pageData),
-                                'selectedOption'=>''
+                                'options'=>PAGE::SELECT_PARENT($pageData),
+                                'selected-option'=>''
                             )).
                         COLUMN::POST_R().
                     ROW::POST_R().
@@ -61,23 +65,22 @@ $pageData = CORE\PAGE::$SORTED_PAGE_OBJECTS;
                         'liveValidation'=>array('alphaNum','Unique'),
                         )
                     ).
-                    HIDDEN::PRINT_R(array('name'=>'core_data__unique_identifier','value'=>md5(time()))).             
                     HIDDEN::PRINT_R(array('name'=>'core_data__created_by','value'=>$USER->USERNAME)). 
                     HIDDEN::PRINT_R(array('name'=>'core_data__created_date','value'=>time())).
                     HIDDEN::PRINT_R(array('name'=>'core_data__is_active','value'=>0));                     
 
                     
-$modal= new CORE\MODAL(array(
+$modal= new MODAL(array(
                         'id'=>"core-create-page_object-".time(),
                         'title'=>$TXT['Create page object'],
                         'content'=>$modalcontent,
 						'contentSize'=>'',
-						'staticModal'=>'',//'data-bs-backdrop="static"',
+						'staticModal'=>'data-bs-backdrop="static"',
                         'cancelLabel'=>$TXT['Cancel'],
                         'actionLabel'=>$TXT['Save'],
                         'actionPath'=>"core/actions/db.dataset.insert.php",
                         'dataAttributes'=>array('data-table'=>$data['table']),
-                        'actionDisabled'=>'disabled', //'disabled'
+                        'actionDisabled'=>'disabled',
                         ));
 
 echo $modal->GET_MODAL();  

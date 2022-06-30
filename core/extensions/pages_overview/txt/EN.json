@@ -2,6 +2,7 @@
     "Pages - Overview":"Pages - Overview",
     "Overview":"Overview",
     "Add page object":"Add page object",
+    "Restore page object":"Restore page object",
     "Create page object":"Create page object",
     "ID":"ID",
     "Name":"Name",
@@ -34,5 +35,8 @@
     "Headless content":"Headless content",
     "Add headless content":"Add headless content",
     "Back to pages overview":"< Back to pages overview",
-    "":""
+    "Restore previous version":"Restore previous version",
+    "Author: ":"Author: ",
+    "Last edit: ":"Last edit: ",
+    "Date: ":"Date: "
 }

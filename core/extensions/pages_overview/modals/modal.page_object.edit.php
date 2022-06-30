@@ -1,6 +1,6 @@
 <?php
+namespace CORE;
 require_once("../../../includes/modal.auth.php");
-header("Cache-Control: no-cache");
 
 if(!$USER->IS_ADMIN) die ('Unauthorized access.');
 
@@ -8,24 +8,24 @@ require_once(ROOT."core/classes/class.page.php");
 
 $data = $_POST['data'] ?? die('no data sent');
 
-$languages = $CORE->GET_LANGUAGES();
-
 $pageRow = $DB->RETRIEVE(
                             'app_page_objects',
                             array(),
-                            array('id'=>$data['condition']),
+                            array('unique_id'=>$data['condition']),
                             " LIMIT 1"
                         )[0];
-                                
+
 $data['table'] = 'app_page_objects';
 
-CORE\PAGE::PREPARE_PAGE_OBJECTS("",$DB);
-$pageData = CORE\PAGE::$SORTED_PAGE_OBJECTS;
+$CORE->BUILD_EXTENSIONS(1);
+
+PAGE::PREPARE_PAGE_OBJECTS("",$DB);
+$pageData = PAGE::$SORTED_PAGE_OBJECTS;
 
     $modalcontent = HIDDEN::PRINT_R(array('name'=>'table','value'=>'app_page_objects')).
                     HIDDEN::PRINT_R(array('name'=>'condition','value'=>'id')). 
                     HIDDEN::PRINT_R(array('name'=>'conditionvalue','value'=>$data['condition'])).        
-                    HIDDEN::PRINT_R(array('name'=>'id','value'=>$pageRow['id'])).
+                    //HIDDEN::PRINT_R(array('name'=>'id','value'=>$pageRow['id'])).
                     ROW::PRE_R(array('class'=>'my-2')).
                         COLUMN::PRE_R(array('class'=>'col')).
                             $TXT['Object type'].
@@ -37,8 +37,8 @@ $pageData = CORE\PAGE::$SORTED_PAGE_OBJECTS;
                                 'name'=>'core_data__object_type',
                                 'id'=>'object_type',
                                 'tabindex'=>'180',							
-                                'options'=>$CORE->LOAD_VALUESET('page_objects'),
-                                'selectedOption'=>$pageRow['object_type']
+                                'options'=>$CORE->GET_VALUESET('pages_overview','page_objects'),
+                                'selected-option'=>$pageRow['object_type']
                             )).
                         COLUMN::POST_R().
                     ROW::POST_R().                    
@@ -53,8 +53,8 @@ $pageData = CORE\PAGE::$SORTED_PAGE_OBJECTS;
                                 'name'=>'core_data__parent',
                                 'id'=>'gender',
                                 'tabindex'=>'180',							
-                                'options'=>CORE\PAGE::SELECT_PARENT($pageData,$pageRow['unique_identifier']),
-                                'selectedOption'=>$pageRow['parent']
+                                'options'=>PAGE::SELECT_PARENT($pageData,$pageRow['unique_id']),
+                                'selected-option'=>$pageRow['parent']
                             )).
                         COLUMN::POST_R().
                     ROW::POST_R().
@@ -80,22 +80,20 @@ $pageData = CORE\PAGE::$SORTED_PAGE_OBJECTS;
                             'tabindex'=>'180'),
                             array()).
                         COLUMN::POST_R().
-                    ROW::POST_R().                    
-                    HIDDEN::PRINT_R(array('name'=>'core_data__edited_by','value'=>$USER->USERNAME)). 
-                    HIDDEN::PRINT_R(array('name'=>'core_data__edited_date','value'=>time()));                     
+                    ROW::POST_R();                     
 
                     
-$modal= new CORE\MODAL(array(
+$modal= new MODAL(array(
                         'id'=>"core-edit-page_object-".time(),
                         'title'=>$TXT['Edit page object'],
                         'content'=>$modalcontent,
 						'contentSize'=>'',
-						'staticModal'=>'',//'data-bs-backdrop="static"',
+						'staticModal'=>'data-bs-backdrop="static"',
                         'cancelLabel'=>$TXT['Cancel'],
                         'actionLabel'=>$TXT['Save'],
-                        'actionPath'=>"core/actions/db.dataset.update.php",
-                        'dataAttributes'=>array('data-table'=>$data['table'],'data-id'=>$data['condition']), //array()
-                        'actionDisabled'=>'disabled', //'disabled'
+                        'actionPath'=>"core/actions/db.dataset.update.backup.php",
+                        'dataAttributes'=>array('data-table'=>$data['table'],'data-id'=>$data['condition']),
+                        'actionDisabled'=>'disabled', 
                         ));
 
 echo $modal->GET_MODAL();  

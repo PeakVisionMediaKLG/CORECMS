@@ -1,13 +1,10 @@
 <?php
 namespace CORE;
 require_once("../../../includes/modal.auth.php");
-header("Cache-Control: no-cache");
 
 if(!$USER->IS_ADMIN) die ('Unauthorized access.');
 
 $data = $_POST['data'] ?? die('no data sent');
-
-$languages = $CORE->GET_LANGUAGES();
 
 $assetRow = $DB->RETRIEVE(
                             'app_assets',

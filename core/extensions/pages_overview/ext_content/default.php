@@ -1,18 +1,29 @@
 <?php
-/* CORECMS - https://github.com/PeakVisionMediaKLG/CORECMS */
+namespace CORE;
 require_once('../../../../root.directory.php');
 require_once(ROOT.'core/includes/ext.header.php');
 require_once(ROOT."core/classes/class.page.php");
 
-DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['Pages - Overview'],'lang'=>'en_US','assets'=>array("bootstrap_css","bootstrap_icons","core_css","jquery","core_js"),"DB"=>$DB,"CORE"=>$CORE));
+DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['Pages - Overview'],'lang'=>'en_US','resources'=>array(),"DB"=>$DB,"CORE"=>$CORE));
 
         ROW::PRE(array('class'=>'g-0 p-0 m-0'));
             COLUMN::PRE(array('class'=>'col-12 col-sm-10 offset-sm-1 p-3'));
-                H::PRINT(array("class"=>"m-3","type"=>4,"style"=>"margin-left:15px;","heading"=>$TXT['Pages - Overview']));
+                H::PRINT(array("class"=>"m-3","size"=>4,"style"=>"margin-left:15px;","heading"=>$TXT['Pages - Overview']));
                 HR::PRINT();
             COLUMN::POST();
             COLUMN::PRE(array('class'=>'col-12 text-center mb-4'));
-                BTN::PRE(array('class'=>'btn btn-outline-primary core-modal-btn','caption'=>$TXT['Add page object']." ".BI::GET(array('icon'=>'plus','size'=>'16'))),array('data-path'=>$EXT_DOMPATH."modals/modal.page_object.create.php"));BTN::POST();
+                BTN::PRE(array('class'=>'btn btn-outline-primary core-modal-btn','caption'=>$TXT['Add page object']." ".BI::GET(array('icon'=>'plus','size'=>'16')),'data-path'=>$EXT_ARRAY['DOM_PATH']."modals/modal.page_object.create.php"));BTN::POST();
+                
+                $delete_data = $DB->RETRIEVE(
+                    'app_page_objects_archive',
+                    array('edited_by','edited_date'),
+                    array('edited_action'=>'delete'),
+                    " ORDER BY edited_date DESC LIMIT 1"
+                    );
+                if($delete_data)
+                {
+                BTN::PRE(array('class'=>'btn btn-outline-secondary core-modal-btn','title'=>$TXT['Restore page object'],'caption'=>BI::GET(array('icon'=>'arrow-counterclockwise')),'data-path'=>$CORE->DOM_PATH."core/modals/modal.dataset.restore.php"));BTN::POST();
+                }
             COLUMN::POST();
         ROW::POST();
     
@@ -20,10 +31,10 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['Pages - Overview'],'lang'=>'en_US'
            
             COLUMN::PRE(array("class"=>"col-12"));
                 FORM::PRE();
-                STATIC_TABLE::PRE();
+                TABLE::PRE();
 
-                    CORE\PAGE::PREPARE_PAGE_OBJECTS("",$DB);
-                    $pageData = CORE\PAGE::$SORTED_PAGE_OBJECTS;
+                    PAGE::PREPARE_PAGE_OBJECTS("",$DB);
+                    $pageData = PAGE::$SORTED_PAGE_OBJECTS;
                     //print_r($pageData);
 
                     if ($pageData and count($pageData) > 0) 
@@ -72,7 +83,7 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['Pages - Overview'],'lang'=>'en_US'
                                         $localizedPage  = $DB->RETRIEVE(
                                             'app_pages',
                                             array(),
-                                            array("unique_identifier"=>$pageRow['unique_identifier'],"language"=>$languageValues['code_2digit']),
+                                            array("unique_id"=>$pageRow['unique_id'],"language"=>$languageValues['code_2digit']),
                                             " ORDER BY id ASC LIMIT 1"
                                          );
                                          if($localizedPage)
@@ -84,16 +95,14 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['Pages - Overview'],'lang'=>'en_US'
                                                 "caption"=>strtoupper($languageValues['code_2digit'])
                                             ));
                                                 LI::PRE();
-                                                    A::PRE(array("class"=>"dropdown-item core-modal-btn","href"=>"#"),array('data-path'=>$EXT_DOMPATH."modals/modal.page.edit.php",'data-table'=>'app_pages',
+                                                    A::PRE(array("class"=>"dropdown-item core-modal-btn","href"=>"#"),array('data-path'=>$EXT_ARRAY['DOM_PATH']."modals/modal.page.edit.php",'data-table'=>'app_pages',
                                                     'data-condition'=>$localizedPage['id']));
                                                         echo $TXT['Edit page'];
                                                     A::POST();
                                                 LI::POST();
                                                 LI::PRE();
                                                     A::PRE(array(
-                                                        "class"=>"dropdown-item core-modal-btn"
-                                                            ),
-                                                            array(
+                                                        "class"=>"dropdown-item core-modal-btn",
                                                                 'data-path'=>'core/modals/modal.db.dataset.delete/modal.php',
                                                                 'data-table'=>'app_pages',
                                                                 'data-id'=>$localizedPage['id'],
@@ -106,19 +115,19 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['Pages - Overview'],'lang'=>'en_US'
                                                     HR::PRINT(array("class"=>"dropdown-divider"));
                                                 LI::POST();
                                                 LI::PRE();
-                                                    A::PRE(array("class"=>"dropdown-item core-add-action-btn", "href"=>"pages.headless.content.php?url=".$localizedPage['url']),    array(
+                                                    A::PRE(array("class"=>"dropdown-item core-add-action-btn", "href"=>"pages.headless.content.php?url=".$localizedPage['url'],
                                                         'data-path'=>'core/actions/session.set.value.php',
                                                         'data-thekey'=>'CORE.CURRENT_RIGHT_PANE',
-                                                        'data-thevalue'=>$EXT_DOMPATH."ext_content/pages.headless.content.php?url=".$localizedPage['url']            
+                                                        'data-thevalue'=>$EXT_ARRAY['DOM_PATH']."ext_content/pages.headless.content.php?url=".$localizedPage['url']            
                                                     ));
                                                         echo $TXT['Headless content'];
                                                     A::POST();
                                                 LI::POST();
                                                 LI::PRE();
-                                                    A::PRE(array("class"=>"dropdown-item core-add-action-btn", "href"=>"pages.headless.content.php?url=".$localizedPage['url']),    array(
+                                                    A::PRE(array("class"=>"dropdown-item core-add-action-btn", "href"=>"pages.headless.content.php?url=".$localizedPage['url'],
                                                         'data-path'=>'core/actions/session.set.value.php',
                                                         'data-thekey'=>'CORE.CURRENT_RIGHT_PANE',
-                                                        'data-thevalue'=>$EXT_DOMPATH."ext_content/pages.headless.content.php?url=".$localizedPage['url']            
+                                                        'data-thevalue'=>$EXT_ARRAY['DOM_PATH']."ext_content/pages.headless.content.php?url=".$localizedPage['url']            
                                                     ));
                                                         echo $TXT['Visual content'];
                                                     A::POST();
@@ -132,9 +141,8 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['Pages - Overview'],'lang'=>'en_US'
                                             {
                                                 BTN::PRE(array("class"=>"btn btn-sm btn-outline-secondary core-modal-btn",
                                                     "id"=>$languageValues['code_2digit']."_dropdown",
-                                                    "caption"=>strtoupper($languageValues['code_2digit']).BI::GET(array('icon'=>'plus','size'=>'16'))
-                                                ),
-                                                array('data-path'=>$EXT_DOMPATH."modals/modal.page.create.php","data-language"=>$languageValues['code_2digit'],"data-unique_identifier"=>$pageRow['unique_identifier']));
+                                                    "caption"=>strtoupper($languageValues['code_2digit']).BI::GET(array('icon'=>'plus','size'=>'16')),
+                                                    'data-path'=>$EXT_ARRAY['DOM_PATH']."modals/modal.page.create.php","data-language"=>$languageValues['code_2digit'],"data-unique-id"=>$pageRow['unique_id']));
                                                 BTN::POST();
                                             }                                            
                                          }    
@@ -149,11 +157,28 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['Pages - Overview'],'lang'=>'en_US'
                                 ));
                                 TD::POST();
                                 TD::PRE();
-                                    BTN::PRE(array(
+
+                                    $backup_data = $DB->RETRIEVE(
+                                        'app_page_objects_archive',
+                                        array('edited_by','edited_date'),
+                                        array('unique_id'=>$pageRow['unique_id'],'edited_action'=>'update'),
+                                        " ORDER BY edited_date DESC LIMIT 1"
+                                    );
+
+                                    TR_CONTROLS::PRE(array(
+                                        'base-path'=>$CORE->GET_DOM_PATH(),
+                                        'edit-modal'=>$EXT_ARRAY['DOM_PATH']."modals/modal.page_object.edit.php",
+                                        'dataset'=>$pageRow,
+                                        'backup-data'=>$backup_data,
+                                        'txt'=>$TXT,
+                                        'data-table'=>'app_page_objects',
+                                        'data-unique-id'=>$pageRow['unique_id']
+                                    ));
+                                    TR_CONTROLS::POST();
+
+                                    /*BTN::PRE(array(
                                         "class"=>"btn btn-sm btn-outline-secondary core-modal-btn",
-                                        ),
-                                            array(
-                                                'data-path'=>$EXT_DOMPATH."modals/modal.page_object.edit.php",
+                                                'data-path'=>$EXT_ARRAY['DOM_PATH']."modals/modal.page_object.edit.php",
                                                 'data-table'=>'app_page_objects',
                                                 'data-condition'=>$pageRow['id'],      
                                             ));
@@ -162,8 +187,6 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['Pages - Overview'],'lang'=>'en_US'
 
                                     BTN::PRE(array(
                                         "class"=>"btn btn-sm btn-outline-secondary core-modal-btn",
-                                            ),
-                                            array(
                                                 'data-path'=>'core/modals/modal.db.dataset.delete/modal.php',
                                                 'data-table'=>'app_page_objects',
                                                 'data-id'=>$pageRow['id'],
@@ -171,7 +194,7 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['Pages - Overview'],'lang'=>'en_US'
                                             )
                                     );
                                         echo $TXT['Delete'];
-                                    BTN::POST();  
+                                    BTN::POST(); */ 
                                 TD::POST();
                                 TD::PRE();
 
@@ -185,13 +208,12 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['Pages - Overview'],'lang'=>'en_US'
                                 if($currentLevelItemsArray) $currentLevelItems=count($currentLevelItemsArray); else $currentLevelItems=0;
                                 if($currentLevelItems>1)
                                 {
+                                    
                                     DIV::PRE(array("class"=>"btn-group", "role"=>"group"));
                                         if($pageRow['id']!=$currentLevelItemsArray[0]['id'])
                                         {
                                             BTN::PRE(array(
-                                                "class"=>"btn btn-sm btn-outline-secondary core-action-btn"
-                                                    ),
-                                                    array(
+                                                "class"=>"btn btn-sm btn-outline-secondary core-action-btn",
                                                         'data-path'=>'core/actions/db.dataset.move.php',
                                                         'data-table'=>'app_page_objects',
                                                         'data-direction'=>'up',
@@ -205,9 +227,7 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['Pages - Overview'],'lang'=>'en_US'
                                         }
                                         if($pageRow['id']!=$currentLevelItemsArray[count($currentLevelItemsArray)-1]['id']) {
                                             BTN::PRE(array(
-                                                "class"=>"btn btn-sm btn-outline-secondary core-action-btn"
-                                                    ),
-                                                    array(
+                                                "class"=>"btn btn-sm btn-outline-secondary core-action-btn",
                                                         'data-path'=>'core/actions/db.dataset.move.php',
                                                         'data-table'=>'app_page_objects',
                                                         'data-direction'=>'down',
@@ -232,5 +252,5 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['Pages - Overview'],'lang'=>'en_US'
                 TABLE::POST();FORM::POST();
             COLUMN::POST();
         ROW::POST();
-    DOCUMENT::FOOTER(array("DB"=>$DB,"CORE"=>$CORE,"assets"=>array("bootstrap_js")));
+    DOCUMENT::FOOTER(array("DB"=>$DB,"CORE"=>$CORE,"resources"=>array("bootstrap_js","core_tooltip")));
 ?>    

@@ -16,8 +16,17 @@ class SELECT extends COMPONENT
 			
 			if($empty_option) $CODE .= "<option value=''></option>";
 
-			 foreach($options as $key => $value)
-				 {	if($value==$selected_option) $selected="selected"; else $selected="";
+			foreach($options as $key => $value)
+				 {	
+					if($value==$selected_option) 
+					{ 
+						$selected="selected"; 
+					}
+					else 
+					{
+						$selected=""; 	
+					}
+					
 				 	$CODE .= "<option value='$value' $selected>$key</option>";
 				 }
 			$CODE .= "</select>".PHP_EOL;

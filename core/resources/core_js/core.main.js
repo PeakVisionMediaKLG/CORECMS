@@ -195,7 +195,25 @@ function coreModalSelectAppend(element)
                 $('.'+$modalid+'-action-btn').prop("disabled", false);					   
 			});
     }
-    
+   
+    function coreModalInputAppend(element)
+	{	
+        if(JQUERY_DEBUG_TO_CONSOLE){console.log($(element).data());}
+		theData = serializeData(element);
+        $.ajax({ 
+			    type: "POST",url:$(element).data('path'),
+			    data: {"data":theData} //"data":[$(element).val(),Core_js_pUID],
+                })
+			.done(function(data) {
+                if(JQUERY_DEBUG_TO_CONSOLE){console.log(data);}
+                $(data).appendTo(element.parent());
+                $(element).prop("disabled", true);
+                var $modalid=$(element).closest("div.modal").attr('id'); 
+                //alert('.'+$modalid+'-action-btn');    
+                $('.'+$modalid+'-action-btn').prop("disabled", false);					   
+			});
+    }    
+
 /*--------------------------------------------------------------------------------------------*/
 
 function coreToggleElement(element)
@@ -309,6 +327,10 @@ $(document).on('change', '.core-checkbox', function() {
     basic_validate(this);
 });
 
+$(document).on('change', '.core-radio', function() {
+    basic_validate(this);
+});
+
 $(document).on('change', '.core-select', function() {
     basic_validate(this);
 });
@@ -318,6 +340,10 @@ $(document).on('change', 'select.core-extend', function($e){
     coreModalSelectAppend($(this));	
 });
 
+$(document).on('change', 'input.core-extend', function($e){
+	$e.preventDefault();
+    coreModalInputAppend($(this));	
+});
 
 
 

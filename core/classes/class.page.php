@@ -14,7 +14,7 @@ function INITIALIZE()
     {
         
     }
-
+/*
 function GET_ALL_PAGES()
     {
         $this->ALL_PAGES = $this->DB->RETRIEVE(
@@ -41,7 +41,7 @@ function GET_PAGE_BY_URL($pageToGet)
             $this->{$key}=$value;
         }  
     }    
-
+*/
 static function PREPARE_PAGE_OBJECTS($parent, $DB)
     {
         if(!SELF::$SORTED_PAGE_OBJECTS) SELF::$SORTED_PAGE_OBJECTS = array();
@@ -65,7 +65,7 @@ static function PREPARE_PAGE_OBJECTS($parent, $DB)
                 }
                 SELF::$SORTED_PAGE_OBJECTS[$currentID]["INDENTATION"] = SELF::$INDENTATION;
 
-                SELF::PREPARE_PAGE_OBJECTS(SELF::$SORTED_PAGE_OBJECTS[$currentID]['unique_identifier'],$DB); 
+                SELF::PREPARE_PAGE_OBJECTS(SELF::$SORTED_PAGE_OBJECTS[$currentID]['unique_id'],$DB); 
             }
         }
         SELF::$INDENTATION--;
@@ -76,12 +76,12 @@ static function SELECT_PARENT($pageObjects,$currentObject = NULL)
         $optionPairs = array(""=>"");
         foreach($pageObjects as $key => $values)
         {
-            if(($values['unique_identifier']!=$currentObject) and 
+            if(($values['unique_id']!=$currentObject) and 
             ($values['object_type']!="separator"))
             {   
                 $indentation="";
                 for($i=1;$i<$values['INDENTATION'];$i++) $indentation.="&nbsp;&nbsp;";
-                $optionPairs[$indentation.$values['name']]=$values['unique_identifier'];
+                $optionPairs[$indentation.$values['name']]=$values['unique_id'];
                 $indentation=NULL;
             }
 
