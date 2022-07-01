@@ -14,7 +14,7 @@ print_r($data);
 $pageRow = $DB->RETRIEVE(
     $data['table']."_archive",
     array(),
-    array('id'=>$data['dataset_to_restore']),
+    array('archive_id'=>$data['dataset_to_restore']),
     " LIMIT 1"
 )[0];
 print_r($pageRow);

@@ -51,7 +51,7 @@ echo $DB->INSERT(
 $columns = array();
 foreach($data as $key => $value)
 {   
-    if(strpos($key,"core_data__")!== false)
+    if(strpos($key,"core_data__")!== false and $key!="core_data__archive_id")
     {
         if(strpos($key,"ph__")!== false and $value !== false)
         {
@@ -61,6 +61,7 @@ foreach($data as $key => $value)
     }
 }
 print_r($columns);
+
 $conditions = array("unique_id"=>$data['id']);
 
 echo $DB->UPDATE(

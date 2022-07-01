@@ -1,4 +1,5 @@
 <?php
+namespace CORE;
 require_once("../../../includes/modal.auth.php");
 header("Cache-Control: no-cache");
 
@@ -97,7 +98,7 @@ $data['table'] = 'app_pages';
                     ROW::POST_R();                     
 
                     
-$modal= new CORE\MODAL(array(
+$modal= new MODAL(array(
                         'id'=>"core-edit-page-".time(),
                         'title'=>$TXT['Edit page'],
                         'content'=>$modalcontent,
@@ -105,7 +106,7 @@ $modal= new CORE\MODAL(array(
 						'staticModal'=>'',//'data-bs-backdrop="static"',
                         'cancelLabel'=>$TXT['Cancel'],
                         'actionLabel'=>$TXT['Save'],
-                        'actionPath'=>"core/actions/db.dataset.update.php",
+                        'actionPath'=>"core/actions/db.dataset.update.backup.php",
                         'dataAttributes'=>array('data-table'=>$data['table'],'data-id'=>$data['condition']),
                          //array()
                         'actionDisabled'=>'disabled', //'disabled'

@@ -206,7 +206,8 @@ function coreModalSelectAppend(element)
                 })
 			.done(function(data) {
                 if(JQUERY_DEBUG_TO_CONSOLE){console.log(data);}
-                $(data).appendTo(element.parent());
+                $(data).prependTo(element.parent());
+                $(".core-disable").prop("disabled", true);
                 $(element).prop("disabled", true);
                 var $modalid=$(element).closest("div.modal").attr('id'); 
                 //alert('.'+$modalid+'-action-btn');    

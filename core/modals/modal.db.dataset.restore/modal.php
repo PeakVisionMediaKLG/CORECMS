@@ -24,9 +24,12 @@ array('unique_id'=>$data['unique_id'],'edited_action'=>'update'),
 
 foreach($get_values as $key => $value)
 {
-    $modalcontent.= 
+    $modalcontent.=
+    HIDDEN::PRINT_R(array('name'=>'table','value'=>'app_page_objects')).
+    HIDDEN::PRINT_R(array('name'=>'condition','value'=>'id')). 
+    HIDDEN::PRINT_R(array('name'=>'conditionvalue','value'=>$value['unique_id'])).  
     HIDDEN::PRINT_R(array('name'=>'table','value'=>$data['table'])).
-    RADIO::PRINT_R(array('class'=>'core-radio mt-2 mb-2 has-validation core-extend',
+    RADIO::PRINT_R(array('class'=>'core-radio mt-2 mb-2 has-validation core-extend core-disable',
     'caption'=>
         ROW::PRE_R(array('style'=>'position:relative;top:-1em;')).
             COLUMN::PRE_R(array('class'=>'col-3')).
@@ -61,8 +64,7 @@ foreach($get_values as $key => $value)
             COLUMN::POST_R().
         ROW::POST_R(),
     'name'=>'dataset_to_restore',
-    'id'=>$value['id'],
-    'value'=>$value['id'],
+    'value'=>$value['archive_id'],
     ''=>'required',
     "data-path"=>$CORE->GET_DOM_PATH()."core/modals/modal.db.dataset.restore.extend/modal.php",
     )
@@ -76,7 +78,7 @@ $modal = new MODAL(array(
     'staticModal'=>'data-bs-backdrop="static"',
     "cancelLabel"=>TXT['Cancel'], //cancel caption
     "actionLabel"=>TXT['Restore'], //action caption
-    "actionPath"=>"core/actions/db.dataset.restore.php",//action path
+    "actionPath"=>"core/actions/db.dataset.update.backup.php",//action path
     "dataAttributes"=>array('data-table'=>$data['table'],'data-id'=>$data['unique_id']),//data-attribute,
     "actionDisabled"=>"disabled"
 ));
