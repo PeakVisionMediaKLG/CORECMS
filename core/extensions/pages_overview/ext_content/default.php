@@ -85,29 +85,66 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['Pages - Overview'],'lang'=>'en_US'
                                         $localizedPage  = $DB->RETRIEVE(
                                             'app_pages',
                                             array(),
-                                            array("unique_id"=>$pageRow['unique_id'],"language"=>$languageValues['code_2digit']),
+                                            array("shared_id"=>$pageRow['unique_id'],"language"=>$languageValues['code_2digit']),
                                             " ORDER BY id ASC LIMIT 1"
                                          );
+
                                          if($localizedPage)
                                          {
                                             $localizedPage=$localizedPage[0];
                                             //print_r($localizedPage);
-                                            BTN_DROPDOWN::PRE(array("class"=>"btn btn-sm btn-secondary",
+                                            BTN_DROPDOWN::PRE(array(
+                                                "outer_class"=>"btn-group",
+                                                "class"=>"btn btn-sm btn-secondary",
                                                 "id"=>$languageValues['code_2digit']."_dropdown",
                                                 "caption"=>strtoupper($languageValues['code_2digit'])
                                             ));
+
+                                                $page_backup_data = $DB->RETRIEVE(
+                                                    'app_pages_archive',
+                                                    array('edited_by','edited_date'),
+                                                    array('unique_id'=>$localizedPage['unique_id'],'edited_action'=>'update'),
+                                                    " ORDER BY edited_date DESC LIMIT 1"
+                                                );
+                                                if($page_backup_data)
+			                                    {
+                                                    A::PRE(array(
+                                                        "class"=>"dropdown-item core-modal-btn",
+                                                        "title"=>$TXT['Restore previous version']."<br>".$TXT['Author: '].$page_backup_data[0]['edited_by']."<br>".$TXT['Last edit: '].date("F j, Y, g:i a",$page_backup_data[0]['edited_date']),
+                                                        'data-path'=>$CORE->DOM_PATH."core/modals/modal.db.dataset.restore/modal.php",
+                                                        'data-table'=>'app_pages',
+                                                        'data-unique_id'=>$localizedPage['unique_id'],
+                                                        'data-bs-toggle'=>'tooltip',
+                                                        'data-bs-html'=>'true'  
+                                                            )
+                                                    );
+                                                        echo BI::GET(array('icon'=>'arrow-counterclockwise'));
+                                                    A::POST();
+                                                }
+                                                else 
+                                                {
+                                                    A::PRE(array(
+                                                        "class"=>"dropdown-item",
+                                                        "title"=>$TXT['Author: '].$localizedPage['created_by']."<br>".$TXT['Date: '].date("F j, Y, g:i a",(int)$localizedPage['created_date']),
+                                                        'data-bs-toggle'=>'tooltip',
+                                                        'data-bs-html'=>'true', 
+                                                            )
+                                                    );
+                                                        echo BI::GET(array('icon'=>'info-circle'));
+                                                    A::POST(); 
+                                                }    
                                                 LI::PRE();
-                                                    A::PRE(array("class"=>"dropdown-item core-modal-btn","href"=>"#"),array('data-path'=>$EXT_ARRAY['DOM_PATH']."modals/modal.page.edit.php",'data-table'=>'app_pages',
-                                                    'data-condition'=>$localizedPage['id']));
+                                                    A::PRE(array("class"=>"dropdown-item core-modal-btn","href"=>"#",'data-path'=>$EXT_ARRAY['DOM_PATH']."modals/modal.page.edit.php",'data-table'=>'app_pages',
+                                                    'data-condition'=>$localizedPage['unique_id']));
                                                         echo $TXT['Edit page'];
                                                     A::POST();
                                                 LI::POST();
                                                 LI::PRE();
                                                     A::PRE(array(
                                                         "class"=>"dropdown-item core-modal-btn",
-                                                                'data-path'=>'core/modals/modal.db.dataset.delete/modal.php',
+                                                                'data-path'=>'core/modals/modal.db.dataset.delete.backup/modal.php',
                                                                 'data-table'=>'app_pages',
-                                                                'data-id'=>$localizedPage['id'],
+                                                                'data-unique_id'=>$localizedPage['unique_id'],
                                                             )
                                                     );
                                                         echo $TXT['Delete page'];
@@ -178,25 +215,6 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['Pages - Overview'],'lang'=>'en_US'
                                     ));
                                     TR_CONTROLS::POST();
 
-                                    /*BTN::PRE(array(
-                                        "class"=>"btn btn-sm btn-outline-secondary core-modal-btn",
-                                                'data-path'=>$EXT_ARRAY['DOM_PATH']."modals/modal.page_object.edit.php",
-                                                'data-table'=>'app_page_objects',
-                                                'data-condition'=>$pageRow['id'],      
-                                            ));
-                                        echo $TXT['Edit'];
-                                    BTN::POST();  
-
-                                    BTN::PRE(array(
-                                        "class"=>"btn btn-sm btn-outline-secondary core-modal-btn",
-                                                'data-path'=>'core/modals/modal.db.dataset.delete/modal.php',
-                                                'data-table'=>'app_page_objects',
-                                                'data-id'=>$pageRow['id'],
-                                                'data-alternate-action'=>'page.object.delete.php' 
-                                            )
-                                    );
-                                        echo $TXT['Delete'];
-                                    BTN::POST(); */ 
                                 TD::POST();
                                 TD::PRE();
 

@@ -15,6 +15,7 @@ $origin_columns = array();
 $origin_values = array();
 
 $datasetBackup = $DB->RETRIEVE($data['table'],array(),array('unique_id'=>$data['id']))[0];
+print_r($datasetBackup);
 
 $updated_columns=array();
 

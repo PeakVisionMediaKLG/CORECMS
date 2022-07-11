@@ -7,18 +7,21 @@ if(!$USER->IS_ADMIN) die ('Unauthorized access.');
 
 $data = $_POST['data'] ?? die('no data sent');
 
+//print_r($data);
 //$languages = $CORE->GET_LANGUAGES();
 
 $pageRow = $DB->RETRIEVE(
     'app_pages',
     array(),
-    array('id'=>$data['condition']),
+    array('unique_id'=>$data['condition']),
     " LIMIT 1"
 )[0];
                                 
 $data['table'] = 'app_pages';
 
     $modalcontent = HIDDEN::PRINT_R(array('name'=>'table','value'=>'app_pages')).
+                    HIDDEN::PRINT_R(array('name'=>'condition','value'=>'id')). 
+                    HIDDEN::PRINT_R(array('name'=>'conditionvalue','value'=>$data['condition'])). 
                     TEXTBOX::PRINT_R(array(
                         'inline'=>1,
                         'class'=>'mt-2 has-validation',		
@@ -103,7 +106,7 @@ $modal= new MODAL(array(
                         'title'=>$TXT['Edit page'],
                         'content'=>$modalcontent,
 						'contentSize'=>'',
-						'staticModal'=>'',//'data-bs-backdrop="static"',
+						'staticModal'=>'data-bs-backdrop="static"',
                         'cancelLabel'=>$TXT['Cancel'],
                         'actionLabel'=>$TXT['Save'],
                         'actionPath'=>"core/actions/db.dataset.update.backup.php",

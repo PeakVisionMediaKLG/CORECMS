@@ -13,6 +13,7 @@ $data['table'] = 'app_pages';
     $modalcontent = HIDDEN::PRINT_R(array('name'=>'table','value'=>'app_pages')).
                     HIDDEN::PRINT_R(array('name'=>'core_data__language','value'=>$data['language'])).
                     HIDDEN::PRINT_R(array('name'=>'core_data__shared_id','value'=>$data['unique_id'])).
+                    HIDDEN::PRINT_R(array('name'=>'core_data__unique_id','value'=>"page_".md5(microtime(true)))).
                     TEXTBOX::PRINT_R(array(
                         'inline'=>1,
                         'class'=>'mt-2 has-validation',		
@@ -88,7 +89,7 @@ $modal= new MODAL(array(
                         'title'=>$TXT['Add page'],
                         'content'=>$modalcontent,
 						'contentSize'=>'',
-						'staticModal'=>'',//'data-bs-backdrop="static"',
+						'staticModal'=>'data-bs-backdrop="static"',
                         'cancelLabel'=>$TXT['Cancel'],
                         'actionLabel'=>$TXT['Save'],
                         'actionPath'=>"core/actions/db.dataset.insert.php",
