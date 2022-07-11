@@ -144,7 +144,7 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['Pages - Overview'],'lang'=>'en_US'
                                                 BTN::PRE(array("class"=>"btn btn-sm btn-outline-secondary core-modal-btn",
                                                     "id"=>$languageValues['code_2digit']."_dropdown",
                                                     "caption"=>strtoupper($languageValues['code_2digit']).BI::GET(array('icon'=>'plus','size'=>'16')),
-                                                    'data-path'=>$EXT_ARRAY['DOM_PATH']."modals/modal.page.create.php","data-language"=>$languageValues['code_2digit'],"data-unique-id"=>$pageRow['unique_id']));
+                                                    'data-path'=>$EXT_ARRAY['DOM_PATH']."modals/modal.page.create.php","data-language"=>$languageValues['code_2digit'],"data-unique_id"=>$pageRow['unique_id']));
                                                 BTN::POST();
                                             }                                            
                                          }    

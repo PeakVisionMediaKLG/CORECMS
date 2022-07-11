@@ -1,18 +1,18 @@
 <?php
+namespace CORE;
 require_once("../../../includes/modal.auth.php");
 header("Cache-Control: no-cache");
 
 if(!$USER->IS_ADMIN) die ('Unauthorized access.');
 
 $data = $_POST['data'] ?? die('no data sent');
-
 //$languages = $CORE->GET_LANGUAGES();
                                 
 $data['table'] = 'app_pages';
 
     $modalcontent = HIDDEN::PRINT_R(array('name'=>'table','value'=>'app_pages')).
                     HIDDEN::PRINT_R(array('name'=>'core_data__language','value'=>$data['language'])).
-                    HIDDEN::PRINT_R(array('name'=>'core_data__shared_identifier','value'=>$data['shared_identifier'])).
+                    HIDDEN::PRINT_R(array('name'=>'core_data__shared_id','value'=>$data['unique_id'])).
                     TEXTBOX::PRINT_R(array(
                         'inline'=>1,
                         'class'=>'mt-2 has-validation',		
@@ -83,7 +83,7 @@ $data['table'] = 'app_pages';
                     HIDDEN::PRINT_R(array('name'=>'core_data__created_date','value'=>time()));                    
 
                     
-$modal= new CORE\MODAL(array(
+$modal= new MODAL(array(
                         'id'=>"core-create-page-".time(),
                         'title'=>$TXT['Add page'],
                         'content'=>$modalcontent,
