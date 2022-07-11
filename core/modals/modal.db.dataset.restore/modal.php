@@ -72,14 +72,13 @@ foreach($get_values as $key => $value)
 }
 
 $modal = new MODAL(array(
-    "id"=>"core-restore-dataset.".time(), //modal id
-    "title"=>TXT['Restore dataset'], //modal title
-    "content"=>$modalcontent, //modal content
-    'staticModal'=>'data-bs-backdrop="static"',
-    "cancelLabel"=>TXT['Cancel'], //cancel caption
-    "actionLabel"=>TXT['Restore'], //action caption
-    "actionPath"=>"core/actions/db.dataset.update.backup.php",//action path
-    "dataAttributes"=>array('data-table'=>$data['table'],'data-id'=>$data['unique_id']),//data-attribute,
+    "id"=>"core-restore-dataset.".time(),
+    "title"=>TXT['Restore dataset'],
+    "content"=>$modalcontent,
+    "cancelLabel"=>TXT['Cancel'],
+    "actionLabel"=>TXT['Restore'],
+    "actionPath"=>"core/actions/db.dataset.update.backup.php",
+    "dataAttributes"=>array('data-table'=>$data['table'],'data-id'=>$data['unique_id']),
     "actionDisabled"=>"disabled"
 ));
 

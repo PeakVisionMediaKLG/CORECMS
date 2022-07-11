@@ -77,8 +77,6 @@ $modal= new MODAL(array(
                         'id'=>"core-edit-asset-".time(),
                         'title'=>$TXT['Edit asset'],
                         'content'=>$modalcontent,
-						'contentSize'=>'',
-						'staticModal'=>'data-bs-backdrop="static"',
                         'cancelLabel'=>$TXT['Cancel'],
                         'actionLabel'=>$TXT['Save'],
                         'actionPath'=>"core/actions/db.dataset.update.backup.php",

@@ -127,8 +127,6 @@ $modal= new MODAL(array(
                         'id'=>"core-create-user-".time(),
                         'title'=>$TXT['Create user'],
                         'content'=>$modalcontent,
-						'contentSize'=>'',
-						'staticModal'=>'data-bs-backdrop="static"',
                         'cancelLabel'=>$TXT['Cancel'],
                         'actionLabel'=>$TXT['Save'],
                         'actionPath'=>"core/actions/db.dataset.insert.php",

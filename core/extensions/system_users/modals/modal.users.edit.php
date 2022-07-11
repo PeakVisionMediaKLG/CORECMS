@@ -138,8 +138,6 @@ $modal= new MODAL(array(
                         'id'=>"core-edit-user-".time(),
                         'title'=>$TXT['Edit user'],
                         'content'=>$modalcontent,
-						'contentSize'=>'',
-						'staticModal'=>'data-bs-backdrop="static"',
                         'cancelLabel'=>$TXT['Cancel'],
                         'actionLabel'=>$TXT['Save'],
                         'actionPath'=>"core/actions/db.dataset.update.php",

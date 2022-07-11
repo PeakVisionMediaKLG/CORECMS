@@ -10,7 +10,7 @@ $data = $_POST['data'] ?? die('no data sent');
 $data['table'] = 'app_languages';
 
     $modalcontent = HIDDEN::PRINT_R(array('name'=>'table','value'=>'app_languages')).
-                    HIDDEN::PRINT_R(array('name'=>'core_data__unique_id','value'=>"language_".md5(microtime(true)))).
+                    HIDDEN::PRINT_R(array('name'=>'core_data__unique_id','value'=>CORE::UNIQUE("language"))).
                     TEXTBOX::PRINT_R(array(
                         'class'=>'mt-2 has-validation',		
                         'label'=>$TXT['Name'],
@@ -84,8 +84,6 @@ $modal= new MODAL(array(
                         'id'=>"core-create-language-".time(),
                         'title'=>$TXT['Create language'],
                         'content'=>$modalcontent,
-						'contentSize'=>'',
-						'staticModal'=>'data-bs-backdrop="static"',
                         'cancelLabel'=>$TXT['Cancel'],
                         'actionLabel'=>$TXT['Save'],
                         'actionPath'=>"core/actions/db.dataset.insert.php",

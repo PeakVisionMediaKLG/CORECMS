@@ -19,7 +19,7 @@ PAGE::PREPARE_PAGE_OBJECTS("",$DB);
 $pageData = PAGE::$SORTED_PAGE_OBJECTS;
 
     $modalcontent = HIDDEN::PRINT_R(array('name'=>'table','value'=>'app_page_objects')).
-                    HIDDEN::PRINT_R(array('name'=>'core_data__unique_id','value'=>"po_".md5(microtime(true)))).
+                    HIDDEN::PRINT_R(array('name'=>'core_data__unique_id','value'=>CORE::UNIQUE("page_object"))).
                     ROW::PRE_R(array('class'=>'my-2')).
                         COLUMN::PRE_R(array('class'=>'col')).
                             $TXT['Object type'].
@@ -53,7 +53,6 @@ $pageData = PAGE::$SORTED_PAGE_OBJECTS;
                         COLUMN::POST_R().
                     ROW::POST_R().
                     TEXTBOX::PRINT_R(array(
-                        'inline'=>1,
                         'class'=>'mt-2 has-validation',		
                         'label'=>$TXT['Name'],
                         'type'=>'text',
@@ -74,8 +73,6 @@ $modal= new MODAL(array(
                         'id'=>"core-create-page_object-".time(),
                         'title'=>$TXT['Create page object'],
                         'content'=>$modalcontent,
-						'contentSize'=>'',
-						'staticModal'=>'data-bs-backdrop="static"',
                         'cancelLabel'=>$TXT['Cancel'],
                         'actionLabel'=>$TXT['Save'],
                         'actionPath'=>"core/actions/db.dataset.insert.php",

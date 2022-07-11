@@ -32,22 +32,17 @@ $get_values = $get_values[0];
             ''=>'disabled',
             'value'=>htmlentities($value),
         ));
-        
-        /*$modalcontent.="<div class='row justify-content-start'>";
-        $modalcontent.="<div class='col pr-2'>$key:</div><div class='col'> $value</div>";	
-        $modalcontent.="</div>";*/
 	}
 
 
 $modal = new MODAL(array(
-    "id"=>"core-delete-backup-dataset.".time(), //modal id
-    "title"=>TXT['Delete dataset'], //modal title
-    "content"=>$modalcontent, //modal content
-    "cancelLabel"=>TXT['Cancel'], //cancel caption
-    "actionLabel"=>TXT['Delete'], //action caption
-    'staticModal'=>'data-bs-backdrop="static"',
-    "actionPath"=>"core/actions/db.dataset.delete.backup.php",//action path
-    "dataAttributes"=>array('data-table'=>$data['table'],'data-unique_id'=>$data['unique_id']),//data-attribute
+    "id"=>"core-delete-backup-dataset.".time(),
+    "title"=>TXT['Delete dataset'],
+    "content"=>$modalcontent,
+    "cancelLabel"=>TXT['Cancel'],
+    "actionLabel"=>TXT['Delete'],
+    "actionPath"=>"core/actions/db.dataset.delete.backup.php",
+    "dataAttributes"=>array('data-table'=>$data['table'],'data-unique_id'=>$data['unique_id']),
 ));
 
 echo $modal->GET_MODAL(); 

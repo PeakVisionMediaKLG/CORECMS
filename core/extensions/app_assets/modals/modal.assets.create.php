@@ -10,7 +10,7 @@ $data = $_POST['data'] ?? die('no data sent');
 $data['table'] = 'app_assets';
 
     $modalcontent = HIDDEN::PRINT_R(array('name'=>'table','value'=>'app_assets')).
-                    HIDDEN::PRINT_R(array('name'=>'core_data__unique_id','value'=>"asset_".md5(microtime(true)))).
+                    HIDDEN::PRINT_R(array('name'=>'core_data__unique_id','value'=>CORE::UNIQUE("asset"))).
                     TEXTBOX::PRINT_R(array(
                         'class'=>'mt-2 has-validation',		
                         'label'=>$TXT['Name'],
@@ -70,8 +70,6 @@ $modal= new MODAL(array(
                         'id'=>"core-create-asset-".time(),
                         'title'=>$TXT['Add asset'],
                         'content'=>$modalcontent,
-						'contentSize'=>'',
-						'staticModal'=>'data-bs-backdrop="static"',
                         'cancelLabel'=>$TXT['Cancel'],
                         'actionLabel'=>$TXT['Save'],
                         'actionPath'=>"core/actions/db.dataset.insert.php",

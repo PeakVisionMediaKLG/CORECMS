@@ -32,8 +32,7 @@ $get_values = $get_values[0];
 $modal = new CORE\MODAL(array(
     "id"=>"core-delete-dataset.".time(), //modal id
     "title"=>TXT['Delete dataset'], //modal title
-    "content"=>$modalcontent, //modal content
-    "cancelLabel"=>TXT['Cancel'], //cancel caption
+    "content"=>$modalcontent, //modal content"cancelLabel"=>TXT['Cancel'], //cancel caption
     "actionLabel"=>TXT['Delete'], //action caption
     "actionPath"=>"core/actions/db.dataset.delete.backup.php",//action path
     "dataAttributes"=>array('data-table'=>$data['table'],'data-id'=>$data['id']),//data-attribute

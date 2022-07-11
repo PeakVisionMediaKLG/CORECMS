@@ -178,11 +178,28 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['Pages - Overview'],'lang'=>'en_US'
                                             $excludedLanguages = json_decode($pageRow['excluded_languages']) ?? array();
                                             if(!in_array($languageValues['code_2digit'],$excludedLanguages))
                                             {
-                                                BTN::PRE(array("class"=>"btn btn-sm btn-outline-secondary core-modal-btn",
-                                                    "id"=>$languageValues['code_2digit']."_dropdown",
-                                                    "caption"=>strtoupper($languageValues['code_2digit']).BI::GET(array('icon'=>'plus','size'=>'16')),
-                                                    'data-path'=>$EXT_ARRAY['DOM_PATH']."modals/modal.page.create.php","data-language"=>$languageValues['code_2digit'],"data-unique_id"=>$pageRow['unique_id']));
-                                                BTN::POST();
+                                                $restorable_pages  = $DB->RETRIEVE(
+                                                    'app_pages_archive',
+                                                    array(),
+                                                    array("shared_id"=>$pageRow['unique_id']),
+                                                    " ORDER BY edited_date DESC"
+                                                 );
+                                                
+                                                if($restorable_pages)
+                                                {
+                                                    BTN::PRE(array('class'=>'btn btn-outline-secondary core-modal-btn','title'=>$TXT['Restore page object'],'caption'=>strtoupper($languageValues['code_2digit']).BI::GET(array('icon'=>'arrow-counterclockwise')),'data-path'=>$CORE->DOM_PATH."core/modals/modal.db.dataset.undelete/modal.php",
+                                                    'data-table'=>'app_pages'
+                                                    ));
+                                                    BTN::POST();
+                                                }
+                                                else 
+                                                { 
+                                                    BTN::PRE(array("class"=>"btn btn-sm btn-outline-secondary core-modal-btn",
+                                                        "id"=>$languageValues['code_2digit']."_dropdown",
+                                                        "caption"=>strtoupper($languageValues['code_2digit']).BI::GET(array('icon'=>'plus','size'=>'16')),
+                                                        'data-path'=>$EXT_ARRAY['DOM_PATH']."modals/modal.page.create.php","data-language"=>$languageValues['code_2digit'],"data-unique_id"=>$pageRow['unique_id']));
+                                                    BTN::POST();
+                                                }
                                             }                                            
                                          }    
                                     }

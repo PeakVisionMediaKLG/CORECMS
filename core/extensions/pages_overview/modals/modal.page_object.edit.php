@@ -87,8 +87,6 @@ $modal= new MODAL(array(
                         'id'=>"core-edit-page_object-".time(),
                         'title'=>$TXT['Edit page object'],
                         'content'=>$modalcontent,
-						'contentSize'=>'',
-						'staticModal'=>'data-bs-backdrop="static"',
                         'cancelLabel'=>$TXT['Cancel'],
                         'actionLabel'=>$TXT['Save'],
                         'actionPath'=>"core/actions/db.dataset.update.backup.php",

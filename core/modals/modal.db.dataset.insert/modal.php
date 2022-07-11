@@ -20,8 +20,7 @@ $modalcontent .= AUTOFORM::GET_FORM($data['table'],$USER->PREFERRED_LANGUAGE);
 $modal = new CORE\MODAL(array(
     "id"=>"core-edit-dataset.".time(), //modal id
     "title"=>TXT['Insert dataset'], //modal title
-    "content"=>$modalcontent, //modal content
-    "cancelLabel"=>TXT['Cancel'], //cancel caption
+    "content"=>$modalcontent, //modal content"cancelLabel"=>TXT['Cancel'], //cancel caption
     "actionLabel"=>TXT['Save'], //action caption
     "actionPath"=>"core/actions/db.dataset.insert.php",//action path
     "dataAttributes"=>array('data-table'=>$data['table']),//data-attribute

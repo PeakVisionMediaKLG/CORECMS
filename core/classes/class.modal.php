@@ -13,8 +13,8 @@ class MODAL
         $this->ID = $parameters['id'] ?? time();
         $this->TITLE = $parameters['title'] ?? ''; 
         $this->CONTENT = $parameters['content'] ?? '';
-        $this->CONTENT_SIZE = $parameters['contentSize'] ?? '';
-        $this->STATIC_MODAL = $parameters['staticModal'] ?? '';        
+        $this->CONTENT_SIZE = $parameters['contentSize'] ?? 'modal-lg';
+        $this->STATIC_MODAL = $parameters['staticModal'] ?? 'data-bs-backdrop="static"';        
         $this->CANCEL_LABEL = $parameters['cancelLabel'] ?? '';
         $this->ACTION_LABEL = $parameters['actionLabel'] ?? '';
         $this->ACTION_PATH = $parameters['actionPath'] ?? '';
