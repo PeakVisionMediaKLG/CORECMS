@@ -1,5 +1,5 @@
 <?php
-/* CORECMS - https://github.com/PeakVisionMediaKLG/CORECMS */
+namespace CORE;
 require_once('../../../../root.directory.php');
 require_once(ROOT.'core/includes/ext.header.php');
 require_once(ROOT."core/classes/class.page.php");

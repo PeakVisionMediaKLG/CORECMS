@@ -10,11 +10,6 @@ public $ALL_PAGES;
 static $INDENTATION;
 static $SORTED_PAGE_OBJECTS;
 
-function INITIALIZE()
-    {
-        
-    }
-/*
 function GET_ALL_PAGES()
     {
         $this->ALL_PAGES = $this->DB->RETRIEVE(
@@ -26,22 +21,22 @@ function GET_ALL_PAGES()
         return $this->ALL_PAGES;
     }
 
-function GET_PAGE_BY_URL($pageToGet)
+function INITIALIZE($url)
     {
-        $this->VALUES = $this->DB->RETRIEVE(
-            "core_pages",
+        $this->CURRENT_PAGE = $this->DB->RETRIEVE(
+            "app_pages",
             array(),
-            array("url"=>$pageToGet),
+            array("url"=>$url),
             "LIMIT 1"
         )[0];  
 
-        foreach($this->VALUES as $key => $value)
+        foreach($this->CURRENT_PAGE as $key => $value)
         {
             $key=strtoupper($key);
             $this->{$key}=$value;
         }  
     }    
-*/
+
 static function PREPARE_PAGE_OBJECTS($parent, $DB)
     {
         if(!SELF::$SORTED_PAGE_OBJECTS) SELF::$SORTED_PAGE_OBJECTS = array();

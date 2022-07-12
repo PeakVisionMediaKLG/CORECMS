@@ -163,10 +163,10 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['Pages - Overview'],'lang'=>'en_US'
                                                     A::POST();
                                                 LI::POST();
                                                 LI::PRE();
-                                                    A::PRE(array("class"=>"dropdown-item core-add-action-btn", "href"=>"pages.headless.content.php?url=".$localizedPage['url'],
+                                                    A::PRE(array("class"=>"dropdown-item core-add-action-btn", "href"=>$CORE->DOM_PATH."show.php?url=".$localizedPage['url'],
                                                         'data-path'=>'core/actions/session.set.value.php',
                                                         'data-thekey'=>'CORE.CURRENT_RIGHT_PANE',
-                                                        'data-thevalue'=>$EXT_ARRAY['DOM_PATH']."ext_content/pages.headless.content.php?url=".$localizedPage['url']            
+                                                        'data-thevalue'=>$CORE->DOM_PATH."show.php?url=".$localizedPage['url']            
                                                     ));
                                                         echo $TXT['Visual content'];
                                                     A::POST();
