@@ -28,6 +28,11 @@ body{padding:0;margin:0;}
 
 .dropdown-toggle { outline: 0; }
 
+.even-odd > tr:nth-child(even) {
+  background-color: hsl(0, 0%, 90%)
+}
+
+
 .nav-flush .nav-link {
   border-radius: 0;
 }

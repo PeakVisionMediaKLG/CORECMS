@@ -6,8 +6,8 @@ require_once(ROOT."core/classes/class.page.php");
 
 DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['Pages - Overview'],'lang'=>'en_US','resources'=>array(),"DB"=>$DB,"CORE"=>$CORE));
 
-        ROW::PRE(array('class'=>'g-0 p-0 m-0'));
-            COLUMN::PRE(array('class'=>'col-12 col-sm-10 offset-sm-1 p-3'));
+        ROW::PRE(array('class'=>'g-0 px-5 m-0'));
+            COLUMN::PRE(array('class'=>'col-12 pt-3'));
                 H::PRINT(array("class"=>"m-3","size"=>4,"style"=>"margin-left:15px;","heading"=>$TXT['Pages - Overview']));
                 HR::PRINT();
             COLUMN::POST();
@@ -43,7 +43,6 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['Pages - Overview'],'lang'=>'en_US'
                     {   
                     THEAD::PRE();
                         TH::PRE(); echo $TXT['Name']; TH::POST();
-                        //TH::PRE(); echo $TXT['ID']; TH::POST();
                         TH::PRE(); echo $TXT['Object type']; TH::POST();
                         TH::PRE(); echo $TXT['Localization']; TH::POST();
                         TH::PRE(); echo $TXT['Active']; TH::POST();
@@ -67,9 +66,9 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['Pages - Overview'],'lang'=>'en_US'
                                     { echo "&nbsp;&nbsp;&nbsp;&nbsp;"; } 
                                     echo BI::GET(array('icon'=>'file-earmark','size'=>'16'))." <b>".$pageRow['name']."</b>"; 
                                 TD::POST();
-                                //TD::PRE(); echo $pageRow['id']; 
+                                 
                                     HIDDEN::PRINT(array("name"=>$i."_id","value"=>$pageRow['id'])); 
-                                //TD::POST();
+                                
                                 TD::PRE(); echo $pageRow['object_type']; TD::POST();
                                 TD::PRE();
                                     $appLanguages = $DB->RETRIEVE(

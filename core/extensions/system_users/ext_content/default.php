@@ -12,8 +12,8 @@ $allUsersData = $DB->RETRIEVE(
 
 DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['User management'],'lang'=>'en_US','DB'=>$DB,'CORE'=>$CORE,'resources'=>array("bootstrap_css","bootstrap_icons","core_css","jquery","core_js")));
 
-    ROW::PRE(array('class'=>'g-0 p-0 m-0'));
-        COLUMN::PRE(array('class'=>'col-12 col-sm-10 offset-sm-1 p-3'));
+    ROW::PRE(array('class'=>'g-0 px-5 m-0'));
+        COLUMN::PRE(array('class'=>'col-12 pt-3'));
             H::PRINT(array("class"=>"m-3","size"=>4,"style"=>"margin-left:15px;","heading"=>$TXT['User management']));
             HR::PRINT(); 
         COLUMN::POST();
@@ -29,7 +29,7 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['User management'],'lang'=>'en_US',
             ROW::POST();
         }
 
-    ROW::PRE(array('class'=>'mx-auto w90 g-3'));
+    ROW::PRE(array('class'=>'mx-auto px-5 g-3'));
         //var_dump($allUsersData);
         $odd=0;
         foreach ($allUsersData as $key => $userData)

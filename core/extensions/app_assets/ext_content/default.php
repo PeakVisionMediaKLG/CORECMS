@@ -5,8 +5,8 @@ include_once(ROOT.'core/includes/ext.header.php');
 
 DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['App - Assets'],'lang'=>'en','resources'=>array(),"DB"=>$DB,"CORE"=>$CORE));
 
-        ROW::PRE(array('class'=>'g-0 p-0 m-0'));
-            COLUMN::PRE(array('class'=>'col-12 col-sm-10 offset-sm-1 p-3'));
+        ROW::PRE(array('class'=>'g-0 px-5 m-0'));
+            COLUMN::PRE(array('class'=>'col-12 pt-3'));
                 H::PRINT(array("class"=>"m-3","size"=>4,"style"=>"margin-left:15px;","heading"=>$TXT['App - Assets']));
                 HR::PRINT();
             COLUMN::POST();
@@ -39,7 +39,6 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['App - Assets'],'lang'=>'en','resou
                     if ($asset_data and count($asset_data) > 0) 
                     {   
                     THEAD::PRE();
-                        TH::PRE(); echo $TXT['ID']; TH::POST();
                         TH::PRE(); echo $TXT['Name']; TH::POST();
                         TH::PRE(); echo $TXT['File']; TH::POST();
                         TH::PRE(); echo $TXT['Database']; TH::POST();
@@ -48,7 +47,7 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['App - Assets'],'lang'=>'en','resou
                         TH::PRE(); TH::POST();
                     THEAD::POST();
                     }
-                    TBODY::PRE(array("class"=>"js-sortable-table","data-path"=>$CORE->GET_DOM_PATH()."core/actions/db.dataset.reorder.php"));
+                    TBODY::PRE(array("class"=>"js-sortable-table even-odd","data-path"=>$CORE->GET_DOM_PATH()."core/actions/db.dataset.reorder.php"));
                     HIDDEN::PRINT(array("name"=>"table","value"=>"app_assets")); 
                     if ($asset_data and count($asset_data) > 0) 
                     {   
@@ -57,7 +56,7 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['App - Assets'],'lang'=>'en','resou
                         foreach($asset_data as $key => $asset_row)
                         {
                             TR::PRE(array("class"=>"js-sortable-tr"));
-                                TD::PRE(); echo $asset_row['id']; HIDDEN::PRINT(array("name"=>$i."_id","value"=>$asset_row['id'])); TD::POST();
+                                HIDDEN::PRINT(array("name"=>$i."_id","value"=>$asset_row['id']));
                                 TD::PRE(); echo $asset_row['name']; TD::POST();
                                 TD::PRE(); echo htmlentities($asset_row['src_file']); TD::POST();
                                 TD::PRE(); echo htmlentities($asset_row['src_db']); TD::POST();

@@ -5,8 +5,8 @@ include_once(ROOT.'core/includes/ext.header.php');
 
 DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['App languages'],'lang'=>'en_US','resources'=>array(),"DB"=>$DB,"CORE"=>$CORE));
 
-        ROW::PRE(array('class'=>'g-0 p-0 m-0'));
-            COLUMN::PRE(array('class'=>'col-12 col-sm-10 offset-sm-1 p-3'));
+        ROW::PRE(array('class'=>'g-0 px-5 m-0'));
+            COLUMN::PRE(array('class'=>'col-12 pt-3'));
                 H::PRINT(array("class"=>"m-3","size"=>4,"style"=>"margin-left:15px;","heading"=>$TXT['App - Languages']));
                 HR::PRINT();
             COLUMN::POST();
@@ -39,7 +39,6 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['App languages'],'lang'=>'en_US','r
                     if ($language_data and count($language_data) > 0) 
                     {   
                     THEAD::PRE();
-                        TH::PRE(); echo $TXT['ID']; TH::POST();
                         TH::PRE(); echo $TXT['Language']; TH::POST();
                         TH::PRE(); echo $TXT['2-digit code']; TH::POST();
                         TH::PRE(); echo $TXT['5-digit code']; TH::POST();
@@ -49,7 +48,7 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['App languages'],'lang'=>'en_US','r
                         TH::PRE(); TH::POST();
                     THEAD::POST();
                     }
-                    TBODY::PRE(array("class"=>"js-sortable-table","data-path"=>$CORE->DOM_PATH."core/actions/db.dataset.reorder.php"));
+                    TBODY::PRE(array("class"=>"js-sortable-table even-odd","data-path"=>$CORE->DOM_PATH."core/actions/db.dataset.reorder.php"));
                     HIDDEN::PRINT(array("name"=>"table","value"=>"app_languages")); 
                     if ($language_data and count($language_data) > 0) 
                     {   
@@ -58,7 +57,7 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['App languages'],'lang'=>'en_US','r
                         foreach($language_data as $key => $language_row)
                         {
                             TR::PRE(array("class"=>"js-sortable-tr"));
-                                TD::PRE(); echo $language_row['id']; HIDDEN::PRINT(array("name"=>$i."_id","value"=>$language_row['id'])); TD::POST();
+                                HIDDEN::PRINT(array("name"=>$i."_id","value"=>$language_row['id']));
                                 TD::PRE(); echo $language_row['name']; TD::POST();
                                 TD::PRE(); echo $language_row['code_2digit']; TD::POST();
                                 TD::PRE(); echo $language_row['code_5digit']; TD::POST();
