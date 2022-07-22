@@ -26,7 +26,8 @@ if($USER->AUTH_OK)
 
 require_once(ROOT.'core/classes/class.content.php');
 $CONTENT = new CONTENT();
-$CONTENT->DB=$DB;
+$CONTENT->DB = $DB;
+$CONTENT->CORE = $CORE;
 ?>
 <!doctype html>
 <html lang="<?php echo $PAGE->LANGUAGE ?? "en"; ?>">
@@ -37,7 +38,10 @@ if(isset($_GET['template']) and $USER->AUTH_OK)
     require_once(ROOT.'core/classes/class.template.php');
     $PAGE_TEMPLATE = new TEMPLATE("page");
     $PAGE_TEMPLATE->DB=$DB;
-    $PAGE_TEMPLATE->INITIALIZE($_GET); 
+    $PAGE_TEMPLATE->INITIALIZE($_GET);
+    
+    echo LOADER::EXT_RESOURCES("head", array());
+                $CORE->JS_SESSION();
 }
 
 if(isset($_GET['url']))
@@ -56,6 +60,8 @@ if($USER->AUTH_OK)
     
     $CONTENT->CONTROLS(1);
 }
+
+echo LOADER::EXT_RESOURCES("body", array());
 ?>
 </html>
 

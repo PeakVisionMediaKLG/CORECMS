@@ -4,6 +4,8 @@ class CONTAINER extends COMPONENT
 {	
     static function PRECODE($attributes=NULL)
     {
+        $attributes = (new self)::FORCE($attributes, array('class'=>'container-fluid'));
+        
         $CODE = "<div".(new self)->WRITE_ATTRIBUTES($attributes).">".PHP_EOL;
         return $CODE;
     }

@@ -9,7 +9,7 @@ class BI extends COMPONENT
 		$icon = $attributes['icon'] ?? NULL;
 		$attributes = (new self)::REMOVE($attributes, array('icon'));
 
-		return '<i class="bi-'.$icon.'" '.(new self)->WRITE_ATTRIBUTES($attributes)."></i>".PHP_EOL;
+		return '<i class="bi bi-'.$icon.'" '.(new self)->WRITE_ATTRIBUTES($attributes)."></i>".PHP_EOL;
 	}
 }
 ?>
