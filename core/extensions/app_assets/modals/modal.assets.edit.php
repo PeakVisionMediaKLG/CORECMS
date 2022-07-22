@@ -54,10 +54,30 @@ $data['table'] = 'app_assets';
                     ROW::PRE_R(array('class'=>'my-2')).
                     COLUMN::PRE_R(array('class'=>'col')).
                         CHECKBOX::PRINT_R(array('class'=>'core-checkbox mt-2 mb-2',
-                        'caption'=>$TXT['Eval'],
+                        'caption'=>$TXT['Use in development'],
+                        'name'=>'core_data__use_in_dev',
+                        'value'=>$assetRow['use_in_dev'],
+                        'tabindex'=>'40'),
+                        array()).
+                    COLUMN::POST_R().
+                    ROW::POST_R().
+                    ROW::PRE_R(array('class'=>'my-2')).
+                    COLUMN::PRE_R(array('class'=>'col')).
+                        CHECKBOX::PRINT_R(array('class'=>'core-checkbox mt-2 mb-2',
+                        'caption'=>$TXT['Use in production'],
+                        'name'=>'core_data__use_in_prod',
+                        'value'=>$assetRow['use_in_prod'],
+                        'tabindex'=>'50'),
+                        array()).
+                    COLUMN::POST_R().
+                    ROW::POST_R().
+                    ROW::PRE_R(array('class'=>'my-2')).
+                    COLUMN::PRE_R(array('class'=>'col')).
+                        CHECKBOX::PRINT_R(array('class'=>'core-checkbox mt-2 mb-2',
+                        'caption'=>$TXT['PHP Eval (Danger Zone)'],
                         'name'=>'core_data__eval',
                         'value'=>$assetRow['eval'],
-                        'tabindex'=>'40'),
+                        'tabindex'=>'60'),
                         array()).
                     COLUMN::POST_R().
                     ROW::POST_R().
@@ -67,7 +87,7 @@ $data['table'] = 'app_assets';
                             'caption'=>$TXT['Active'],
                             'name'=>'core_data__is_active',
                             'value'=>$assetRow['is_active'],
-                            'tabindex'=>'50'),
+                            'tabindex'=>'70'),
                             array()).
                         COLUMN::POST_R().
                     ROW::POST_R();                        

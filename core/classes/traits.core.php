@@ -29,6 +29,12 @@ trait HELPERS
         return $name."_".md5(microtime(true));
     }
 
+    static function SHORTEN ($input, $length = 20)
+    {
+        if ($input) $three_dots = "...";  else $three_dots = "";
+        return substr($input, 0, $length).$three_dots;
+    }
+
 }
 
 ?>

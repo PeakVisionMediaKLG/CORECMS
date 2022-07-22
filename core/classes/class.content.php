@@ -4,25 +4,19 @@ namespace CORE;
 class CONTENT
 {
     public $DB;
+
     public $PAGE;
+    public $TEMPLATE;
 
-    function __construct($url)
-    {
-        $this->PAGE = $url;
-    }
     
-    function BUILD_CONTENT()
-    {
-        //echo $this->PAGE;
 
-    }
 
     function BUILD_INCLUDES()
     {
 
     }
 
-    function CONTENT_CONTROLS($toplevel=0)
+    function CONTROLS($toplevel=0)
     {
         if($toplevel)
         {
@@ -37,6 +31,17 @@ class CONTENT
         {
         
         }
+    }
+
+    function CNT_TOOLBAR()
+    {
+        DIV::PRE(array("class"=>"btn-group btn-group-sm", "role"=>"group"));
+            if($this->LOCKED)
+            {
+                
+            }
+
+        DIV::POST();
     }
 
     function COPY_CONTROLS()

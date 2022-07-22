@@ -21,7 +21,9 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['App - Assets'],'lang'=>'en','resou
                     );
                 if($delete_data)
                 {
-                BTN::PRE(array('class'=>'btn btn-outline-secondary core-modal-btn','title'=>$TXT['Restore asset'],'caption'=>BI::GET(array('icon'=>'arrow-counterclockwise')),'data-path'=>$CORE->DOM_PATH."core/modals/modal.dataset.restore.php"));BTN::POST();
+                    BTN::PRE(array('class'=>'btn btn-outline-secondary core-modal-btn','title'=>$TXT['Restore asset'],'caption'=>BI::GET(array('icon'=>'arrow-counterclockwise')),'data-path'=>$CORE->DOM_PATH."core/modals/modal.db.dataset.undelete/modal.php",
+                    'data-table'=>'app_assets'
+                    ));BTN::POST();
                 }
             COLUMN::POST();
         ROW::POST();
@@ -42,7 +44,8 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['App - Assets'],'lang'=>'en','resou
                         TH::PRE(); echo $TXT['Name']; TH::POST();
                         TH::PRE(); echo $TXT['File']; TH::POST();
                         TH::PRE(); echo $TXT['Database']; TH::POST();
-                        TH::PRE(); echo $TXT['Eval']; TH::POST();
+                        TH::PRE(); echo $TXT['Development']; TH::POST();
+                        TH::PRE(); echo $TXT['Production']; TH::POST();
                         TH::PRE(); echo $TXT['Active']; TH::POST();
                         TH::PRE(); TH::POST();
                     THEAD::POST();
@@ -58,18 +61,25 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['App - Assets'],'lang'=>'en','resou
                             TR::PRE(array("class"=>"js-sortable-tr"));
                                 HIDDEN::PRINT(array("name"=>$i."_id","value"=>$asset_row['id']));
                                 TD::PRE(); echo $asset_row['name']; TD::POST();
-                                TD::PRE(); echo htmlentities($asset_row['src_file']); TD::POST();
-                                TD::PRE(); echo htmlentities($asset_row['src_db']); TD::POST();
+                                TD::PRE(); echo CORE::SHORTEN(htmlentities($asset_row['src_file'])); TD::POST();
+                                TD::PRE(); echo CORE::SHORTEN(htmlentities($asset_row['src_db'])); TD::POST();
                                 TD::PRE(); CHECKBOX::PRINT(array(
                                     "class"=>"",
-                                    "name"=>"id",
-                                    "value"=>$asset_row['eval'],
+                                    "name"=>"use_in_dev",
+                                    "value"=>$asset_row['use_in_dev'],
                                     "disabled"=>"disabled"
                                 ));
                                 TD::POST();
                                 TD::PRE(); CHECKBOX::PRINT(array(
                                     "class"=>"",
-                                    "name"=>"id",
+                                    "name"=>"use_in_prod",
+                                    "value"=>$asset_row['use_in_prod'],
+                                    "disabled"=>"disabled"
+                                ));
+                                TD::POST();
+                                TD::PRE(); CHECKBOX::PRINT(array(
+                                    "class"=>"",
+                                    "name"=>"is_active",
                                     "value"=>$asset_row['is_active'],
                                     "disabled"=>"disabled"
                                 ));

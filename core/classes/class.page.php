@@ -83,6 +83,12 @@ static function SELECT_PARENT($pageObjects,$currentObject = NULL)
         }
         return $optionPairs;
     }
-    
+ 
+function BUILD_CONTENT()
+{
+    print_r($this);
+
+}    
+
 }
 ?>

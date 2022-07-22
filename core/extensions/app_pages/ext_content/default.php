@@ -78,7 +78,7 @@ DOCUMENT::HEADER(array('title'=>'CORE '.$TXT['Pages - Overview'],'lang'=>'en_US'
                                         " ORDER BY id ASC"
                                      );
                                     //print_r($appLanguages);
-                                    DIV::PRE(array("class"=>"btn-group", "role"=>"group")); 
+                                    DIV::PRE(array("class"=>"btn-group btn-group-sm", "role"=>"group")); 
                                     foreach($appLanguages as $key => $languageValues)
                                     {
                                         $localizedPage  = $DB->RETRIEVE(
