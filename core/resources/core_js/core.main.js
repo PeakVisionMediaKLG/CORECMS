@@ -16,6 +16,18 @@ function readCookie(name) {
     return null;
 }
 
+$( document ).ready(function() {
+    $('.core-content-controls').parent().each(function(e){ 
+        if($(this).width()<450 || ($(this).children().width() > $(this).width()-270)) 
+        {
+            //$(this).find('.core-content-controls').hide(); 
+            $(this).find('.core-displaceable').hide();
+        }
+        else
+        {   $(this).find('.core-displaced').hide(); }
+    });
+});
+
 /*
 ===========================================
 Core functions

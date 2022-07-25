@@ -28,6 +28,7 @@ require_once(ROOT.'core/classes/class.content.php');
 $CONTENT = new CONTENT();
 $CONTENT->DB = $DB;
 $CONTENT->CORE = $CORE;
+$CONTENT->GET_TXT();
 ?>
 <!doctype html>
 <html lang="<?php echo $PAGE->LANGUAGE ?? "en"; ?>">
@@ -57,7 +58,6 @@ if(isset($_GET['url']))
 
 if($USER->AUTH_OK) 
 { 
-    
     $CONTENT->CONTROLS(1);
 }
 

@@ -40,7 +40,7 @@ $CORE->USER=$USER;
 </head>
 <body>  
     <?php
-    CORE\CONTAINER::PRE();
+    CORE\CONTAINER::PRE(array(''));
         CORE\ROW::PRE(array('class'=>'row g-0 p-0 m-0 core-h100'));
             CORE\COLUMN::PRE(array('class'=>'col-12 col-sm-6 col-md-3 col-xl-3 col-xxl-2 bg-light p-3 core-left-panel core-h100'));
                 CORE\H::PRINT(array("class"=>"m-3","size"=>4,"style"=>"margin-left:15px;",'heading'=>CORE\BI::GET(array('style'=>'font-size: 20px; position:relative;top:-2px;','icon'=>'disc'))." \core")); 

@@ -6,11 +6,12 @@ class CORE
     use HELPERS;
 
     public $DOM_PATH;
-
+        
     function __construct()
     {
         $this->CORE_CSS_INCLUDES="";
         $this->CORE_JS_INCLUDES="";
+
     } 
 
     function GET_DOM_PATH()
