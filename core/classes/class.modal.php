@@ -61,7 +61,7 @@ class MODAL
         $data_collection="";
         foreach($data as $key => $value)
           {
-            $data_collection.=$key.'="'.$value.'" ';		
+            $data_collection.=$key."='".$value."' ";		
           }
 
         return $data_collection;
